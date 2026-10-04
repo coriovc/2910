@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +9,7 @@
     <!-- Google Fonts: Cormorant Garamond, Cookie, Montserrat, Playfair Display, Alex Brush -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cookie&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Alex+Brush&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cookie&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Alex+Brush&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #f2ece4;
@@ -41,52 +38,23 @@
 
         /* Floating animations for moodboard collage */
         @keyframes floatSlow {
-
-            0%,
-            100% {
-                transform: translateY(0px) rotate(-0.8deg);
-            }
-
-            50% {
-                transform: translateY(-12px) rotate(1.2deg);
-            }
+            0%, 100% { transform: translateY(0px) rotate(-0.8deg); }
+            50% { transform: translateY(-12px) rotate(1.2deg); }
         }
 
         @keyframes floatMedium {
-
-            0%,
-            100% {
-                transform: translateY(0px) rotate(1.5deg);
-            }
-
-            50% {
-                transform: translateY(-15px) rotate(-1.2deg);
-            }
+            0%, 100% { transform: translateY(0px) rotate(1.5deg); }
+            50% { transform: translateY(-15px) rotate(-1.2deg); }
         }
 
         @keyframes floatFast {
-
-            0%,
-            100% {
-                transform: translateY(0px) rotate(-1.5deg);
-            }
-
-            50% {
-                transform: translateY(-10px) rotate(1.5deg);
-            }
+            0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
+            50% { transform: translateY(-10px) rotate(1.5deg); }
         }
 
-        .float-1 {
-            animation: floatSlow 7s ease-in-out infinite;
-        }
-
-        .float-2 {
-            animation: floatMedium 5.5s ease-in-out infinite;
-        }
-
-        .float-3 {
-            animation: floatFast 6.5s ease-in-out infinite;
-        }
+        .float-1 { animation: floatSlow 7s ease-in-out infinite; }
+        .float-2 { animation: floatMedium 5.5s ease-in-out infinite; }
+        .float-3 { animation: floatFast 6.5s ease-in-out infinite; }
 
         /* Atmospheric Nebula & Oceanic Blue Fog */
         .bg-nebula {
@@ -96,12 +64,8 @@
 
         .fog-layer {
             position: fixed;
-            top: -50%;
-            left: -50%;
-            right: -50%;
-            bottom: -50%;
-            width: 200%;
-            height: 200%;
+            top: -50%; left: -50%; right: -50%; bottom: -50%;
+            width: 200%; height: 200%;
             background: radial-gradient(circle at 50% 50%, rgba(24, 52, 84, 0.045) 0%, rgba(140, 146, 154, 0.02) 40%, transparent 70%);
             animation: driftFog 30s linear infinite;
             pointer-events: none;
@@ -109,17 +73,9 @@
         }
 
         @keyframes driftFog {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-
-            50% {
-                transform: translate(-2%, 2%) rotate(180deg);
-            }
-
-            100% {
-                transform: translate(0, 0) rotate(360deg);
-            }
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-2%, 2%) rotate(180deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
         }
 
         /* Scroll reveal */
@@ -128,7 +84,6 @@
             transform: translateY(35px) scale(0.96);
             transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         .reveal-item.active {
             opacity: 1;
             transform: translateY(0) scale(1);
@@ -141,17 +96,9 @@
 
         /* Heart particle animation */
         @keyframes floatUpFade {
-            0% {
-                transform: translateY(0) scale(0.8);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-85px) scale(1.4);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) scale(0.8); opacity: 1; }
+            100% { transform: translateY(-85px) scale(1.4); opacity: 0; }
         }
-
         .heart-particle {
             position: absolute;
             pointer-events: none;
@@ -161,45 +108,24 @@
 
         /* Equalizer bar animation */
         @keyframes eqBounce {
-
-            0%,
-            100% {
-                height: 4px;
-            }
-
-            50% {
-                height: 16px;
-            }
+            0%, 100% { height: 4px; }
+            50% { height: 16px; }
         }
-
         .eq-bar {
             width: 3px;
             background-color: #183454;
             border-radius: 2px;
             display: inline-block;
         }
-
-        .playing .eq-bar:nth-child(1) {
-            animation: eqBounce 0.8s ease-in-out infinite;
-        }
-
-        .playing .eq-bar:nth-child(2) {
-            animation: eqBounce 1.1s ease-in-out infinite 0.2s;
-        }
-
-        .playing .eq-bar:nth-child(3) {
-            animation: eqBounce 0.7s ease-in-out infinite 0.4s;
-        }
-
-        .playing .eq-bar:nth-child(4) {
-            animation: eqBounce 0.9s ease-in-out infinite 0.1s;
-        }
+        .playing .eq-bar:nth-child(1) { animation: eqBounce 0.8s ease-in-out infinite; }
+        .playing .eq-bar:nth-child(2) { animation: eqBounce 1.1s ease-in-out infinite 0.2s; }
+        .playing .eq-bar:nth-child(3) { animation: eqBounce 0.7s ease-in-out infinite 0.4s; }
+        .playing .eq-bar:nth-child(4) { animation: eqBounce 0.9s ease-in-out infinite 0.1s; }
 
         /* =========================================
-           ✨ DREAMLIKE MEMORY FLOW ANIMATIONS
-           (Bordes desvanecidos, aparecen rápido, continúan lento y salen)
+           ✨ BORDERLESS FLOATING PHOTOS (Coming from Background)
            ========================================= */
-        .memory-slide {
+        .slide-wrapper {
             position: absolute;
             inset: 0;
             width: 100%;
@@ -208,155 +134,83 @@
             align-items: center;
             justify-content: center;
             pointer-events: none;
+            /* Iniciar desde lo profundo del fondo */
+            transform: scale(0.48) translateY(35px);
+            opacity: 0;
+            filter: blur(24px) brightness(0.4);
+            transition: transform 3.0s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 1.1s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: transform, opacity, filter;
-            animation: memoryPass 3.4s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
         }
 
-        @keyframes memoryPass {
-            0% {
-                transform: scale(0.52) translateY(24px);
-                opacity: 0;
-                filter: blur(24px) brightness(0.4);
-            }
-
-            22% {
-                /* Aparecen rápido */
-                transform: scale(0.96) translateY(5px);
-                opacity: 1;
-                filter: blur(0px) brightness(1);
-            }
-
-            75% {
-                /* Se continúan moviendo lentamente sin pausas */
-                transform: scale(1.06) translateY(-8px);
-                opacity: 1;
-                filter: blur(0px) brightness(1);
-            }
-
-            100% {
-                /* Salen fluidas hacia adelante */
-                transform: scale(1.20) translateY(-22px);
-                opacity: 0;
-                filter: blur(14px) brightness(0.7);
-            }
+        .slide-wrapper.active {
+            transform: scale(1.0) translateY(0);
+            opacity: 1;
+            filter: blur(0px) brightness(1);
         }
 
-        /* Foto final de Eber: llega rápido, continúa lento y se queda flotando eternamente */
-        .final-memory-slide {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-            will-change: transform, opacity, filter;
-            animation: finalMemoryArrival 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .slide-wrapper.outgoing {
+            transform: scale(1.18) translateY(-20px);
+            opacity: 0;
+            filter: blur(12px) brightness(0.7);
+            transition: transform 1.1s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 1.0s cubic-bezier(0.4, 0, 0.2, 1),
+                        filter 1.0s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        @keyframes finalMemoryArrival {
-            0% {
-                transform: scale(0.52) translateY(24px);
-                opacity: 0;
-                filter: blur(24px) brightness(0.4);
-            }
-
-            45% {
-                transform: scale(0.96) translateY(5px);
-                opacity: 1;
-                filter: blur(0px) brightness(1);
-            }
-
-            100% {
-                transform: scale(1.0) translateY(0);
-                opacity: 1;
-                filter: blur(0px) brightness(1);
-            }
+        .slide-wrapper.final-hero {
+            animation: heroFloatGently 8s ease-in-out infinite alternate;
         }
 
-        .final-memory-slide.floating {
-            animation: continuousHeroFloat 10s ease-in-out infinite alternate;
+        @keyframes heroFloatGently {
+            0% { transform: scale(1.0) translateY(0px); }
+            50% { transform: scale(1.03) translateY(-10px); }
+            100% { transform: scale(1.02) translateY(6px); }
         }
 
-        @keyframes continuousHeroFloat {
-            0% {
-                transform: scale(1.0) translateY(0px) rotate(-0.25deg);
-            }
-
-            50% {
-                transform: scale(1.03) translateY(-9px) rotate(0.35deg);
-            }
-
-            100% {
-                transform: scale(1.01) translateY(5px) rotate(-0.2deg);
-            }
-        }
-
-        /* Foto o Video flotante en tamaño completo con bordes difuminados progresivamente hacia la transparencia */
+        /* Foto flotante en tamaño completo sin recuadros ni bordes */
         .floating-full-photo {
-            max-width: 94vw;
-            max-height: 72vh;
+            max-width: 92vw;
+            max-height: 68vh;
             width: auto;
             height: auto;
             object-fit: contain;
             border-radius: 1.5rem;
-
-            /* Técnica moderna con mask-image y linear-gradient hacia la transparencia en todos los bordes */
-            -webkit-mask-image:
-                linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%),
-                linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%);
-            -webkit-mask-composite: destination-in;
-
-            mask-image:
-                linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%),
-                linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%);
-            mask-composite: intersect;
-
-            /* Resplandor y halo difuso en los bordes */
-            filter: drop-shadow(0 0 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 25px rgba(60, 130, 230, 0.35));
+            filter: drop-shadow(0 25px 60px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 35px rgba(50, 100, 180, 0.25));
             pointer-events: none;
             user-select: none;
         }
 
-        /* Clase utilitaria reutilizable para difuminar bordes con gradiente lineal */
-        .mask-linear-fade {
-            -webkit-mask-image:
-                linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%),
-                linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%);
-            -webkit-mask-composite: destination-in;
-            mask-image:
-                linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%),
-                linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%);
-            mask-composite: intersect;
-        }
-
         @media (min-width: 640px) {
             .floating-full-photo {
-                max-width: 86vw;
-                max-height: 76vh;
+                max-width: 82vw;
+                max-height: 72vh;
+                border-radius: 2rem;
             }
         }
 
         /* Fondo ambiental difuminado para cada foto */
         .ambient-photo-backdrop {
             position: absolute;
-            inset: -12%;
-            width: 124%;
-            height: 124%;
+            inset: -10%;
+            width: 120%;
+            height: 120%;
             object-fit: cover;
-            filter: blur(55px) brightness(0.42) saturate(150%);
-            opacity: 0.6;
+            filter: blur(45px) brightness(0.4) saturate(140%);
+            opacity: 0.55;
             pointer-events: none;
         }
 
         /* Sombreado blur superior "Sobre todas las cosas" */
         .top-blur-overlay {
-            background: linear-gradient(to bottom,
-                    rgba(5, 11, 20, 0.96) 0%,
-                    rgba(5, 11, 20, 0.85) 45%,
-                    rgba(5, 11, 20, 0.45) 80%,
-                    transparent 100%);
+            background: linear-gradient(
+                to bottom,
+                rgba(5, 11, 20, 0.96) 0%,
+                rgba(5, 11, 20, 0.85) 45%,
+                rgba(5, 11, 20, 0.45) 80%,
+                transparent 100%
+            );
             backdrop-filter: blur(20px) saturate(190%);
             -webkit-backdrop-filter: blur(20px) saturate(190%);
             mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
@@ -365,15 +219,33 @@
 
         /* Sombreado blur inferior para el botón */
         .bottom-blur-overlay {
-            background: linear-gradient(to top,
-                    rgba(5, 11, 20, 0.95) 0%,
-                    rgba(5, 11, 20, 0.75) 50%,
-                    rgba(5, 11, 20, 0.3) 80%,
-                    transparent 100%);
+            background: linear-gradient(
+                to top,
+                rgba(5, 11, 20, 0.95) 0%,
+                rgba(5, 11, 20, 0.75) 50%,
+                rgba(5, 11, 20, 0.3) 80%,
+                transparent 100%
+            );
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
             mask-image: linear-gradient(to top, black 70%, transparent 100%);
             -webkit-mask-image: linear-gradient(to top, black 70%, transparent 100%);
+        }
+
+        /* Indicador de barra de progreso */
+        .indicator-bar {
+            height: 3px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.25);
+            transition: all 0.4s ease;
+            flex: 1;
+        }
+        .indicator-bar.active {
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+        }
+        .indicator-bar.completed {
+            background: rgba(147, 197, 253, 0.85);
         }
 
         /* =========================================
@@ -397,7 +269,7 @@
             backdrop-filter: blur(24px) saturate(220%);
             -webkit-backdrop-filter: blur(24px) saturate(220%);
             border: 1px solid rgba(255, 255, 255, 0.65);
-            box-shadow:
+            box-shadow: 
                 0 20px 40px -10px rgba(2, 10, 25, 0.8),
                 0 0 25px 2px rgba(96, 165, 250, 0.45),
                 inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.95),
@@ -412,7 +284,7 @@
         .liquid-glass-btn:hover {
             transform: translateY(-3px) scale(1.04);
             border-color: rgba(255, 255, 255, 0.95);
-            box-shadow:
+            box-shadow: 
                 0 25px 50px -8px rgba(2, 10, 25, 0.9),
                 0 0 38px 6px rgba(125, 185, 255, 0.65),
                 inset 0 2px 3px 0 rgba(255, 255, 255, 1),
@@ -422,7 +294,7 @@
 
         .liquid-glass-btn:active {
             transform: translateY(1px) scale(0.97);
-            box-shadow:
+            box-shadow: 
                 0 8px 20px -4px rgba(2, 10, 25, 0.6),
                 0 0 18px rgba(96, 165, 250, 0.3);
         }
@@ -435,43 +307,30 @@
             left: -150%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(115deg,
-                    transparent 0%,
-                    rgba(255, 255, 255, 0.05) 35%,
-                    rgba(255, 255, 255, 0.7) 50%,
-                    rgba(255, 255, 255, 0.05) 65%,
-                    transparent 100%);
+            background: linear-gradient(
+                115deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.05) 35%,
+                rgba(255, 255, 255, 0.7) 50%,
+                rgba(255, 255, 255, 0.05) 65%,
+                transparent 100%
+            );
             transform: rotate(25deg);
             animation: liquidSweep 3.6s infinite ease-in-out;
             pointer-events: none;
         }
 
         @keyframes liquidSweep {
-            0% {
-                left: -160%;
-                opacity: 0;
-            }
-
-            15% {
-                opacity: 1;
-            }
-
-            55% {
-                left: 140%;
-                opacity: 1;
-            }
-
-            100% {
-                left: 140%;
-                opacity: 0;
-            }
+            0% { left: -160%; opacity: 0; }
+            15% { opacity: 1; }
+            55% { left: 140%; opacity: 1; }
+            100% { left: 140%; opacity: 0; }
         }
     </style>
 </head>
-
 <body class="bg-nebula min-h-screen text-[#122842] selection:bg-[#183454] selection:text-white">
 
-    <!-- =========================================================================
+<!-- =========================================================================
      🎵 REPRODUCTOR DE TU CANCIÓN PERSONAL:
      =========================================================================
      Puedes colocar aquí directamente el nombre de tu archivo de música:
@@ -486,76 +345,92 @@
     <!-- Canvas for Confetti -->
     <canvas id="confetti-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-50"></canvas>
 
-    <!-- Intro Screen Overlay (Deep Midnight Blue Immersive Borderless Canvas) -->
-    <div id="intro-overlay"
-        class="fixed inset-0 z-50 bg-[#060c14] flex flex-col justify-between items-center text-center transition-all duration-1000 overflow-hidden select-none">
+    <!-- Intro Screen Overlay (Deep Midnight Blue Showcase) -->
+    <div id="intro-overlay" class="fixed inset-0 z-50 bg-[#070e17] flex flex-col items-center justify-between text-center py-6 px-4 transition-all duration-1000 overflow-y-auto">
+        
+        <!-- Ambient Radial Glow Behind Central Stage -->
+        <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[500px] h-[340px] sm:h-[500px] bg-gradient-to-tr from-blue-700/20 via-sky-500/15 to-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
 
-        <!-- Ambient Deep Radial Lights -->
-        <div
-            class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[700px] h-[500px] sm:h-[700px] bg-gradient-to-tr from-blue-900/30 via-sky-600/15 to-indigo-900/25 rounded-full blur-[100px] pointer-events-none">
+        <!-- Top Header -->
+        <div class="space-y-1.5 max-w-sm z-10 pt-2 shrink-0">
+            <span class="inline-block px-3.5 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-[0.28em] text-[#cbd7e6] font-sans-custom font-medium border border-white/10 shadow-sm">
+                Un Cumpleaños Increíble &middot; 29 Años
+            </span>
+            <h1 class="font-cookie text-5xl sm:text-6xl text-[#f2ece4] drop-shadow-lg leading-none pt-1">
+                Happy Birthday
+            </h1>
+            <h2 class="font-playfair text-xl sm:text-2xl text-[#d4dfed] tracking-[0.16em] uppercase font-semibold">
+                Eber Beaumont
+            </h2>
         </div>
 
-        <!-- Fullscreen / Expansive Stage for Big Borderless Floating Photos -->
-        <div id="intro-slides-viewport"
-            class="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center pointer-events-none z-10">
-            <!-- Dynamic borderless floating slides injected here -->
-        </div>
+        <!-- Central Photo Showcase Stage (Zoom-Out Reveal) -->
+        <div class="relative my-auto py-3 z-10 flex flex-col items-center">
+            
+            <!-- Showcase Card with Glass Outer Glow -->
+            <div class="relative p-1.5 rounded-[2.2rem] bg-gradient-to-b from-white/30 via-white/10 to-blue-500/20 shadow-[0_25px_60px_-10px_rgba(0,0,0,0.85),0_0_35px_rgba(59,130,246,0.25)] border border-white/25">
+                <div id="intro-stage" class="relative w-[270px] sm:w-[310px] aspect-[3/4] rounded-[1.8rem] overflow-hidden bg-[#0c1624]">
+                    
+                    <!-- Slides Viewport -->
+                    <div id="intro-slides-viewport" class="w-full h-full relative overflow-hidden">
+                        <!-- Las imágenes se insertan dinámicamente con zoom out revelador -->
+                    </div>
 
-        <!-- Top Header with Sombreado Blur "Sobre todas las cosas" -->
-        <header
-            class="fixed top-0 inset-x-0 z-40 flex flex-col items-center text-center pt-6 pb-8 px-4 top-blur-overlay pointer-events-none select-none">
-            <div class="space-y-1.5 max-w-md pointer-events-auto">
-                <span
-                    class="inline-block px-4 py-0.5 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-[0.28em] text-[#d6e3f5] font-sans-custom font-semibold border border-white/15 shadow-sm">
-                    Un Cumpleaños Inolvidable &middot; 28 Años
-                </span>
-                <h1
-                    class="font-cookie text-5xl sm:text-7xl text-[#fcf9f2] drop-shadow-[0_4px_18px_rgba(0,0,0,0.9)] leading-none pt-1">
-                    Happy Birthday
-                </h1>
-                <h2
-                    class="font-playfair text-xl sm:text-3xl text-[#dce7f5] tracking-[0.2em] uppercase font-bold drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
-                    Victor Corio
-                </h2>
+                    <!-- Ambient Shadow Gradient for Caption Legibility -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#060c14]/90 via-[#060c14]/15 to-transparent pointer-events-none z-10"></div>
+
+                    <!-- Progress Indicator Bars at Top of Frame -->
+                    <div class="absolute top-3.5 inset-x-4 flex items-center justify-center gap-1.5 z-20 pointer-events-none" id="intro-indicators">
+                        <!-- Generados por JS -->
+                    </div>
+
+                    <!-- Slide Caption Box -->
+                    <div class="absolute bottom-3.5 inset-x-3 text-center z-20 transition-all duration-500" id="intro-caption-box">
+                        <span id="intro-slide-badge" class="inline-block px-2 py-0.5 rounded-full bg-white/15 backdrop-blur-md text-[8.5px] uppercase tracking-widest text-[#a8cdfc] font-sans-custom font-semibold border border-white/10 mb-1">
+                            Recuerdo
+                        </span>
+                        <h3 id="intro-slide-title" class="font-serif text-base sm:text-lg text-[#f8fafc] font-semibold leading-snug drop-shadow-md">
+                            Cargando recuerdos...
+                        </h3>
+                    </div>
+                </div>
             </div>
-        </header>
 
-        <!-- Bottom Actions Container with Sombreado Blur -->
-        <footer
-            class="fixed bottom-0 inset-x-0 z-40 pb-7 pt-10 px-4 flex flex-col items-center gap-2 bottom-blur-overlay">
+            <!-- Quote beneath showcase -->
+            <p id="intro-quote" class="font-sans-custom text-[11px] text-[#9bb2cb] tracking-wider italic mt-4 max-w-xs transition-opacity duration-700">
+                "El corazón recuerda lo que el tiempo no puede borrar."
+            </p>
+        </div>
 
+        <!-- Bottom Actions Container: Liquid Glass Button & Skip Option -->
+        <div class="z-20 pb-4 pt-1 shrink-0 flex flex-col items-center gap-2.5 min-h-[85px] justify-center">
+            
             <!-- Liquid Glass Button ("Empezar") -->
-            <button id="enter-btn"
-                class="liquid-glass-btn opacity-0 pointer-events-none translate-y-8 scale-90 transition-all duration-700 group">
+            <button id="enter-btn" class="liquid-glass-btn opacity-0 pointer-events-none translate-y-6 scale-90 transition-all duration-700 group">
                 <span class="relative z-10 flex items-center gap-2.5">
-                    <span>Estas listo victor?</span>
-                    <span
-                        class="text-base text-sky-200 transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                    <span>Empezar</span>
+                    <span class="text-base text-sky-200 transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                 </span>
             </button>
 
             <!-- Subtle Skip Button for convenience -->
-            <button id="skip-intro-btn"
-                class="font-sans-custom text-[10px] text-[#8fa7c4] uppercase tracking-widest hover:text-white transition-colors py-1 px-3 cursor-pointer">
+            <button id="skip-intro-btn" class="font-sans-custom text-[10px] text-[#718aa6] uppercase tracking-widest hover:text-[#d4dfed] transition-colors py-1 px-3 cursor-pointer">
                 Saltar intro
             </button>
-        </footer>
+        </div>
 
     </div>
 
     <!-- Floating Music Player Control (Navy Blue Edition) -->
     <div class="fixed bottom-6 right-6 z-40">
-        <button id="music-toggle"
-            class="flex items-center gap-2.5 px-4 py-2.5 bg-[#fffdfa]/90 backdrop-blur-md text-[#183454] rounded-full shadow-xl border border-[#183454]/20 hover:scale-105 active:scale-95 transition-all cursor-pointer group"
-            title="Música de fondo">
+        <button id="music-toggle" class="flex items-center gap-2.5 px-4 py-2.5 bg-[#fffdfa]/90 backdrop-blur-md text-[#183454] rounded-full shadow-xl border border-[#183454]/20 hover:scale-105 active:scale-95 transition-all cursor-pointer group" title="Música de fondo">
             <div id="audio-visualizer" class="flex items-end gap-[2px] h-4">
                 <span class="eq-bar h-1"></span>
                 <span class="eq-bar h-2"></span>
                 <span class="eq-bar h-1"></span>
                 <span class="eq-bar h-3"></span>
             </div>
-            <span id="music-text"
-                class="font-sans-custom text-[11px] font-semibold tracking-wider uppercase">Música</span>
+            <span id="music-text" class="font-sans-custom text-[11px] font-semibold tracking-wider uppercase">Música</span>
             <span id="music-icon" class="text-sm">🎵</span>
         </button>
     </div>
@@ -567,25 +442,23 @@
         <header class="text-center pt-8 pb-14 reveal-item active">
             <div class="space-y-1 mb-6">
                 <h2 class="font-cursive text-4xl sm:text-5xl text-[#2b527d] leading-none">
-                    Hola Victor, estas
+                    Piezas de
                 </h2>
-                <h1
-                    class="font-playfair text-4xl sm:text-5xl font-bold tracking-[0.15em] text-[#122842] uppercase leading-tight">
-                    INVITADO
+                <h1 class="font-playfair text-4xl sm:text-5xl font-bold tracking-[0.15em] text-[#122842] uppercase leading-tight">
+                    UN RECUERDO
                 </h1>
                 <div class="flex items-center justify-center gap-3 mt-2">
                     <span class="w-12 h-[1px] bg-[#183454]/30"></span>
                     <p class="font-serif italic text-xs sm:text-sm text-[#48627d] tracking-wide">
-                        a celebrar un momento unico y especial para mi.
+                        El corazón recuerda lo que el tiempo no puede borrar.
                     </p>
                     <span class="w-12 h-[1px] bg-[#183454]/30"></span>
                 </div>
             </div>
 
             <!-- Honoree Name Badge in Navy Blue -->
-            <div
-                class="inline-block px-4 py-1.5 bg-[#183454]/10 text-[#183454] text-[10px] uppercase tracking-widest font-sans-custom rounded-full border border-[#183454]/20 shadow-sm">
-                Edición Especial &middot; Para Victor Corio
+            <div class="inline-block px-4 py-1.5 bg-[#183454]/10 text-[#183454] text-[10px] uppercase tracking-widest font-sans-custom rounded-full border border-[#183454]/20 shadow-sm">
+                Edición Especial &middot; Para Eber Beaumont
             </div>
         </header>
 
@@ -598,40 +471,34 @@
                  ========================================================================= -->
             <div class="reveal-item flex justify-start pr-4 relative">
                 <!-- Floating note nearby -->
-                <span
-                    class="absolute -top-6 right-8 font-sans-custom text-[11px] tracking-widest text-[#4a6b8c] italic opacity-85 select-none">
+                <span class="absolute -top-6 right-8 font-sans-custom text-[11px] tracking-widest text-[#4a6b8c] italic opacity-85 select-none">
                     love love
                 </span>
 
                 <div class="w-11/12 sm:w-10/12 float-1">
-                    <div class="cursor-pointer group gallery-trigger" data-id="foto-1" data-title="Maravilloso"
-                        data-chapter="Chapter I &middot; En la Cima"
-                        data-desc="Momentos de sonrisas infinitas y calor de amigos." data-frame="blue">
-
+                    <div class="cursor-pointer group gallery-trigger"
+                         data-id="foto-1"
+                         data-title="Maravilloso"
+                         data-chapter="Chapter I &middot; En la Cima"
+                         data-desc="Momentos de sonrisas infinitas y calor de amigos."
+                         data-frame="blue">
+                        
                         <!-- Frame Wrapper -->
-                        <div
-                            class="relative w-full aspect-[340/438] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
-                            <div
-                                class="absolute inset-[15.5%_18.5%_15.5%_18.2%] overflow-hidden bg-[#101b2b] rounded-[1px]">
+                        <div class="relative w-full aspect-[340/438] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
+                            <div class="absolute inset-[15.5%_18.5%_15.5%_18.2%] overflow-hidden bg-[#101b2b] rounded-[1px]">
                                 <div class="photo-container w-full h-full relative overflow-hidden">
                                     <!-- 👇 [AQUÍ VA TU FOTO 1]: Descomenta para usar tu foto: -->
-                                    <img src="foto1.jpg" alt="Mi foto 1"
-                                        class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                    <img src="foto1.jpg" alt="Mi foto 1" class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"> 
 
-
+                                    
                                 </div>
                             </div>
-                            <img src="magnific__-__43358y.png" alt="Marco Azul Real"
-                                class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
+                            <img src="magnific__-__43358y.png" alt="Marco Azul Real" class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
                         </div>
 
                         <div class="pt-3 text-center">
-                            <span
-                                class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">CUMPLE
-                                NRO 29</span>
-                            <h3
-                                class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">
-                                UN AÑO MÁS DE VIDA.</h3>
+                            <span class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">CUMPLE NRO 29</span>
+                            <h3 class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">UN AÑO MÁS DE VIDA.</h3>
                         </div>
                     </div>
                 </div>
@@ -641,8 +508,7 @@
             <div class="reveal-item flex justify-end pr-6">
                 <div class="w-8/12 float-2">
                     <div class="bg-[#fffdfa] p-4 shadow-lg rounded-sm border-l-4 border-[#183454] transform rotate-2">
-                        <span
-                            class="text-[9px] font-sans-custom uppercase tracking-widest text-[#5c728a] block font-semibold">RECUERDO</span>
+                        <span class="text-[9px] font-sans-custom uppercase tracking-widest text-[#5c728a] block font-semibold">RECUERDO</span>
                         <p class="font-serif text-base italic text-[#122842] mt-1 leading-snug">
                             "Aunque no pude estar en tu vida de la mejor forma esta es una parte que te regalo hoy."
                         </p>
@@ -656,33 +522,27 @@
                  ========================================================================= -->
             <div class="reveal-item flex justify-end pl-4 relative">
                 <div class="w-11/12 sm:w-10/12 float-3">
-                    <div class="cursor-pointer group gallery-trigger" data-id="foto-2" data-title="Celebrando Juntos"
-                        data-chapter="Chapter II &middot; Brindis"
-                        data-desc="Elegancia, copas en alto y la mejor compañía para celebrar una vida extraordinaria."
-                        data-frame="white">
-
-                        <div
-                            class="relative w-full aspect-[424/435] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
-                            <div
-                                class="absolute inset-[18.2%_19.1%_17.9%_19.8%] overflow-hidden bg-[#241719] rounded-[1px]">
+                    <div class="cursor-pointer group gallery-trigger"
+                         data-id="foto-2"
+                         data-title="Celebrando Juntos"
+                         data-chapter="Chapter II &middot; Brindis"
+                         data-desc="Elegancia, copas en alto y la mejor compañía para celebrar una vida extraordinaria."
+                         data-frame="white">
+                        
+                        <div class="relative w-full aspect-[424/435] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
+                            <div class="absolute inset-[18.2%_19.1%_17.9%_19.8%] overflow-hidden bg-[#241719] rounded-[1px]">
                                 <div class="photo-container w-full h-full relative overflow-hidden">
                                     <!-- 👇 [AQUÍ VA TU FOTO 2]: Descomenta para usar tu foto: -->
-                                    <img src="foto2.jpg" alt="Mi foto 2"
-                                        class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                    <img src="foto2.jpg" alt="Mi foto 2" class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
 
                                 </div>
                             </div>
-                            <img src="65165.png" alt="Marco Blanco Rococó"
-                                class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
+                            <img src="65165.png" alt="Marco Blanco Rococó" class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
                         </div>
 
                         <div class="pt-3 text-center">
-                            <span
-                                class="text-[9px] font-sans-custom uppercase tracking-widest text-[#7a828c] block font-semibold">LA
-                                ÚLTIMA</span>
-                            <h3
-                                class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">
-                                Foto que tuve Contigo</h3>
+                            <span class="text-[9px] font-sans-custom uppercase tracking-widest text-[#7a828c] block font-semibold">LA ÚLTIMA</span>
+                            <h3 class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">Foto que tuve Contigo</h3>
                         </div>
                     </div>
                 </div>
@@ -691,12 +551,9 @@
             <!-- STICKER NOTE: soul home -->
             <div class="reveal-item flex justify-center">
                 <div class="w-7/12 float-1 text-center">
-                    <div
-                        class="bg-[#fffdfa] p-3 shadow-md rounded-sm border-b-2 border-[#2b527d] inline-block transform -rotate-1">
-                        <span
-                            class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">SIEMPRE</span>
-                        <p class="font-serif text-sm italic text-[#122842]">"Quiero que seas muy feliz en tu vida sin
-                            pensar en lo malo"</p>
+                    <div class="bg-[#fffdfa] p-3 shadow-md rounded-sm border-b-2 border-[#2b527d] inline-block transform -rotate-1">
+                        <span class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">SIEMPRE</span>
+                        <p class="font-serif text-sm italic text-[#122842]">"Quiero que seas muy feliz en tu vida sin pensar en lo malo"</p>
                     </div>
                 </div>
             </div>
@@ -706,37 +563,32 @@
                  Recuerdo actual: Familia en la escalera
                  ========================================================================= -->
             <div class="reveal-item flex justify-start pr-6 relative">
-                <span
-                    class="absolute -top-4 right-12 font-sans-custom text-[10px] tracking-widest text-[#5c728a] uppercase opacity-80 select-none">
+                <span class="absolute -top-4 right-12 font-sans-custom text-[10px] tracking-widest text-[#5c728a] uppercase opacity-80 select-none">
                     Eber on memories
                 </span>
 
                 <div class="w-10/12 sm:w-9/12 float-2">
-                    <div class="cursor-pointer group gallery-trigger" data-id="foto-3" data-title="Viajes Divertidos"
-                        data-chapter="Chapter III &middot; Viajes"
-                        data-desc="Siempre que la pasabamos juntos no habia distracciones." data-frame="slate">
-
-                        <div
-                            class="relative w-full aspect-[296/357] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
-                            <div
-                                class="absolute inset-[14.8%_17.6%_15.1%_18.2%] overflow-hidden bg-[#161a22] rounded-[1px]">
+                    <div class="cursor-pointer group gallery-trigger"
+                         data-id="foto-3"
+                         data-title="Viajes Divertidos"
+                         data-chapter="Chapter III &middot; Viajes"
+                         data-desc="Siempre que la pasabamos juntos no habia distracciones."
+                         data-frame="slate">
+                        
+                        <div class="relative w-full aspect-[296/357] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
+                            <div class="absolute inset-[14.8%_17.6%_15.1%_18.2%] overflow-hidden bg-[#161a22] rounded-[1px]">
                                 <div class="photo-container w-full h-full relative overflow-hidden">
                                     <!-- 👇 [AQUÍ VA TU FOTO 3]: Descomenta para usar tu foto: -->
-                                    <img src="foto3.jpg" alt="Mi foto 3"
-                                        class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                    <img src="foto3.jpg" alt="Mi foto 3" class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
 
                                 </div>
                             </div>
-                            <img src="magnific__-__43358yu.png" alt="Marco Calado Original"
-                                class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
+                            <img src="magnific__-__43358yu.png" alt="Marco Calado Original" class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
                         </div>
 
                         <div class="pt-3 text-center">
-                            <span
-                                class="text-[9px] font-sans-custom uppercase tracking-widest text-[#526f91] block font-semibold">Tuvimos</span>
-                            <h3
-                                class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">
-                                Momentos Inolvidables</h3>
+                            <span class="text-[9px] font-sans-custom uppercase tracking-widest text-[#526f91] block font-semibold">Tuvimos</span>
+                            <h3 class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">Momentos Inolvidables</h3>
                         </div>
                     </div>
                 </div>
@@ -747,39 +599,32 @@
                  Recuerdo actual: Pequeño campeón con trofeo de karting
                  ========================================================================= -->
             <div class="reveal-item flex justify-end pl-6 relative">
-                <span
-                    class="absolute top-2 left-6 font-sans-custom text-[11px] tracking-widest text-[#2b527d] italic opacity-85 select-none">
+                <span class="absolute top-2 left-6 font-sans-custom text-[11px] tracking-widest text-[#2b527d] italic opacity-85 select-none">
                     29 YEARS OLD
                 </span>
 
                 <div class="w-10/12 sm:w-9/12 float-1">
-                    <div class="cursor-pointer group gallery-trigger" data-id="foto-4" data-title="Pinturas al viento"
-                        data-chapter="Chapter IV &middot; Pasión & Pintura"
-                        data-desc="Simplemente uno de los mejores días a tu lado y con un regalo increíble."
-                        data-frame="blue">
-
-                        <div
-                            class="relative w-full aspect-[340/438] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
-                            <div
-                                class="absolute inset-[15.5%_18.5%_15.5%_18.2%] overflow-hidden bg-[#101924] rounded-[1px]">
+                    <div class="cursor-pointer group gallery-trigger"
+                         data-id="foto-4"
+                         data-title="Pinturas al viento"
+                         data-chapter="Chapter IV &middot; Pasión & Pintura"
+                         data-desc="Simplemente uno de los mejores días a tu lado y con un regalo increíble."
+                         data-frame="blue">
+                        
+                        <div class="relative w-full aspect-[340/438] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
+                            <div class="absolute inset-[15.5%_18.5%_15.5%_18.2%] overflow-hidden bg-[#101924] rounded-[1px]">
                                 <div class="photo-container w-full h-full relative overflow-hidden">
                                     <!-- 👇 [AQUÍ VA TU FOTO 4]: Descomenta para usar tu foto: -->
-                                    <img src="foto4.jpg" alt="Mi foto 4"
-                                        class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                    <img src="foto4.jpg" alt="Mi foto 4" class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
 
                                 </div>
                             </div>
-                            <img src="magnific__-__43358y.png" alt="Marco Azul Real"
-                                class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
+                            <img src="magnific__-__43358y.png" alt="Marco Azul Real" class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
                         </div>
 
                         <div class="pt-3 text-center">
-                            <span
-                                class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">UN
-                                DIA MAGICO</span>
-                            <h3
-                                class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">
-                                El Mejor Regalo</h3>
+                            <span class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">UN DIA MAGICO</span>
+                            <h3 class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">El Mejor Regalo</h3>
                         </div>
                     </div>
                 </div>
@@ -789,8 +634,7 @@
             <div class="reveal-item flex justify-end pr-6">
                 <div class="w-8/12 float-2">
                     <div class="bg-[#fffdfa] p-4 shadow-lg rounded-sm border-l-4 border-[#183454] transform rotate-2">
-                        <span
-                            class="text-[9px] font-sans-custom uppercase tracking-widest text-[#5c728a] block font-semibold">SIEMPRE</span>
+                        <span class="text-[9px] font-sans-custom uppercase tracking-widest text-[#5c728a] block font-semibold">SIEMPRE</span>
                         <p class="font-serif text-base italic text-[#122842] mt-1 leading-snug">
                             "Serás parte de mi vida, aunque no pueda tenerte."
                         </p>
@@ -802,38 +646,32 @@
                  Recuerdo actual: Niños en triciclo al aire libre
                  ========================================================================= -->
             <div class="reveal-item flex justify-start pr-4 relative">
-                <span
-                    class="absolute -bottom-4 right-10 font-sans-custom text-[11px] tracking-widest text-[#6c757d] italic opacity-85 select-none">
+                <span class="absolute -bottom-4 right-10 font-sans-custom text-[11px] tracking-widest text-[#6c757d] italic opacity-85 select-none">
                     BAD BOY
                 </span>
 
                 <div class="w-11/12 sm:w-10/12 float-3">
-                    <div class="cursor-pointer group gallery-trigger" data-id="foto-5" data-title="Golden Boy"
-                        data-chapter="Chapter V &middot; Perseverancia"
-                        data-desc="Todo lo que amas y crees se hace realidad porque tú tienes la magia."
-                        data-frame="white">
-
-                        <div
-                            class="relative w-full aspect-[424/435] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
-                            <div
-                                class="absolute inset-[18.2%_19.1%_17.9%_19.8%] overflow-hidden bg-[#241719] rounded-[1px]">
+                    <div class="cursor-pointer group gallery-trigger"
+                         data-id="foto-5"
+                         data-title="Golden Boy"
+                         data-chapter="Chapter V &middot; Perseverancia"
+                         data-desc="Todo lo que amas y crees se hace realidad porque tú tienes la magia."
+                         data-frame="white">
+                        
+                        <div class="relative w-full aspect-[424/435] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
+                            <div class="absolute inset-[18.2%_19.1%_17.9%_19.8%] overflow-hidden bg-[#241719] rounded-[1px]">
                                 <div class="photo-container w-full h-full relative overflow-hidden">
                                     <!-- 👇 [AQUÍ VA TU FOTO 5]: Descomenta para usar tu foto: -->
-                                    <img src="foto5.PNG" alt="Mi foto 5"
-                                        class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                     <img src="foto5.PNG" alt="Mi foto 5" class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
 
                                 </div>
                             </div>
-                            <img src="65165.png" alt="Marco Blanco Rococó"
-                                class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
+                            <img src="65165.png" alt="Marco Blanco Rococó" class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
                         </div>
 
                         <div class="pt-3 text-center">
-                            <span
-                                class="text-[9px] font-sans-custom uppercase tracking-widest text-[#7a828c] block font-semibold">Aventuras</span>
-                            <h3
-                                class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">
-                                Siempre planeas Las mejores</h3>
+                            <span class="text-[9px] font-sans-custom uppercase tracking-widest text-[#7a828c] block font-semibold">Aventuras</span>
+                            <h3 class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">Siempre planeas Las mejores</h3>
                         </div>
                     </div>
                 </div>
@@ -845,32 +683,27 @@
                  ========================================================================= -->
             <div class="reveal-item flex justify-center px-4 relative">
                 <div class="w-10/12 sm:w-9/12 float-2">
-                    <div class="cursor-pointer group gallery-trigger" data-id="foto-6" data-title="SIMPLEMENTE GRACIAS"
-                        data-chapter="Chapter VI &middot; Agradecer"
-                        data-desc="Fuiste una increíble persona conmigo y aunque no estemos juntos, agradezco por todos los momentos lindos que pasé a tu lado."
-                        data-frame="slate">
-
-                        <div
-                            class="relative w-full aspect-[296/357] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
-                            <div
-                                class="absolute inset-[14.8%_17.6%_15.1%_18.2%] overflow-hidden bg-[#141b24] rounded-[1px]">
+                    <div class="cursor-pointer group gallery-trigger"
+                         data-id="foto-6"
+                         data-title="SIMPLEMENTE GRACIAS"
+                         data-chapter="Chapter VI &middot; Agradecer"
+                         data-desc="Fuiste una increíble persona conmigo y aunque no estemos juntos, agradezco por todos los momentos lindos que pasé a tu lado."
+                         data-frame="slate">
+                        
+                        <div class="relative w-full aspect-[296/357] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
+                            <div class="absolute inset-[14.8%_17.6%_15.1%_18.2%] overflow-hidden bg-[#141b24] rounded-[1px]">
                                 <div class="photo-container w-full h-full relative overflow-hidden">
                                     <!-- 👇 [AQUÍ VA TU FOTO 6]: Descomenta para usar tu foto: -->
-                                    <img src="foto6.jpg" alt="Mi foto 6"
-                                        class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                     <img src="foto6.jpg" alt="Mi foto 6" class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
 
                                 </div>
                             </div>
-                            <img src="magnific__-__43358yu.png" alt="Marco Calado Original"
-                                class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
+                            <img src="magnific__-__43358yu.png" alt="Marco Calado Original" class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
                         </div>
 
                         <div class="pt-3 text-center">
-                            <span
-                                class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">UNA</span>
-                            <h3
-                                class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">
-                                Sonrisa que Enamora</h3>
+                            <span class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">UNA</span>
+                            <h3 class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">Sonrisa que Enamora</h3>
                         </div>
                     </div>
                 </div>
@@ -879,14 +712,9 @@
             <!-- STICKER NOTE: soul home -->
             <div class="reveal-item flex justify-center">
                 <div class="w-7/12 float-1 text-center">
-                    <div
-                        class="bg-[#fffdfa] p-3 shadow-md rounded-sm border-b-2 border-[#2b527d] inline-block transform -rotate-1">
-                        <span
-                            class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">UN
-                            FINAL</span>
-                        <p class="font-serif text-sm italic text-[#122842]">"Que en este cumpleaños seas muy feliz, que
-                            puedas lograr lo que te propongas siempre y seas ese EBER maravilloso que sé que eres. Sin
-                            más que agregar, que tengas un..."</p>
+                    <div class="bg-[#fffdfa] p-3 shadow-md rounded-sm border-b-2 border-[#2b527d] inline-block transform -rotate-1">
+                        <span class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">UN FINAL</span>
+                        <p class="font-serif text-sm italic text-[#122842]">"Que en este cumpleaños seas muy feliz, que puedas lograr lo que te propongas siempre y seas ese EBER maravilloso que sé que eres. Sin más que agregar, que tengas un..."</p>
                     </div>
                 </div>
             </div>
@@ -896,10 +724,9 @@
         <!-- Footer & Celebration Action in Royal Blue & Navy -->
         <footer class="mt-32 text-center reveal-item">
             <div class="border-t border-[#183454]/20 pt-10 max-w-sm mx-auto space-y-5">
-
+                
                 <!-- Confetti Trigger Button (Royal Navy Gradient) -->
-                <button id="celebrate-btn"
-                    class="px-8 py-4 bg-gradient-to-r from-[#183454] via-[#20446e] to-[#2b527d] text-[#f2ece4] font-sans-custom text-xs uppercase tracking-widest rounded-full shadow-2xl hover:shadow-[#183454]/40 hover:scale-105 active:scale-95 transition-all duration-300 border border-[#48719e]/50 cursor-pointer flex items-center justify-center gap-3 mx-auto">
+                <button id="celebrate-btn" class="px-8 py-4 bg-gradient-to-r from-[#183454] via-[#20446e] to-[#2b527d] text-[#f2ece4] font-sans-custom text-xs uppercase tracking-widest rounded-full shadow-2xl hover:shadow-[#183454]/40 hover:scale-105 active:scale-95 transition-all duration-300 border border-[#48719e]/50 cursor-pointer flex items-center justify-center gap-3 mx-auto">
                     <span class="text-base">🎉</span>
                     <span class="font-semibold">¡Celebrar a Eber!</span>
                     <span class="text-base">🎂</span>
@@ -907,8 +734,7 @@
 
                 <div>
                     <h2 class="font-cookie text-5xl text-[#2b527d] mb-1">Happy Birthday</h2>
-                    <p class="font-playfair text-xl tracking-widest font-bold uppercase text-[#122842]">Eber Beaumont
-                    </p>
+                    <p class="font-playfair text-xl tracking-widest font-bold uppercase text-[#122842]">Eber Beaumont</p>
                 </div>
 
                 <p class="font-sans-custom text-[10px] text-[#7a828c] uppercase tracking-widest pt-4">
@@ -922,22 +748,18 @@
     <!-- ==============================================
          LIGHTBOX MODAL (Navy & Blue Palette)
          ============================================== -->
-    <div id="lightbox-modal"
-        class="fixed inset-0 z-50 bg-[#0a1420]/88 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-[#0a1420]/88 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
         <!-- Close Button -->
-        <button id="lightbox-close"
-            class="absolute top-6 right-6 w-10 h-10 rounded-full bg-[#f2ece4]/10 text-[#f2ece4] hover:bg-[#f2ece4]/20 flex items-center justify-center text-xl transition-all cursor-pointer z-20 border border-[#f2ece4]/20">
+        <button id="lightbox-close" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-[#f2ece4]/10 text-[#f2ece4] hover:bg-[#f2ece4]/20 flex items-center justify-center text-xl transition-all cursor-pointer z-20 border border-[#f2ece4]/20">
             ✕
         </button>
 
         <!-- Modal Container -->
-        <div class="relative max-w-sm sm:max-w-md w-full bg-[#fffdfa] rounded-xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 border border-[#183454]/15"
-            id="lightbox-content">
-
+        <div class="relative max-w-sm sm:max-w-md w-full bg-[#fffdfa] rounded-xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 border border-[#183454]/15" id="lightbox-content">
+            
             <!-- Framed Photo in Lightbox -->
             <div class="p-6 bg-gradient-to-b from-[#f8f4ee] to-[#f0e6d8] flex justify-center">
-                <div id="modal-frame-wrapper"
-                    class="relative w-10/12 transition-transform duration-300 frame-shadow-clean">
+                <div id="modal-frame-wrapper" class="relative w-10/12 transition-transform duration-300 frame-shadow-clean">
                     <!-- Target Photo Container -->
                     <div id="modal-photo-box" class="absolute overflow-hidden rounded-[1px]">
                         <div class="w-full h-full relative overflow-hidden flex items-center justify-center">
@@ -945,21 +767,18 @@
                         </div>
                     </div>
                     <!-- Frame Image -->
-                    <img id="modal-frame-img" src="magnific__-__43358y.png"
-                        class="relative z-10 w-full h-auto pointer-events-none select-none">
+                    <img id="modal-frame-img" src="magnific__-__43358y.png" class="relative z-10 w-full h-auto pointer-events-none select-none">
                 </div>
             </div>
 
             <!-- Details Section -->
             <div class="p-6 space-y-3 bg-[#fffdfa]">
                 <div class="flex items-center justify-between">
-                    <span id="modal-chapter"
-                        class="text-[10px] font-sans-custom uppercase tracking-widest text-[#2b527d] font-semibold">
+                    <span id="modal-chapter" class="text-[10px] font-sans-custom uppercase tracking-widest text-[#2b527d] font-semibold">
                         Chapter I
                     </span>
                     <!-- Heart Reaction Button -->
-                    <button id="modal-heart-btn"
-                        class="relative flex items-center gap-1.5 px-3 py-1.5 bg-[#183454]/5 hover:bg-[#183454]/10 rounded-full text-xs text-[#183454] transition-all cursor-pointer border border-[#183454]/15">
+                    <button id="modal-heart-btn" class="relative flex items-center gap-1.5 px-3 py-1.5 bg-[#183454]/5 hover:bg-[#183454]/10 rounded-full text-xs text-[#183454] transition-all cursor-pointer border border-[#183454]/15">
                         <span id="heart-icon">❤️</span>
                         <span id="heart-count" class="font-sans-custom font-bold text-[11px]">18</span>
                     </button>
@@ -1018,7 +837,7 @@
 
             playChord() {
                 if (!this.isPlaying || !this.ctx) return;
-
+                
                 const note1 = this.notes[Math.floor(Math.random() * this.notes.length)];
                 const note2 = this.notes[Math.floor(Math.random() * this.notes.length)];
 
@@ -1047,7 +866,7 @@
 
                     osc.start();
                     osc.stop(this.ctx.currentTime + duration);
-                } catch (e) {
+                } catch(e) {
                     console.log('Audio note error', e);
                 }
             }
@@ -1207,131 +1026,141 @@
         });
 
 
-        // =========================================================================
-        // 🎞️ REPRODUCTOR DE RECUERDOS (FOTOS Y/O VIDEOS):
-        // =========================================================================
-        // Puedes utilizar imágenes (jpg, png, etc.) o VIDEOS (mp4, webm, mov, etc.).
-        // El sistema detecta automáticamente si el archivo es un video o una foto
-        // y le aplica el mismo contorno difuminado (borde blur), el fondo ambiental y
-        // la animación fluida en bucle infinito.
-        //
-        // 📝 CÓMO CAMBIAR CUALQUIER IMAGEN POR UN VIDEO:
-        // Solo cambia el archivo en 'src' por tu video.
-        // Ejemplo:
-        //   { src: "mi_video.mp4" }
-        //   o también: { type: "video", src: "mi_video.mp4" }
-        // =========================================================================
+        // --- 3. Intro Showcase Sequence (Fluid Zoom-Out Reveal & Liquid Glass Button) ---
         const INTRO_SLIDES = [
-            { type: "image", src: "foto2.jpg" },
-            { type: "image", src: "foto3.jpg" },
-
-            // 👇 [EJEMPLO DE VIDEO]: Descomenta la siguiente línea y pon tu propio video:
-            // { type: "video", src: "mi_video.mp4" },
-
-            { type: "image", src: "foto4.jpg" },
-            { type: "image", src: "foto5.PNG" },
-            { type: "image", src: "foto1.jpg" }
+            {
+                src: "foto2.jpg",
+                badge: "Capítulo I &middot; Celebración",
+                title: "Celebrando momentos juntos"
+            },
+            {
+                src: "foto3.jpg",
+                badge: "Capítulo II &middot; Inolvidable",
+                title: "Instantes que perduran en el corazón"
+            },
+            {
+                src: "foto4.jpg",
+                badge: "Capítulo III &middot; Especial",
+                title: "Un día mágico y un gran regalo"
+            },
+            {
+                src: "foto5.PNG",
+                badge: "Capítulo IV &middot; Aventuras",
+                title: "Tus mejores sonrisas y momentos"
+            },
+            {
+                src: "foto1.jpg",
+                badge: "Edición Especial &middot; Para Eber",
+                title: "¡Feliz Cumpleaños, Eber Beaumont! ✨",
+                isFinal: true
+            }
         ];
 
         const introSlidesViewport = document.getElementById('intro-slides-viewport');
+        const introIndicators = document.getElementById('intro-indicators');
+        const introSlideBadge = document.getElementById('intro-slide-badge');
+        const introSlideTitle = document.getElementById('intro-slide-title');
+        const introQuote = document.getElementById('intro-quote');
         const enterBtn = document.getElementById('enter-btn');
         const skipIntroBtn = document.getElementById('skip-intro-btn');
         const introOverlay = document.getElementById('intro-overlay');
 
         let currentIntroIndex = 0;
         let introSlideTimer = null;
-        let isButtonVisible = false;
+        let isIntroFinished = false;
 
-        // Función para detectar si un elemento es video
-        function isVideoSource(data) {
-            if (!data || !data.src) return false;
-            if (data.type === 'video') return true;
-            const ext = data.src.split('?')[0].split('.').pop().toLowerCase();
-            return ['mp4', 'webm', 'ogg', 'mov', 'm4v'].includes(ext);
-        }
+        // Crear barras indicadoras en la parte superior del marco
+        INTRO_SLIDES.forEach((_, idx) => {
+            const bar = document.createElement('div');
+            bar.className = 'indicator-bar' + (idx === 0 ? ' active' : '');
+            bar.id = `intro-bar-${idx}`;
+            introIndicators.appendChild(bar);
+        });
 
-        // Crear elemento multimedia (Foto o Video)
-        function createMediaElement(slideData, isAmbient = false) {
-            const isVideo = isVideoSource(slideData);
-            if (isVideo) {
-                const video = document.createElement('video');
-                video.src = slideData.src;
-                video.autoplay = true;
-                video.muted = true;
-                video.loop = true;
-                video.playsInline = true;
-                video.setAttribute('playsinline', '');
-                video.setAttribute('webkit-playsinline', '');
-                video.className = isAmbient ? 'ambient-photo-backdrop' : 'floating-full-photo';
-                video.play().catch(() => { });
-                return video;
-            } else {
-                const img = document.createElement('img');
-                img.src = slideData.src;
-                img.alt = isAmbient ? '' : 'Recuerdo';
-                img.className = isAmbient ? 'ambient-photo-backdrop' : 'floating-full-photo';
-                return img;
-            }
-        }
-
-        // Pre-cargar imágenes para máxima fluidez
+        // Pre-cargar todas las imágenes para máxima fluidez
         INTRO_SLIDES.forEach(slide => {
-            if (!isVideoSource(slide)) {
-                const preloadImg = new Image();
-                preloadImg.src = slide.src;
-            }
+            const preloadImg = new Image();
+            preloadImg.src = slide.src;
         });
 
         function playIntroSlide(index) {
             currentIntroIndex = index;
             const slideData = INTRO_SLIDES[index];
 
-            // Crear contenedor de diapositiva con animación continua
-            const wrapper = document.createElement('div');
-            wrapper.className = 'memory-slide';
+            // Crear nuevo slide con zoom-out revelador
+            const slideImg = document.createElement('img');
+            slideImg.src = slideData.src;
+            slideImg.alt = slideData.title;
+            slideImg.className = 'zoom-reveal-slide';
 
-            // Fondo ambiental difuminado que baña la pantalla con la atmósfera del recuerdo
-            const backdropMedia = createMediaElement(slideData, true);
+            introSlidesViewport.appendChild(slideImg);
 
-            // Elemento principal (Foto o Video) con borde blur suave
-            const mainMedia = createMediaElement(slideData, false);
+            // Reflow forzado para garantizar que la transición CSS comience con suavidad total
+            void slideImg.offsetWidth;
+            slideImg.classList.add('active');
 
-            wrapper.appendChild(backdropMedia);
-            wrapper.appendChild(mainMedia);
-            introSlidesViewport.appendChild(wrapper);
-
-            // Revelar el botón Liquid Glass "Empezar" de manera elegante tras comenzar el loop
-            if (!isButtonVisible) {
-                isButtonVisible = true;
-                setTimeout(() => {
-                    enterBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-8', 'scale-90');
-                    enterBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0', 'scale-100');
-                }, 1400);
-            }
-
-            // Loop infinito continuo y ultra fluido:
-            // Cada diapositiva se lanza a los 2.6s, solapándose con la salida de la anterior
-            // garantizando una transición permanente sin cortes ni pausas
-            introSlideTimer = setTimeout(() => {
-                const nextIndex = (currentIntroIndex + 1) % INTRO_SLIDES.length;
-                playIntroSlide(nextIndex);
-            }, 2600);
-
-            // Limpieza suave de diapositivas que ya terminaron su ciclo
+            // Actualizar texto con transición delicada
+            introSlideBadge.style.opacity = '0';
+            introSlideTitle.style.opacity = '0';
             setTimeout(() => {
-                const oldSlides = introSlidesViewport.querySelectorAll('.memory-slide');
-                if (oldSlides.length > 2) {
-                    for (let i = 0; i < oldSlides.length - 2; i++) {
-                        if (oldSlides[i].parentNode) oldSlides[i].parentNode.removeChild(oldSlides[i]);
-                    }
+                introSlideBadge.innerHTML = slideData.badge;
+                introSlideTitle.innerText = slideData.title;
+                introSlideBadge.style.opacity = '1';
+                introSlideTitle.style.opacity = '1';
+            }, 300);
+
+            // Actualizar barras de progreso
+            INTRO_SLIDES.forEach((_, idx) => {
+                const bar = document.getElementById(`intro-bar-${idx}`);
+                if (!bar) return;
+                bar.classList.remove('active', 'completed');
+                if (idx < index) {
+                    bar.classList.add('completed');
+                } else if (idx === index) {
+                    bar.classList.add('active');
                 }
-            }, 3800);
+            });
+
+            // Enviar a estado outgoing los slides anteriores
+            const previousSlides = introSlidesViewport.querySelectorAll('.zoom-reveal-slide:not(:last-child)');
+            previousSlides.forEach(prev => {
+                prev.classList.remove('active');
+                prev.classList.add('outgoing');
+                setTimeout(() => {
+                    if (prev.parentNode) prev.parentNode.removeChild(prev);
+                }, 900);
+            });
+
+            // Si es la foto final estelar:
+            if (slideData.isFinal) {
+                isIntroFinished = true;
+                setTimeout(() => {
+                    slideImg.classList.add('hero-pulse');
+                    
+                    // Revelar el botón Liquid Glass "Empezar"
+                    enterBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-6', 'scale-90');
+                    enterBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0', 'scale-100');
+                    
+                    // Ocultar botón de saltar
+                    if (skipIntroBtn) {
+                        skipIntroBtn.style.opacity = '0';
+                        setTimeout(() => { skipIntroBtn.style.display = 'none'; }, 400);
+                    }
+                }, 1300);
+            } else {
+                // Siguiente diapositiva con cadencia cinematográfica
+                introSlideTimer = setTimeout(() => {
+                    if (currentIntroIndex + 1 < INTRO_SLIDES.length) {
+                        playIntroSlide(currentIntroIndex + 1);
+                    }
+                }, 2800);
+            }
         }
 
-        // Iniciar pase continuo en bucle
+        // Iniciar pase de fotos automáticamente al cargar
         setTimeout(() => {
             playIntroSlide(0);
-        }, 350);
+        }, 400);
 
         function handleEnter(e) {
             if (introSlideTimer) clearTimeout(introSlideTimer);
@@ -1355,9 +1184,14 @@
             handleEnter(e);
         });
 
-        // Botón "Saltar intro": entra directamente a la experiencia principal
+        // Botón "Saltar intro": va directamente a la foto final y muestra el botón "Empezar"
         skipIntroBtn.addEventListener('click', () => {
-            handleEnter();
+            if (introSlideTimer) clearTimeout(introSlideTimer);
+            if (!isIntroFinished) {
+                playIntroSlide(INTRO_SLIDES.length - 1);
+            } else {
+                handleEnter();
+            }
         });
 
 
@@ -1482,5 +1316,4 @@
         });
     </script>
 </body>
-
 </html>
