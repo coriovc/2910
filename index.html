@@ -244,6 +244,43 @@
             animation: eqBounce 0.9s ease-in-out infinite 0.1s;
         }
 
+        /* Botón de música: transición fluida */
+        #music-toggle {
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Estado minimalista y discreto durante la intro (solo icono, sin llamar la atención) */
+        #music-toggle.intro-minimal-mode {
+            width: 2.5rem;
+            height: 2.5rem;
+            padding: 0 !important;
+            justify-content: center;
+            background: rgba(6, 15, 28, 0.45) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            color: rgba(220, 235, 255, 0.7) !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+        }
+
+        #music-toggle.intro-minimal-mode:hover {
+            background: rgba(6, 15, 28, 0.75) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+            color: #ffffff !important;
+            transform: scale(1.08);
+        }
+
+        #music-toggle.intro-minimal-mode #audio-visualizer,
+        #music-toggle.intro-minimal-mode #music-text {
+            display: none !important;
+        }
+
+        #music-toggle.intro-minimal-mode #music-icon {
+            font-size: 1.05rem;
+            margin: 0;
+            line-height: 1;
+        }
+
         /* =========================================
            ✨ DREAMLIKE MEMORY FLOW ANIMATIONS
            (Bordes desvanecidos, aparecen rápido, continúan lento y salen)
@@ -604,7 +641,7 @@
     <!-- Floating Music Player Control (Navy Blue Edition) -->
     <div class="fixed bottom-6 right-6 z-[60]">
         <button id="music-toggle"
-            class="flex items-center gap-2.5 px-4 py-2.5 bg-[#fffdfa]/90 backdrop-blur-md text-[#183454] rounded-full shadow-xl border border-[#183454]/20 hover:scale-105 active:scale-95 transition-all cursor-pointer group"
+            class="intro-minimal-mode flex items-center gap-2.5 px-4 py-2.5 bg-[#fffdfa]/90 backdrop-blur-md text-[#183454] rounded-full shadow-xl border border-[#183454]/20 hover:scale-105 active:scale-95 cursor-pointer group"
             title="Música de fondo">
             <div id="audio-visualizer" class="flex items-end gap-[2px] h-4">
                 <span class="eq-bar h-1"></span>
@@ -1017,15 +1054,18 @@
         const musicToggle = document.getElementById('music-toggle');
         const visualizer = document.getElementById('audio-visualizer');
         const musicText = document.getElementById('music-text');
+        const musicIcon = document.getElementById('music-icon');
 
         function updateMusicUI(active) {
             isMusicActive = active;
             if (active) {
                 visualizer.classList.add('playing');
                 musicText.innerText = 'Pausar';
+                if (musicIcon) musicIcon.innerText = '🎵';
             } else {
                 visualizer.classList.remove('playing');
                 musicText.innerText = 'Música';
+                if (musicIcon) musicIcon.innerText = '🔇';
             }
         }
 
@@ -1451,6 +1491,11 @@
             window.scrollTo({ top: 0, behavior: 'instant' });
 
             playMusic();
+
+            // Expandir el botón de música a su diseño completo original (con ecualizador y texto)
+            if (musicToggle) {
+                musicToggle.classList.remove('intro-minimal-mode');
+            }
 
             const originX = (e && e.clientX) ? e.clientX : window.innerWidth / 2;
             const originY = (e && e.clientY) ? e.clientY : window.innerHeight / 2;
