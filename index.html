@@ -1197,28 +1197,42 @@
         }
 
         // Crear elemento multimedia (Foto o Video)
-        function createMediaElement(slideData, isAmbient = false) {
-            const isVideo = isVideoSource(slideData);
-            if (isVideo) {
-                const video = document.createElement('video');
-                video.src = slideData.src;
-                video.autoplay = true;
-                video.muted = true;
-                video.loop = true;
-                video.playsInline = true;
-                video.setAttribute('playsinline', '');
-                video.setAttribute('webkit-playsinline', '');
-                video.className = isAmbient ? 'ambient-photo-backdrop' : 'floating-full-photo';
-                video.play().catch(() => { });
-                return video;
-            } else {
-                const img = document.createElement('img');
-                img.src = slideData.src;
-                img.alt = isAmbient ? '' : 'Recuerdo';
-                img.className = isAmbient ? 'ambient-photo-backdrop' : 'floating-full-photo';
-                return img;
-            }
-        }
+function createMediaElement(slideData, isAmbient = false) {
+    const isVideo = isVideoSource(slideData);
+    
+    if (isVideo) {
+        const video = document.createElement('video');
+        video.src = slideData.src;
+        
+        // Configuraciones obligatorias para autoplay en móviles
+        video.autoplay = true;
+        video.muted = true;
+        video.defaultMuted = true; // Refuerzo para algunos navegadores
+        video.loop = true;
+        
+        // Atributos clave para iOS y Android
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+        video.setAttribute('muted', ''); // Obligatorio en HTML attr para evitar bloqueos
+        
+        video.className = isAmbient ? 'ambient-photo-backdrop' : 'floating-full-photo';
+        
+        // CORRECCIÓN CLAVE: Es mejor intentar reproducir cuando el navegador cargue los metadatos
+        video.addEventListener('loadedmetadata', () => {
+            video.play().catch(error => {
+                console.log("La reproducción automática fue bloqueada por el navegador:", error);
+            });
+        });
+
+        return video;
+    } else {
+        const img = document.createElement('img');
+        img.src = slideData.src;
+        img.alt = isAmbient ? '' : 'Recuerdo';
+        img.className = isAmbient ? 'ambient-photo-backdrop' : 'floating-full-photo';
+        return img;
+    }
+}
 
         // Pre-cargar imágenes para máxima fluidez
         INTRO_SLIDES.forEach(slide => {
