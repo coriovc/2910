@@ -122,21 +122,70 @@
             }
         }
 
-        /* Scroll reveal */
-        .reveal-item {
+        /* =========================================================================
+           INVITATION SECTIONS: Centradas, Zoom In/Out y Blur Suave al Entrar y Salir
+           ========================================================================= */
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+
+        .invitation-container {
+            width: 100%;
+            position: relative;
+        }
+
+        .invitation-section {
+            min-height: 100vh;
+            min-height: 100dvh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            scroll-snap-align: center;
+            scroll-snap-stop: normal;
+            position: relative;
+            padding: 3.5rem 1.25rem;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        /* Tarjeta central de cada sección con animación de Zoom y Blur */
+        .invitation-card {
             opacity: 0;
-            transform: translateY(35px) scale(0.96);
-            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: blur(24px);
+            transform: scale(1.18);
+            /* Entra con zoom out lento y suave */
+            transition: transform 1.25s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, filter;
+            width: 100%;
+            max-width: 32rem;
+            position: relative;
+            z-index: 10;
         }
 
-        .reveal-item.active {
+        /* Sección activa (centrada en pantalla) */
+        .invitation-section.is-active .invitation-card {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            filter: blur(0px);
+            transform: scale(1.0);
         }
 
-        /* Sombras naturales limpias para marcos */
-        .frame-shadow-clean {
-            filter: drop-shadow(0 16px 28px rgba(12, 28, 50, 0.28)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        /* Sección saliendo hacia arriba (se aleja hacia el fondo) */
+        .invitation-section.is-leaving-up .invitation-card {
+            opacity: 0;
+            filter: blur(20px);
+            transform: scale(0.88);
+        }
+
+        /* Sección saliendo hacia abajo (sale con zoom out) */
+        .invitation-section.is-leaving-down .invitation-card {
+            opacity: 0;
+            filter: blur(20px);
+            transform: scale(1.18);
         }
 
         /* Heart particle animation */
@@ -560,419 +609,286 @@
         </button>
     </div>
 
-    <!-- Main Container (Responsive Mobile to Desktop Collage) -->
-    <main class="max-w-md md:max-w-xl mx-auto min-h-screen relative pb-32 px-4 pt-8 z-10">
+    <!-- =========================================================================
+         💌 INVITACIÓN DE FIESTA (5 Secciones Centradas con Zoom In/Out y Blur)
+         ========================================================================= -->
+    <main class="invitation-container relative z-10 w-full min-h-screen">
 
-        <!-- Central Hero Section (Pieces of My Heart in Navy & Blue) -->
-        <header class="text-center pt-8 pb-14 reveal-item active">
-            <div class="space-y-1 mb-6">
-                <h2 class="font-cursive text-4xl sm:text-5xl text-[#2b527d] leading-none">
-                    Hola Victor, estas
-                </h2>
-                <h1
-                    class="font-playfair text-4xl sm:text-5xl font-bold tracking-[0.15em] text-[#122842] uppercase leading-tight">
-                    INVITADO
-                </h1>
-                <div class="flex items-center justify-center gap-3 mt-2">
-                    <span class="w-12 h-[1px] bg-[#183454]/30"></span>
-                    <p class="font-serif italic text-xs sm:text-sm text-[#48627d] tracking-wide">
-                        a celebrar un momento unico y especial para mi.
-                    </p>
-                    <span class="w-12 h-[1px] bg-[#183454]/30"></span>
+        <!-- =========================================================================
+             SECCIÓN 1: PORTADA Y TÍTULOS PRINCIPALES
+             (Aparecen con Zoom Out lento y suave)
+             ========================================================================= -->
+        <section id="invitation-section-1" class="invitation-section is-active">
+            <div class="invitation-card">
+                <!-- Monograma Real / Escudo -->
+                <div
+                    class="mb-6 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#183454] to-[#2b527d] text-[#f2ece4] shadow-xl border border-[#48719e]/40">
+                    <span class="font-playfair text-2xl sm:text-3xl font-bold tracking-wider">V</span>
+                </div>
+
+                <!-- Títulos Principales -->
+                <div class="space-y-3 mb-6">
+                    <h2 class="font-cursive text-5xl sm:text-7xl text-[#2b527d] leading-none">
+                        Hola Victor, estas
+                    </h2>
+                    <h1
+                        class="font-playfair text-5xl sm:text-7xl font-bold tracking-[0.16em] text-[#122842] uppercase leading-tight">
+                        INVITADO
+                    </h1>
+                    <div class="flex items-center justify-center gap-3 pt-3">
+                        <span class="w-12 h-[1px] bg-[#183454]/30"></span>
+                        <p class="font-serif italic text-sm sm:text-base text-[#48627d] tracking-wide">
+                            a celebrar un momento único y especial para mí.
+                        </p>
+                        <span class="w-12 h-[1px] bg-[#183454]/30"></span>
+                    </div>
+                </div>
+
+                <!-- Badge -->
+                <div
+                    class="inline-block px-5 py-2 bg-[#183454]/10 text-[#183454] text-[11px] uppercase tracking-[0.25em] font-sans-custom font-semibold rounded-full border border-[#183454]/20 shadow-sm mb-12">
+                    Edición Especial &middot; 29 Años
+                </div>
+
+                <!-- Indicador de Deslizar -->
+                <div class="flex flex-col items-center gap-2 text-[#48627d] animate-bounce select-none">
+                    <span class="font-sans-custom text-[10px] uppercase tracking-widest font-semibold">Desliza para ver
+                        los detalles</span>
+                    <span class="text-xl">↓</span>
                 </div>
             </div>
-
-            <!-- Honoree Name Badge in Navy Blue -->
-            <div
-                class="inline-block px-4 py-1.5 bg-[#183454]/10 text-[#183454] text-[10px] uppercase tracking-widest font-sans-custom rounded-full border border-[#183454]/20 shadow-sm">
-                Edición Especial &middot; Para Victor Corio
-            </div>
-        </header>
-
-        <!-- Floating Gallery Collage -->
-        <div class="space-y-24 relative">
-
-            <!-- =========================================================================
-                 📸 [FOTO 1 DE 6] MARCO AZUL GLOSSY (magnific__-__43358y.png)
-                 Recuerdo actual: Grupo en la nieve
-                 ========================================================================= -->
-            <div class="reveal-item flex justify-start pr-4 relative">
-                <!-- Floating note nearby -->
-                <span
-                    class="absolute -top-6 right-8 font-sans-custom text-[11px] tracking-widest text-[#4a6b8c] italic opacity-85 select-none">
-                    love love
-                </span>
-
-                <div class="w-11/12 sm:w-10/12 float-1">
-                    <div class="cursor-pointer group gallery-trigger" data-id="foto-1" data-title="Maravilloso"
-                        data-chapter="Chapter I &middot; En la Cima"
-                        data-desc="Momentos de sonrisas infinitas y calor de amigos." data-frame="blue">
-
-                        <!-- Frame Wrapper -->
-                        <div
-                            class="relative w-full aspect-[340/438] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
-                            <div
-                                class="absolute inset-[15.5%_18.5%_15.5%_18.2%] overflow-hidden bg-[#101b2b] rounded-[1px]">
-                                <div class="photo-container w-full h-full relative overflow-hidden">
-                                    <!-- 👇 [AQUÍ VA TU FOTO 1]: Descomenta para usar tu foto: -->
-                                    <img src="foto1.jpg" alt="Mi foto 1"
-                                        class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        </section>
 
 
-                                </div>
-                            </div>
-                            <img src="magnific__-__43358y.png" alt="Marco Azul Real"
-                                class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
+        <!-- =========================================================================
+             SECCIÓN 2: FECHA Y HORA
+             ========================================================================= -->
+        <section id="invitation-section-2" class="invitation-section">
+            <div class="invitation-card">
+                <div
+                    class="w-full bg-[#fffdfa]/92 backdrop-blur-xl border border-[#183454]/15 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                    <div class="space-y-4">
+                        <span
+                            class="inline-block px-4 py-1 bg-[#183454]/10 text-[#183454] text-[10px] uppercase tracking-[0.25em] font-sans-custom font-bold rounded-full border border-[#183454]/15">
+                            📅 Fecha &amp; Hora
+                        </span>
+
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold uppercase tracking-wider text-[#122842]">
+                            Reserva el Momento
+                        </h3>
+
+                        <!-- 👇 [EDITA AQUÍ LA FECHA Y DÍA]: -->
+                        <div class="py-6 border-y border-[#183454]/15 my-4">
+                            <span
+                                class="font-sans-custom text-xs uppercase tracking-[0.25em] text-[#2b527d] font-semibold block mb-1">
+                                SÁBADO
+                            </span>
+                            <span
+                                class="font-playfair text-6xl sm:text-7xl font-bold text-[#122842] block leading-none my-2">
+                                31
+                            </span>
+                            <span
+                                class="font-serif text-lg sm:text-xl uppercase tracking-widest text-[#48627d] font-semibold block">
+                                OCTUBRE &middot; 2026
+                            </span>
                         </div>
 
-                        <div class="pt-3 text-center">
-                            <span
-                                class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">CUMPLE
-                                NRO 29</span>
-                            <h3
-                                class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">
-                                UN AÑO MÁS DE VIDA.</h3>
+                        <!-- 👇 [EDITA AQUÍ LA HORA]: -->
+                        <div class="flex items-center justify-center gap-2 text-[#183454]">
+                            <span class="text-2xl">🕒</span>
+                            <span class="font-sans-custom text-2xl sm:text-3xl font-bold tracking-wider">
+                                7:00 PM
+                            </span>
+                        </div>
+
+                        <p class="font-serif italic text-xs sm:text-sm text-[#5c728a] max-w-xs mx-auto pt-2">
+                            "Te esperamos con puntualidad para iniciar juntos el brindis de honor."
+                        </p>
+
+                        <!-- Botón para Guardar en Calendario -->
+                        <div class="pt-4">
+                            <a href="https://addcal.io/e/ey0z43o15eyg" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 px-6 py-2.5 bg-[#183454]/10 hover:bg-[#183454]/15 text-[#183454] font-sans-custom text-[11px] uppercase tracking-wider font-semibold rounded-full border border-[#183454]/20 transition-all hover:scale-105 active:scale-95">
+                                <span>🗓️</span>
+                                <span>Agendar en Calendario</span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- STICKER NOTE: safe place -->
-            <div class="reveal-item flex justify-end pr-6">
-                <div class="w-8/12 float-2">
-                    <div class="bg-[#fffdfa] p-4 shadow-lg rounded-sm border-l-4 border-[#183454] transform rotate-2">
+
+        <!-- =========================================================================
+             SECCIÓN 3: EL LUGAR
+             ========================================================================= -->
+        <section id="invitation-section-3" class="invitation-section">
+            <div class="invitation-card">
+                <div
+                    class="w-full bg-[#fffdfa]/92 backdrop-blur-xl border border-[#183454]/15 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                    <div class="space-y-4">
                         <span
-                            class="text-[9px] font-sans-custom uppercase tracking-widest text-[#5c728a] block font-semibold">RECUERDO</span>
-                        <p class="font-serif text-base italic text-[#122842] mt-1 leading-snug">
-                            "Aunque no pude estar en tu vida de la mejor forma esta es una parte que te regalo hoy."
+                            class="inline-block px-4 py-1 bg-[#183454]/10 text-[#183454] text-[10px] uppercase tracking-[0.25em] font-sans-custom font-bold rounded-full border border-[#183454]/15">
+                            📍 Ubicación
+                        </span>
+
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold uppercase tracking-wider text-[#122842]">
+                            El Lugar de la Fiesta
+                        </h3>
+
+                        <!-- 👇 [EDITA AQUÍ EL LUGAR Y LA DIRECCIÓN]: -->
+                        <div class="py-6 border-y border-[#183454]/15 my-4 space-y-2">
+                            <h4 class="font-serif text-2xl sm:text-3xl font-bold text-[#183454]">
+                                Terraza &amp; Salón Los Rosales
+                            </h4>
+                            <p class="font-sans-custom text-sm text-[#2b527d] font-medium tracking-wide">
+                                Av. Principal #123 &middot; Sala Privada VIP
+                            </p>
+                            <p class="font-serif italic text-xs sm:text-sm text-[#5c728a]">
+                                Piso 5 &middot; Hermosa vista panorámica
+                            </p>
+                        </div>
+
+                        <p class="font-serif italic text-xs sm:text-sm text-[#5c728a] max-w-xs mx-auto">
+                            "Contamos con valet parking y servicio de recepción para tu máxima comodidad."
+                        </p>
+
+                        <!-- 👇 [CAMBIA EL ENLACE DE GOOGLE MAPS AQUÍ]: -->
+                        <div class="pt-4">
+                            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 px-6 py-3 bg-[#183454] hover:bg-[#20446e] text-[#f2ece4] font-sans-custom text-xs uppercase tracking-widest font-semibold rounded-full shadow-lg transition-all hover:scale-105 active:scale-95 border border-[#48719e]/40">
+                                <span>🗺️</span>
+                                <span>Abrir en Google Maps</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================================
+             SECCIÓN 4: LA VESTIMENTA
+             ========================================================================= -->
+        <section id="invitation-section-4" class="invitation-section">
+            <div class="invitation-card">
+                <div
+                    class="w-full bg-[#fffdfa]/92 backdrop-blur-xl border border-[#183454]/15 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                    <div class="space-y-4">
+                        <span
+                            class="inline-block px-4 py-1 bg-[#183454]/10 text-[#183454] text-[10px] uppercase tracking-[0.25em] font-sans-custom font-bold rounded-full border border-[#183454]/15">
+                            👔 Dress Code
+                        </span>
+
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold uppercase tracking-wider text-[#122842]">
+                            Código de Vestimenta
+                        </h3>
+
+                        <!-- 👇 [EDITA AQUÍ LA VESTIMENTA]: -->
+                        <div class="py-6 border-y border-[#183454]/15 my-4 space-y-3">
+                            <h4 class="font-serif text-2xl sm:text-3xl font-bold text-[#183454]">
+                                Elegante &middot; Noche de Gala
+                            </h4>
+                            <p class="font-serif italic text-sm text-[#48627d]">
+                                "Viste para una velada extraordinaria, muchas risas y fotos que perdurarán para
+                                siempre."
+                            </p>
+                        </div>
+
+                        <!-- Paleta de Colores Sugeridos -->
+                        <div class="pt-2">
+                            <span
+                                class="font-sans-custom text-[10px] uppercase tracking-widest text-[#5c728a] font-semibold block mb-3">
+                                Colores Sugeridos
+                            </span>
+                            <div class="flex items-center justify-center gap-4">
+                                <div class="flex flex-col items-center gap-1">
+                                    <span
+                                        class="w-8 h-8 rounded-full bg-[#122842] border-2 border-white shadow-md"></span>
+                                    <span class="text-[9px] font-sans-custom uppercase text-[#5c728a]">Azul</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <span
+                                        class="w-8 h-8 rounded-full bg-[#2b527d] border-2 border-white shadow-md"></span>
+                                    <span class="text-[9px] font-sans-custom uppercase text-[#5c728a]">Royal</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <span
+                                        class="w-8 h-8 rounded-full bg-[#c5a059] border-2 border-white shadow-md"></span>
+                                    <span class="text-[9px] font-sans-custom uppercase text-[#5c728a]">Dorado</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <span
+                                        class="w-8 h-8 rounded-full bg-[#fffdfa] border-2 border-[#183454]/30 shadow-md"></span>
+                                    <span class="text-[9px] font-sans-custom uppercase text-[#5c728a]">Blanco</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================================
+             SECCIÓN 5 (ÚLTIMA): MENSAJE BONITO CON FONDO DE IMAGEN
+             (Parte inferior difuminada en blur y mensaje sobre ella)
+             ========================================================================= -->
+        <section id="invitation-section-5" class="invitation-section">
+            <div class="invitation-card">
+                <div
+                    class="w-full bg-[#fffdfa] rounded-3xl border border-[#183454]/20 shadow-2xl relative overflow-hidden p-6 sm:p-10">
+
+                    <!-- 👇 [EDITA AQUÍ LA IMAGEN DE FONDO DEL MENSAJE FINAL]: -->
+                    <div class="absolute inset-x-0 top-0 h-[62%] overflow-hidden pointer-events-none select-none">
+                        <img src="foto1.jpg" alt="Fondo especial de recuerdo"
+                            class="w-full h-full object-cover object-center"
+                            style="-webkit-mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.6) 65%, transparent 100%); mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.6) 65%, transparent 100%);">
+
+                        <!-- Capa de difuminado blur en la transición inferior hacia el mensaje -->
+                        <div
+                            class="absolute inset-0 backdrop-blur-[3px] bg-gradient-to-b from-transparent via-[#fffdfa]/50 to-[#fffdfa]">
+                        </div>
+                    </div>
+
+                    <!-- Contenido del Mensaje sobre la imagen -->
+                    <div class="relative z-10 pt-28 sm:pt-36 flex flex-col items-center text-center space-y-4">
+                        <span
+                            class="inline-block px-4 py-1 bg-[#183454] text-[#f2ece4] text-[10px] uppercase tracking-[0.25em] font-sans-custom font-semibold rounded-full shadow-md">
+                            Un Mensaje Especial
+                        </span>
+
+                        <h3 class="font-cookie text-4xl sm:text-5xl text-[#183454] leading-tight">
+                            Happy Birthday Victor
+                        </h3>
+
+                        <!-- 👇 [EDITA AQUÍ TU MENSAJE BONITO]: -->
+                        <div class="relative px-2 py-1">
+                            <p
+                                class="font-serif italic text-base sm:text-lg text-[#122842] leading-relaxed drop-shadow-sm">
+                                "Que en este cumpleaños seas inmensamente feliz, que cada sueño que albergas se haga
+                                realidad y que sigas siendo ese ser humano maravilloso que sé que eres. Gracias por
+                                cada instante, cada risa compartida y por hacer de este mundo un lugar más brillante."
+                            </p>
+                        </div>
+
+                        <!-- Botón de Celebración con Confeti -->
+                        <button id="celebrate-btn"
+                            class="mt-2 px-8 py-3.5 bg-gradient-to-r from-[#183454] via-[#20446e] to-[#2b527d] text-[#f2ece4] font-sans-custom text-xs uppercase tracking-widest rounded-full shadow-2xl hover:shadow-[#183454]/40 hover:scale-105 active:scale-95 transition-all duration-300 border border-[#48719e]/50 cursor-pointer flex items-center justify-center gap-2.5 mx-auto">
+                            <span class="text-base">🎉</span>
+                            <span class="font-semibold">¡Celebrar con Victor!</span>
+                            <span class="text-base">🎂</span>
+                        </button>
+
+                        <p class="font-sans-custom text-[10px] text-[#7a828c] uppercase tracking-widest pt-2">
+                            &copy; 2026 Edición Especial &middot; By OCOR
                         </p>
                     </div>
                 </div>
             </div>
-
-            <!-- =========================================================================
-                 📸 [FOTO 2 DE 6] MARCO BLANCO ROCOCÓ (65165.png)
-                 Recuerdo actual: Brindis de gala / fiesta de amigos
-                 ========================================================================= -->
-            <div class="reveal-item flex justify-end pl-4 relative">
-                <div class="w-11/12 sm:w-10/12 float-3">
-                    <div class="cursor-pointer group gallery-trigger" data-id="foto-2" data-title="Celebrando Juntos"
-                        data-chapter="Chapter II &middot; Brindis"
-                        data-desc="Elegancia, copas en alto y la mejor compañía para celebrar una vida extraordinaria."
-                        data-frame="white">
-
-                        <div
-                            class="relative w-full aspect-[424/435] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
-                            <div
-                                class="absolute inset-[18.2%_19.1%_17.9%_19.8%] overflow-hidden bg-[#241719] rounded-[1px]">
-                                <div class="photo-container w-full h-full relative overflow-hidden">
-                                    <!-- 👇 [AQUÍ VA TU FOTO 2]: Descomenta para usar tu foto: -->
-                                    <img src="foto2.jpg" alt="Mi foto 2"
-                                        class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-
-                                </div>
-                            </div>
-                            <img src="65165.png" alt="Marco Blanco Rococó"
-                                class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
-                        </div>
-
-                        <div class="pt-3 text-center">
-                            <span
-                                class="text-[9px] font-sans-custom uppercase tracking-widest text-[#7a828c] block font-semibold">LA
-                                ÚLTIMA</span>
-                            <h3
-                                class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">
-                                Foto que tuve Contigo</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- STICKER NOTE: soul home -->
-            <div class="reveal-item flex justify-center">
-                <div class="w-7/12 float-1 text-center">
-                    <div
-                        class="bg-[#fffdfa] p-3 shadow-md rounded-sm border-b-2 border-[#2b527d] inline-block transform -rotate-1">
-                        <span
-                            class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">SIEMPRE</span>
-                        <p class="font-serif text-sm italic text-[#122842]">"Quiero que seas muy feliz en tu vida sin
-                            pensar en lo malo"</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- =========================================================================
-                 📸 [FOTO 3 DE 6] MARCO BARROCO CALADO (magnific__-__43358yu.png)
-                 Recuerdo actual: Familia en la escalera
-                 ========================================================================= -->
-            <div class="reveal-item flex justify-start pr-6 relative">
-                <span
-                    class="absolute -top-4 right-12 font-sans-custom text-[10px] tracking-widest text-[#5c728a] uppercase opacity-80 select-none">
-                    Eber on memories
-                </span>
-
-                <div class="w-10/12 sm:w-9/12 float-2">
-                    <div class="cursor-pointer group gallery-trigger" data-id="foto-3" data-title="Viajes Divertidos"
-                        data-chapter="Chapter III &middot; Viajes"
-                        data-desc="Siempre que la pasabamos juntos no habia distracciones." data-frame="slate">
-
-                        <div
-                            class="relative w-full aspect-[296/357] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
-                            <div
-                                class="absolute inset-[14.8%_17.6%_15.1%_18.2%] overflow-hidden bg-[#161a22] rounded-[1px]">
-                                <div class="photo-container w-full h-full relative overflow-hidden">
-                                    <!-- 👇 [AQUÍ VA TU FOTO 3]: Descomenta para usar tu foto: -->
-                                    <img src="foto3.jpg" alt="Mi foto 3"
-                                        class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-
-                                </div>
-                            </div>
-                            <img src="magnific__-__43358yu.png" alt="Marco Calado Original"
-                                class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
-                        </div>
-
-                        <div class="pt-3 text-center">
-                            <span
-                                class="text-[9px] font-sans-custom uppercase tracking-widest text-[#526f91] block font-semibold">Tuvimos</span>
-                            <h3
-                                class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">
-                                Momentos Inolvidables</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- =========================================================================
-                 📸 [FOTO 4 DE 6] MARCO AZUL GLOSSY (magnific__-__43358y.png)
-                 Recuerdo actual: Pequeño campeón con trofeo de karting
-                 ========================================================================= -->
-            <div class="reveal-item flex justify-end pl-6 relative">
-                <span
-                    class="absolute top-2 left-6 font-sans-custom text-[11px] tracking-widest text-[#2b527d] italic opacity-85 select-none">
-                    29 YEARS OLD
-                </span>
-
-                <div class="w-10/12 sm:w-9/12 float-1">
-                    <div class="cursor-pointer group gallery-trigger" data-id="foto-4" data-title="Pinturas al viento"
-                        data-chapter="Chapter IV &middot; Pasión & Pintura"
-                        data-desc="Simplemente uno de los mejores días a tu lado y con un regalo increíble."
-                        data-frame="blue">
-
-                        <div
-                            class="relative w-full aspect-[340/438] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
-                            <div
-                                class="absolute inset-[15.5%_18.5%_15.5%_18.2%] overflow-hidden bg-[#101924] rounded-[1px]">
-                                <div class="photo-container w-full h-full relative overflow-hidden">
-                                    <!-- 👇 [AQUÍ VA TU FOTO 4]: Descomenta para usar tu foto: -->
-                                    <img src="foto4.jpg" alt="Mi foto 4"
-                                        class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-
-                                </div>
-                            </div>
-                            <img src="magnific__-__43358y.png" alt="Marco Azul Real"
-                                class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
-                        </div>
-
-                        <div class="pt-3 text-center">
-                            <span
-                                class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">UN
-                                DIA MAGICO</span>
-                            <h3
-                                class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">
-                                El Mejor Regalo</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- STICKER NOTE: safe place -->
-            <div class="reveal-item flex justify-end pr-6">
-                <div class="w-8/12 float-2">
-                    <div class="bg-[#fffdfa] p-4 shadow-lg rounded-sm border-l-4 border-[#183454] transform rotate-2">
-                        <span
-                            class="text-[9px] font-sans-custom uppercase tracking-widest text-[#5c728a] block font-semibold">SIEMPRE</span>
-                        <p class="font-serif text-base italic text-[#122842] mt-1 leading-snug">
-                            "Serás parte de mi vida, aunque no pueda tenerte."
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!-- =========================================================================
-                 📸 [FOTO 5 DE 6] MARCO BLANCO ROCOCÓ (65165.png)
-                 Recuerdo actual: Niños en triciclo al aire libre
-                 ========================================================================= -->
-            <div class="reveal-item flex justify-start pr-4 relative">
-                <span
-                    class="absolute -bottom-4 right-10 font-sans-custom text-[11px] tracking-widest text-[#6c757d] italic opacity-85 select-none">
-                    BAD BOY
-                </span>
-
-                <div class="w-11/12 sm:w-10/12 float-3">
-                    <div class="cursor-pointer group gallery-trigger" data-id="foto-5" data-title="Golden Boy"
-                        data-chapter="Chapter V &middot; Perseverancia"
-                        data-desc="Todo lo que amas y crees se hace realidad porque tú tienes la magia."
-                        data-frame="white">
-
-                        <div
-                            class="relative w-full aspect-[424/435] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
-                            <div
-                                class="absolute inset-[18.2%_19.1%_17.9%_19.8%] overflow-hidden bg-[#241719] rounded-[1px]">
-                                <div class="photo-container w-full h-full relative overflow-hidden">
-                                    <!-- 👇 [AQUÍ VA TU FOTO 5]: Descomenta para usar tu foto: -->
-                                    <img src="foto5.PNG" alt="Mi foto 5"
-                                        class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-
-                                </div>
-                            </div>
-                            <img src="65165.png" alt="Marco Blanco Rococó"
-                                class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
-                        </div>
-
-                        <div class="pt-3 text-center">
-                            <span
-                                class="text-[9px] font-sans-custom uppercase tracking-widest text-[#7a828c] block font-semibold">Aventuras</span>
-                            <h3
-                                class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">
-                                Siempre planeas Las mejores</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- =========================================================================
-                 📸 [FOTO 6 DE 6] MARCO BARROCO CALADO (magnific__-__43358yu.png)
-                 Recuerdo actual: Niño con suéter de rayas
-                 ========================================================================= -->
-            <div class="reveal-item flex justify-center px-4 relative">
-                <div class="w-10/12 sm:w-9/12 float-2">
-                    <div class="cursor-pointer group gallery-trigger" data-id="foto-6" data-title="SIMPLEMENTE GRACIAS"
-                        data-chapter="Chapter VI &middot; Agradecer"
-                        data-desc="Fuiste una increíble persona conmigo y aunque no estemos juntos, agradezco por todos los momentos lindos que pasé a tu lado."
-                        data-frame="slate">
-
-                        <div
-                            class="relative w-full aspect-[296/357] frame-shadow-clean transition-transform duration-500 group-hover:scale-[1.02]">
-                            <div
-                                class="absolute inset-[14.8%_17.6%_15.1%_18.2%] overflow-hidden bg-[#141b24] rounded-[1px]">
-                                <div class="photo-container w-full h-full relative overflow-hidden">
-                                    <!-- 👇 [AQUÍ VA TU FOTO 6]: Descomenta para usar tu foto: -->
-                                    <img src="foto6.jpg" alt="Mi foto 6"
-                                        class="custom-photo w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-
-                                </div>
-                            </div>
-                            <img src="magnific__-__43358yu.png" alt="Marco Calado Original"
-                                class="relative z-10 w-full h-full object-contain pointer-events-none select-none">
-                        </div>
-
-                        <div class="pt-3 text-center">
-                            <span
-                                class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">UNA</span>
-                            <h3
-                                class="font-serif text-lg font-bold text-[#122842] group-hover:text-[#2b527d] transition-colors">
-                                Sonrisa que Enamora</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- STICKER NOTE: soul home -->
-            <div class="reveal-item flex justify-center">
-                <div class="w-7/12 float-1 text-center">
-                    <div
-                        class="bg-[#fffdfa] p-3 shadow-md rounded-sm border-b-2 border-[#2b527d] inline-block transform -rotate-1">
-                        <span
-                            class="text-[9px] font-sans-custom uppercase tracking-widest text-[#2b527d] block font-semibold">UN
-                            FINAL</span>
-                        <p class="font-serif text-sm italic text-[#122842]">"Que en este cumpleaños seas muy feliz, que
-                            puedas lograr lo que te propongas siempre y seas ese EBER maravilloso que sé que eres. Sin
-                            más que agregar, que tengas un..."</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Footer & Celebration Action in Royal Blue & Navy -->
-        <footer class="mt-32 text-center reveal-item">
-            <div class="border-t border-[#183454]/20 pt-10 max-w-sm mx-auto space-y-5">
-
-                <!-- Confetti Trigger Button (Royal Navy Gradient) -->
-                <button id="celebrate-btn"
-                    class="px-8 py-4 bg-gradient-to-r from-[#183454] via-[#20446e] to-[#2b527d] text-[#f2ece4] font-sans-custom text-xs uppercase tracking-widest rounded-full shadow-2xl hover:shadow-[#183454]/40 hover:scale-105 active:scale-95 transition-all duration-300 border border-[#48719e]/50 cursor-pointer flex items-center justify-center gap-3 mx-auto">
-                    <span class="text-base">🎉</span>
-                    <span class="font-semibold">¡Celebrar a Eber!</span>
-                    <span class="text-base">🎂</span>
-                </button>
-
-                <div>
-                    <h2 class="font-cookie text-5xl text-[#2b527d] mb-1">Happy Birthday</h2>
-                    <p class="font-playfair text-xl tracking-widest font-bold uppercase text-[#122842]">Eber Beaumont
-                    </p>
-                </div>
-
-                <p class="font-sans-custom text-[10px] text-[#7a828c] uppercase tracking-widest pt-4">
-                    &copy; 2026 POR SIEMPRE &middot; 🌹.
-                </p>
-            </div>
-        </footer>
+        </section>
 
     </main>
-
-    <!-- ==============================================
-         LIGHTBOX MODAL (Navy & Blue Palette)
-         ============================================== -->
-    <div id="lightbox-modal"
-        class="fixed inset-0 z-50 bg-[#0a1420]/88 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-        <!-- Close Button -->
-        <button id="lightbox-close"
-            class="absolute top-6 right-6 w-10 h-10 rounded-full bg-[#f2ece4]/10 text-[#f2ece4] hover:bg-[#f2ece4]/20 flex items-center justify-center text-xl transition-all cursor-pointer z-20 border border-[#f2ece4]/20">
-            ✕
-        </button>
-
-        <!-- Modal Container -->
-        <div class="relative max-w-sm sm:max-w-md w-full bg-[#fffdfa] rounded-xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 border border-[#183454]/15"
-            id="lightbox-content">
-
-            <!-- Framed Photo in Lightbox -->
-            <div class="p-6 bg-gradient-to-b from-[#f8f4ee] to-[#f0e6d8] flex justify-center">
-                <div id="modal-frame-wrapper"
-                    class="relative w-10/12 transition-transform duration-300 frame-shadow-clean">
-                    <!-- Target Photo Container -->
-                    <div id="modal-photo-box" class="absolute overflow-hidden rounded-[1px]">
-                        <div class="w-full h-full relative overflow-hidden flex items-center justify-center">
-                            <img id="modal-photo-img" src="" class="transition-all duration-300">
-                        </div>
-                    </div>
-                    <!-- Frame Image -->
-                    <img id="modal-frame-img" src="magnific__-__43358y.png"
-                        class="relative z-10 w-full h-auto pointer-events-none select-none">
-                </div>
-            </div>
-
-            <!-- Details Section -->
-            <div class="p-6 space-y-3 bg-[#fffdfa]">
-                <div class="flex items-center justify-between">
-                    <span id="modal-chapter"
-                        class="text-[10px] font-sans-custom uppercase tracking-widest text-[#2b527d] font-semibold">
-                        Chapter I
-                    </span>
-                    <!-- Heart Reaction Button -->
-                    <button id="modal-heart-btn"
-                        class="relative flex items-center gap-1.5 px-3 py-1.5 bg-[#183454]/5 hover:bg-[#183454]/10 rounded-full text-xs text-[#183454] transition-all cursor-pointer border border-[#183454]/15">
-                        <span id="heart-icon">❤️</span>
-                        <span id="heart-count" class="font-sans-custom font-bold text-[11px]">18</span>
-                    </button>
-                </div>
-                <h3 id="modal-title" class="font-serif text-2xl font-bold text-[#122842] leading-snug">
-                    Memoria Eterna
-                </h3>
-                <p id="modal-desc" class="font-serif text-sm italic text-[#48627d] leading-relaxed">
-                    Descripción del recuerdo...
-                </p>
-            </div>
-        </div>
-    </div>
 
     <!-- ==============================================
          JAVASCRIPT: Audio, Confetti, Smart Lightbox
@@ -1204,6 +1120,19 @@
             const rect = e.target.getBoundingClientRect();
             spawnConfetti(rect.left + rect.width / 2, rect.top, 130);
             audioPlayer.playCelebrationChime();
+
+            // Partículas flotantes de celebración
+            for (let i = 0; i < 6; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('span');
+                    particle.className = 'heart-particle';
+                    particle.innerText = ['💙', '✨', '⭐', '🎉', '🎂', '❤️'][Math.floor(Math.random() * 6)];
+                    particle.style.left = `${rect.left + (Math.random() * rect.width)}px`;
+                    particle.style.top = `${rect.top - 10 + (Math.random() * 20)}px`;
+                    document.body.appendChild(particle);
+                    setTimeout(() => particle.remove(), 1200);
+                }, i * 60);
+            }
         });
 
 
@@ -1340,11 +1269,19 @@
             introOverlay.style.filter = 'blur(10px)';
             introOverlay.style.pointerEvents = 'none';
 
+            window.scrollTo({ top: 0, behavior: 'instant' });
+
             playMusic();
 
             const originX = (e && e.clientX) ? e.clientX : window.innerWidth / 2;
             const originY = (e && e.clientY) ? e.clientY : window.innerHeight / 2;
             spawnConfetti(originX, originY, 80);
+
+            // Activación con zoom out lento y suave de la primera sección
+            setTimeout(() => {
+                const sec1 = document.getElementById('invitation-section-1');
+                if (sec1) sec1.classList.add('is-active');
+            }, 100);
 
             setTimeout(() => {
                 introOverlay.style.display = 'none';
@@ -1361,124 +1298,37 @@
         });
 
 
-        // --- 4. Intersection Observer for Scroll Reveals ---
+        // --- 4. Intersection Observer for Centered Invitation Sections (Zoom In/Out + Blur) ---
         document.addEventListener("DOMContentLoaded", () => {
+            const invitationSections = document.querySelectorAll('.invitation-section');
+
             const observerOptions = {
                 root: null,
-                rootMargin: '0px',
-                threshold: 0.12
+                rootMargin: '-10% 0px -10% 0px',
+                threshold: 0.25
             };
 
-            const observer = new IntersectionObserver((entries) => {
+            const sectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
+                    const target = entry.target;
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
+                        target.classList.add('is-active');
+                        target.classList.remove('is-leaving-up', 'is-leaving-down');
+                    } else {
+                        target.classList.remove('is-active');
+                        const rect = target.getBoundingClientRect();
+                        if (rect.top < 0) {
+                            target.classList.add('is-leaving-up');
+                            target.classList.remove('is-leaving-down');
+                        } else {
+                            target.classList.add('is-leaving-down');
+                            target.classList.remove('is-leaving-up');
+                        }
                     }
                 });
             }, observerOptions);
 
-            document.querySelectorAll('.reveal-item').forEach(item => {
-                observer.observe(item);
-            });
-        });
-
-
-        // --- 5. Smart Lightbox Modal Integration ---
-        const modal = document.getElementById('lightbox-modal');
-        const modalContent = document.getElementById('lightbox-content');
-        const modalClose = document.getElementById('lightbox-close');
-        const modalPhotoBox = document.getElementById('modal-photo-box');
-        const modalPhotoImg = document.getElementById('modal-photo-img');
-        const modalFrameImg = document.getElementById('modal-frame-img');
-        const modalTitle = document.getElementById('modal-title');
-        const modalChapter = document.getElementById('modal-chapter');
-        const modalDesc = document.getElementById('modal-desc');
-        const heartBtn = document.getElementById('modal-heart-btn');
-        const heartCount = document.getElementById('heart-count');
-
-        const FRAME_CONFIGS = {
-            blue: {
-                img: 'magnific__-__43358y.png',
-                inset: 'inset-[15.5%_18.5%_15.5%_18.2%]'
-            },
-            slate: {
-                img: 'magnific__-__43358yu.png',
-                inset: 'inset-[14.8%_17.6%_15.1%_18.2%]'
-            },
-            white: {
-                img: '65165.png',
-                inset: 'inset-[18.2%_19.1%_17.9%_19.8%]'
-            }
-        };
-
-        // Open Lightbox
-        document.querySelectorAll('.gallery-trigger').forEach(trigger => {
-            trigger.addEventListener('click', () => {
-                const title = trigger.getAttribute('data-title');
-                const chapter = trigger.getAttribute('data-chapter');
-                const desc = trigger.getAttribute('data-desc');
-                const frameKey = trigger.getAttribute('data-frame');
-
-                const cfg = FRAME_CONFIGS[frameKey] || FRAME_CONFIGS.blue;
-
-                modalTitle.innerText = title;
-                modalChapter.innerHTML = chapter;
-                modalDesc.innerText = desc;
-
-                modalFrameImg.src = cfg.img;
-                modalPhotoBox.className = `absolute overflow-hidden rounded-[1px] ${cfg.inset}`;
-
-                // Detección automática de la foto activa
-                const activeImg = trigger.querySelector('.photo-container img');
-                if (activeImg) {
-                    modalPhotoImg.src = activeImg.getAttribute('src');
-
-                    if (activeImg.classList.contains('custom-photo') || activeImg.classList.contains('object-cover')) {
-                        modalPhotoImg.className = 'w-full h-full object-cover block';
-                        modalPhotoImg.style.cssText = '';
-                    } else {
-                        modalPhotoImg.className = 'absolute max-w-none';
-                        modalPhotoImg.style.cssText = activeImg.getAttribute('style') || '';
-                    }
-                }
-
-                heartCount.innerText = Math.floor(Math.random() * 20) + 18;
-
-                modal.classList.remove('opacity-0', 'pointer-events-none');
-                modal.classList.add('opacity-100');
-                modalContent.classList.remove('scale-95');
-                modalContent.classList.add('scale-100');
-            });
-        });
-
-        function closeModal() {
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            modal.classList.remove('opacity-100');
-            modalContent.classList.add('scale-95');
-            modalContent.classList.remove('scale-100');
-        }
-
-        modalClose.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        // Floating Hearts
-        heartBtn.addEventListener('click', (e) => {
-            let current = parseInt(heartCount.innerText, 10);
-            heartCount.innerText = current + 1;
-
-            const particle = document.createElement('span');
-            particle.className = 'heart-particle';
-            particle.innerText = ['💙', '✨', '🤍', '⭐', '❤️'][Math.floor(Math.random() * 5)];
-            particle.style.left = `${e.clientX - 10}px`;
-            particle.style.top = `${e.clientY - 20}px`;
-            document.body.appendChild(particle);
-
-            setTimeout(() => particle.remove(), 1200);
+            invitationSections.forEach(sec => sectionObserver.observe(sec));
         });
     </script>
 </body>
