@@ -525,7 +525,7 @@
      =========================================================================
      Puedes colocar aquí directamente el nombre de tu archivo de música:
      ========================================================================= -->
-    <audio id="bg-audio" src="cancion.mp3" loop preload="auto"></audio>
+    <audio id="bg-audio" src="cancion.mp3" autoplay loop preload="auto" playsinline></audio>
 
     <!-- Fog background effect in navy tone -->
     <div class="fog-layer"></div>
@@ -566,6 +566,17 @@
                 </h2>
             </div>
         </header>
+ 
+        <!-- Elegant Audio Prompt Pill (Shown only if browser blocks unmuted autoplay) -->
+        <div id="audio-prompt-pill"
+            class="fixed top-36 sm:top-40 inset-x-0 z-50 flex justify-center pointer-events-none opacity-0 -translate-y-2 transition-all duration-700 hidden">
+            <button id="audio-prompt-btn"
+                class="pointer-events-auto flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#081525]/90 backdrop-blur-xl border border-sky-400/40 text-sky-100 shadow-[0_4px_30px_rgba(56,189,248,0.35)] hover:scale-105 active:scale-95 transition-all cursor-pointer animate-pulse">
+                <span class="text-base sm:text-lg">🔊</span>
+                <span class="font-sans-custom text-xs sm:text-sm font-semibold tracking-wide text-white">Toca la pantalla para activar la música</span>
+                <span class="text-base sm:text-lg">🎵</span>
+            </button>
+        </div>
 
         <!-- Bottom Actions Container with Sombreado Blur -->
         <footer
@@ -591,7 +602,7 @@
     </div>
 
     <!-- Floating Music Player Control (Navy Blue Edition) -->
-    <div class="fixed bottom-6 right-6 z-40">
+    <div class="fixed bottom-6 right-6 z-[60]">
         <button id="music-toggle"
             class="flex items-center gap-2.5 px-4 py-2.5 bg-[#fffdfa]/90 backdrop-blur-md text-[#183454] rounded-full shadow-xl border border-[#183454]/20 hover:scale-105 active:scale-95 transition-all cursor-pointer group"
             title="Música de fondo">
@@ -917,8 +928,11 @@
         // --- 1. Audio Engine (Audio File + Web Audio Synth Fallback) ---
         const bgAudio = document.getElementById('bg-audio');
         if (bgAudio && MI_CANCION && MI_CANCION.trim() !== "") {
-            bgAudio.src = MI_CANCION.trim();
-            bgAudio.volume = 0.75;
+            const songName = MI_CANCION.trim();
+            if (!bgAudio.src || !bgAudio.src.includes(songName)) {
+                bgAudio.src = songName;
+            }
+            bgAudio.volume = 0.85;
         }
 
         class AmbientChimePlayer {
@@ -1015,36 +1029,119 @@
             }
         }
 
-        let hasUnlockedAudio = false;
-        function setupFirstInteractionAudioUnlock() {
-            if (hasUnlockedAudio) return;
-            const unlock = () => {
-                if (!isMusicActive) {
-                    playMusic();
+        let isAudioUnlocked = false;
+        const unlockEvents = ['click', 'pointerdown', 'pointerup', 'touchstart', 'touchend', 'keydown'];
+
+        const audioPromptPill = document.getElementById('audio-prompt-pill');
+        const audioPromptBtn = document.getElementById('audio-prompt-btn');
+
+        function showAudioPrompt() {
+            if (isMusicActive || !audioPromptPill) return;
+            audioPromptPill.classList.remove('hidden');
+            setTimeout(() => {
+                if (!isMusicActive && audioPromptPill) {
+                    audioPromptPill.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
+                    audioPromptPill.classList.add('opacity-100', 'translate-y-0');
                 }
-                hasUnlockedAudio = true;
-                ['click', 'touchstart', 'pointerdown', 'keydown'].forEach(evt => {
-                    window.removeEventListener(evt, unlock, { passive: true });
+            }, 60);
+        }
+
+        function hideAudioPrompt() {
+            if (!audioPromptPill) return;
+            audioPromptPill.classList.remove('opacity-100', 'translate-y-0');
+            audioPromptPill.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
+            setTimeout(() => {
+                if (isMusicActive && audioPromptPill) {
+                    audioPromptPill.classList.add('hidden');
+                }
+            }, 600);
+        }
+
+        function setupFirstInteractionAudioUnlock() {
+            if (isAudioUnlocked) return;
+
+            const handleUnlock = () => {
+                if (isMusicActive) {
+                    cleanup();
+                    return;
+                }
+
+                if (bgAudio) {
+                    bgAudio.muted = false;
+                    const p = bgAudio.play();
+                    if (p !== undefined) {
+                        p.then(() => {
+                            isAudioUnlocked = true;
+                            updateMusicUI(true);
+                            hideAudioPrompt();
+                            cleanup();
+                        }).catch(() => {
+                            // Si el evento específico no bastó en este navegador, mantenemos los escuchadores
+                        });
+                        return;
+                    }
+                }
+
+                audioPlayer.start();
+                isAudioUnlocked = true;
+                updateMusicUI(true);
+                hideAudioPrompt();
+                cleanup();
+            };
+
+            const cleanup = () => {
+                unlockEvents.forEach(evt => {
+                    window.removeEventListener(evt, handleUnlock, true);
+                    document.removeEventListener(evt, handleUnlock, true);
                 });
             };
-            ['click', 'touchstart', 'pointerdown', 'keydown'].forEach(evt => {
-                window.addEventListener(evt, unlock, { passive: true, once: true });
+
+            unlockEvents.forEach(evt => {
+                window.addEventListener(evt, handleUnlock, { capture: true, passive: true });
+                document.addEventListener(evt, handleUnlock, { capture: true, passive: true });
             });
         }
 
         function playMusic() {
-            const hasCustomAudio = bgAudio && bgAudio.getAttribute('src') && bgAudio.getAttribute('src').trim() !== "";
+            const hasCustomAudio = bgAudio && (bgAudio.src || (bgAudio.getAttribute('src') && bgAudio.getAttribute('src').trim() !== ""));
             if (hasCustomAudio) {
-                bgAudio.play().then(() => {
+                if (!bgAudio.paused) {
                     updateMusicUI(true);
-                }).catch(err => {
-                    console.log("Autoplay con audio requiere interacción del usuario:", err);
-                    setupFirstInteractionAudioUnlock();
-                });
+                    hideAudioPrompt();
+                    return Promise.resolve();
+                }
+
+                bgAudio.muted = false;
+                const promise = bgAudio.play();
+                if (promise !== undefined) {
+                    return promise.then(() => {
+                        isAudioUnlocked = true;
+                        updateMusicUI(true);
+                        hideAudioPrompt();
+                    }).catch(err => {
+                        console.log("Autoplay con audio requiere interacción del usuario:", err);
+                        showAudioPrompt();
+                        setupFirstInteractionAudioUnlock();
+                    });
+                }
             } else {
                 audioPlayer.start();
+                isAudioUnlocked = true;
                 updateMusicUI(true);
+                hideAudioPrompt();
             }
+            return Promise.resolve();
+        }
+
+        if (audioPromptBtn) {
+            audioPromptBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                playMusic();
+            });
+            audioPromptBtn.addEventListener('touchstart', (e) => {
+                e.stopPropagation();
+                playMusic();
+            }, { passive: true });
         }
 
         function pauseMusic() {
@@ -1249,6 +1346,9 @@
                 video.addEventListener('loadedmetadata', startPlay);
                 video.addEventListener('canplay', startPlay);
                 startPlay();
+                video.addEventListener('playing', () => {
+                    if (!isMusicActive) playMusic();
+                }, { once: true });
 
                 return video;
             } else {
@@ -1321,17 +1421,25 @@
         // Iniciar pase continuo en bucle y reproducir música al principio de todo
         setTimeout(() => {
             playIntroSlide(0);
-            playMusic();
-            setupFirstInteractionAudioUnlock();
-        }, 350);
+        }, 150);
 
+        // Disparo inmediato de la música al cargar el script y el DOM
+        playMusic();
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => playMusic());
+        }
+        window.addEventListener('load', () => {
+            if (!isMusicActive) playMusic();
+        });
+
+        // Asegurar que cualquier toque en la pantalla de intro desbloquee el sonido de inmediato
         introOverlay.addEventListener('click', () => {
             if (!isMusicActive) playMusic();
-        }, { passive: true, once: true });
+        }, { passive: true });
 
         introOverlay.addEventListener('touchstart', () => {
             if (!isMusicActive) playMusic();
-        }, { passive: true, once: true });
+        }, { passive: true });
 
         function handleEnter(e) {
             if (introSlideTimer) clearTimeout(introSlideTimer);
