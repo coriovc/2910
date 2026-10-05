@@ -705,21 +705,21 @@
                             "Te esperamos con puntualidad para iniciar juntos el brindis de honor."
                         </p>
 
-                        <!-- Botón para Guardar en Calendario -->
-                        <div class="pt-4">
+                        <!-- Botones para Guardar en Calendario (Alineados y Centrados) -->
+                        <div class="pt-5 flex flex-wrap items-center justify-center gap-3">
                             <a href="https://addcal.io/e/ey0z43o15eyg/google?ac=8808bc6a755b4f&force=1&force_single_occurrence=1"
                                 target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 px-6 py-2.5 bg-[#183454]/10 hover:bg-[#183454]/15 text-[#183454] font-sans-custom text-[11px] uppercase tracking-wider font-semibold rounded-full border border-[#183454]/20 transition-all hover:scale-105 active:scale-95">
-                                <span><img src="https://cdn.addcal.co/40a563f/build/assets/gcal-LeXQIYGw.svg"
-                                        alt="Google" class="w-4 h-4"></span>
+                                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#183454]/10 hover:bg-[#183454]/15 text-[#183454] font-sans-custom text-[11px] uppercase tracking-wider font-semibold rounded-full border border-[#183454]/20 transition-all hover:scale-105 active:scale-95 shadow-sm">
+                                <img src="https://cdn.addcal.co/40a563f/build/assets/gcal-LeXQIYGw.svg"
+                                    alt="Google" class="w-4 h-4 object-contain">
                                 <span>Agendar en Google</span>
                             </a>
-                        </div>
-                        <div class="pt-4">
-                            <a href="https://addcal.io/e/ey0z43o15eyg/apple?ac=1e78a3893a8e45&force=1&force_single_occurrence=1" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 px-6 py-2.5 bg-[#183454]/10 hover:bg-[#183454]/15 text-[#183454] font-sans-custom text-[11px] uppercase tracking-wider font-semibold rounded-full border border-[#183454]/20 transition-all hover:scale-105 active:scale-95">
-                                <span><img src="https://cdn.addcal.co/40a563f/build/assets/apple-BJO7yr1p.svg"
-                                        alt="Apple" class="w-4 h-4"></span>
+
+                            <a href="https://addcal.io/e/ey0z43o15eyg/apple?ac=1e78a3893a8e45&force=1&force_single_occurrence=1"
+                                target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#183454]/10 hover:bg-[#183454]/15 text-[#183454] font-sans-custom text-[11px] uppercase tracking-wider font-semibold rounded-full border border-[#183454]/20 transition-all hover:scale-105 active:scale-95 shadow-sm">
+                                <img src="https://cdn.addcal.co/40a563f/build/assets/apple-BJO7yr1p.svg"
+                                    alt="Apple" class="w-4 h-4 object-contain">
                                 <span>Agendar en Apple</span>
                             </a>
                         </div>
@@ -851,14 +851,14 @@
                     class="w-full bg-[#fffdfa] rounded-3xl border border-[#183454]/20 shadow-2xl relative overflow-hidden p-6 sm:p-10">
 
                     <!-- 👇 [EDITA AQUÍ LA IMAGEN DE FONDO DEL MENSAJE FINAL]: -->
-                    <div class="absolute inset-x-0 top-0 h-[62%] overflow-hidden pointer-events-none select-none">
+                    <div class="absolute inset-x-0 top-0 h-[50%] overflow-hidden pointer-events-none select-none">
                         <img src="foto2.jpg" alt="Fondo especial de recuerdo"
                             class="w-full h-full object-cover object-center"
                             style="-webkit-mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.6) 65%, transparent 100%); mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.6) 65%, transparent 100%);">
 
-                        <!-- Capa de difuminado blur en la transición inferior hacia el mensaje -->
+                        <!-- Capa de difuminado blur en la transición inferior hacia el mensaje bg-gradient-to-b-->
                         <div
-                            class="absolute inset-0 backdrop-blur-[3px] bg-gradient-to-b from-transparent via-[#fffdfa]/50 to-[#fffdfa]">
+                            class="absolute inset-0 backdrop-blur-[0px]  from-transparent via-[#fffdfa]/50 to-[#fffdfa]">
                         </div>
                     </div>
 
@@ -866,20 +866,18 @@
                     <div class="relative z-10 pt-28 sm:pt-36 flex flex-col items-center text-center space-y-4">
                         <span
                             class="inline-block px-4 py-1 bg-[#183454] text-[#f2ece4] text-[10px] uppercase tracking-[0.25em] font-sans-custom font-semibold rounded-full shadow-md">
-                            Un Mensaje Especial
+                            2910 Birthday
                         </span>
 
                         <h3 class="font-cookie text-4xl sm:text-5xl text-[#183454] leading-tight">
-                            Happy Birthday Victor
+                            Querido Victor
                         </h3>
 
                         <!-- 👇 [EDITA AQUÍ TU MENSAJE BONITO]: -->
                         <div class="relative px-2 py-1">
                             <p
                                 class="font-serif italic text-base sm:text-lg text-[#122842] leading-relaxed drop-shadow-sm">
-                                "Que en este cumpleaños seas inmensamente feliz, que cada sueño que albergas se haga
-                                realidad y que sigas siendo ese ser humano maravilloso que sé que eres. Gracias por
-                                cada instante, cada risa compartida y por hacer de este mundo un lugar más brillante."
+                                "Quiero que seas parte de este día tan especial. Gracias por cada instante, cada risa compartida y por hacer de este mundo un lugar más brillante. Me encantaría celebrar la vida juntos y que me acompañes a brindar."
                             </p>
                         </div>
 
@@ -1162,12 +1160,13 @@
         //   o también: { type: "video", src: "mi_video.mp4" }
         // =========================================================================
         const INTRO_SLIDES = [
-            { type: "video", src: "video1.MOV" },
+            { type: "video", src: "video1.mp4" },
             { type: "video", src: "video2.mp4" },
             { type: "video", src: "video3.mp4" },
             { type: "video", src: "video4.mp4" },
             { type: "video", src: "video5.mp4" },
             { type: "video", src: "video6.mp4" },
+            { type: "video", src: "video7.mp4" }
 
             //{ type: "image", src: "foto3.jpg" },
 
@@ -1176,7 +1175,7 @@
 
             //{ type: "image", src: "foto4.jpg" },
             //{ type: "image", src: "foto2.jpg" },
-            { type: "image", src: "foto2.jpg" }
+            //{ type: "image", src: "foto2.jpg" }
         ];
 
         const introSlidesViewport = document.getElementById('intro-slides-viewport');
@@ -1187,6 +1186,14 @@
         let currentIntroIndex = 0;
         let introSlideTimer = null;
         let isButtonVisible = false;
+        let slidesPlayedCount = 0;
+
+        function revealEnterButton() {
+            if (isButtonVisible) return;
+            isButtonVisible = true;
+            enterBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-8', 'scale-90');
+            enterBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0', 'scale-100');
+        }
 
         // Función para detectar si un elemento es video
         function isVideoSource(data) {
@@ -1197,42 +1204,42 @@
         }
 
         // Crear elemento multimedia (Foto o Video)
-function createMediaElement(slideData, isAmbient = false) {
-    const isVideo = isVideoSource(slideData);
-    
-    if (isVideo) {
-        const video = document.createElement('video');
-        video.src = slideData.src;
-        
-        // Configuraciones obligatorias para autoplay en móviles
-        video.autoplay = true;
-        video.muted = true;
-        video.defaultMuted = true; // Refuerzo para algunos navegadores
-        video.loop = true;
-        
-        // Atributos clave para iOS y Android
-        video.setAttribute('playsinline', '');
-        video.setAttribute('webkit-playsinline', '');
-        video.setAttribute('muted', ''); // Obligatorio en HTML attr para evitar bloqueos
-        
-        video.className = isAmbient ? 'ambient-photo-backdrop' : 'floating-full-photo';
-        
-        // CORRECCIÓN CLAVE: Es mejor intentar reproducir cuando el navegador cargue los metadatos
-        video.addEventListener('loadedmetadata', () => {
-            video.play().catch(error => {
-                console.log("La reproducción automática fue bloqueada por el navegador:", error);
-            });
-        });
+        function createMediaElement(slideData, isAmbient = false) {
+            const isVideo = isVideoSource(slideData);
 
-        return video;
-    } else {
-        const img = document.createElement('img');
-        img.src = slideData.src;
-        img.alt = isAmbient ? '' : 'Recuerdo';
-        img.className = isAmbient ? 'ambient-photo-backdrop' : 'floating-full-photo';
-        return img;
-    }
-}
+            if (isVideo) {
+                const video = document.createElement('video');
+                video.src = slideData.src;
+
+                // Configuraciones obligatorias para autoplay en móviles
+                video.autoplay = true;
+                video.muted = true;
+                video.defaultMuted = true; // Refuerzo para algunos navegadores
+                video.loop = true;
+
+                // Atributos clave para iOS y Android
+                video.setAttribute('playsinline', '');
+                video.setAttribute('webkit-playsinline', '');
+                video.setAttribute('muted', ''); // Obligatorio en HTML attr para evitar bloqueos
+
+                video.className = isAmbient ? 'ambient-photo-backdrop' : 'floating-full-photo';
+
+                // CORRECCIÓN CLAVE: Es mejor intentar reproducir cuando el navegador cargue los metadatos
+                video.addEventListener('loadedmetadata', () => {
+                    video.play().catch(error => {
+                        console.log("La reproducción automática fue bloqueada por el navegador:", error);
+                    });
+                });
+
+                return video;
+            } else {
+                const img = document.createElement('img');
+                img.src = slideData.src;
+                img.alt = isAmbient ? '' : 'Recuerdo';
+                img.className = isAmbient ? 'ambient-photo-backdrop' : 'floating-full-photo';
+                return img;
+            }
+        }
 
         // Pre-cargar imágenes para máxima fluidez
         INTRO_SLIDES.forEach(slide => {
@@ -1244,6 +1251,7 @@ function createMediaElement(slideData, isAmbient = false) {
 
         function playIntroSlide(index) {
             currentIntroIndex = index;
+            slidesPlayedCount++;
             const slideData = INTRO_SLIDES[index];
 
             // Crear contenedor de diapositiva con animación continua
@@ -1260,13 +1268,16 @@ function createMediaElement(slideData, isAmbient = false) {
             wrapper.appendChild(mainMedia);
             introSlidesViewport.appendChild(wrapper);
 
-            // Revelar el botón Liquid Glass "Empezar" de manera elegante tras comenzar el loop
+            // Revelar el botón Liquid Glass "Estas listo victor?" después del 5to video
             if (!isButtonVisible) {
-                isButtonVisible = true;
-                setTimeout(() => {
-                    enterBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-8', 'scale-90');
-                    enterBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0', 'scale-100');
-                }, 1400);
+                if (slidesPlayedCount === 5) {
+                    // Revelar justo al concluir el 5to video
+                    setTimeout(() => {
+                        revealEnterButton();
+                    }, 2000);
+                } else if (slidesPlayedCount > 5) {
+                    revealEnterButton();
+                }
             }
 
             // Loop infinito continuo y ultra fluido:
