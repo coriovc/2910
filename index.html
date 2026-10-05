@@ -524,10 +524,8 @@
      🎵 REPRODUCTOR DE TU CANCIÓN PERSONAL:
      =========================================================================
      Puedes colocar aquí directamente el nombre de tu archivo de música:
-     Ejemplo: <audio id="bg-audio" src="mi_cancion.mp3" loop preload="auto"></audio>
-     (También puedes configurarlo abajo en el bloque de JavaScript con la variable MI_CANCION).
      ========================================================================= -->
-    <audio id="bg-audio" src="" loop preload="auto"></audio>
+    <audio id="bg-audio" src="cancion.mp3" loop preload="auto"></audio>
 
     <!-- Fog background effect in navy tone -->
     <div class="fog-layer"></div>
@@ -918,7 +916,7 @@
 
         // --- 1. Audio Engine (Audio File + Web Audio Synth Fallback) ---
         const bgAudio = document.getElementById('bg-audio');
-        if (MI_CANCION && MI_CANCION.trim() !== "") {
+        if (bgAudio && MI_CANCION && MI_CANCION.trim() !== "") {
             bgAudio.src = MI_CANCION.trim();
             bgAudio.volume = 0.75;
         }
@@ -1017,15 +1015,31 @@
             }
         }
 
+        let hasUnlockedAudio = false;
+        function setupFirstInteractionAudioUnlock() {
+            if (hasUnlockedAudio) return;
+            const unlock = () => {
+                if (!isMusicActive) {
+                    playMusic();
+                }
+                hasUnlockedAudio = true;
+                ['click', 'touchstart', 'pointerdown', 'keydown'].forEach(evt => {
+                    window.removeEventListener(evt, unlock, { passive: true });
+                });
+            };
+            ['click', 'touchstart', 'pointerdown', 'keydown'].forEach(evt => {
+                window.addEventListener(evt, unlock, { passive: true, once: true });
+            });
+        }
+
         function playMusic() {
-            const hasCustomAudio = bgAudio.getAttribute('src') && bgAudio.getAttribute('src').trim() !== "";
+            const hasCustomAudio = bgAudio && bgAudio.getAttribute('src') && bgAudio.getAttribute('src').trim() !== "";
             if (hasCustomAudio) {
                 bgAudio.play().then(() => {
                     updateMusicUI(true);
                 }).catch(err => {
-                    console.log("Fallback a melodía ambiental:", err);
-                    audioPlayer.start();
-                    updateMusicUI(true);
+                    console.log("Autoplay con audio requiere interacción del usuario:", err);
+                    setupFirstInteractionAudioUnlock();
                 });
             } else {
                 audioPlayer.start();
@@ -1211,25 +1225,30 @@
                 const video = document.createElement('video');
                 video.src = slideData.src;
 
-                // Configuraciones obligatorias para autoplay en móviles
+                // Configuraciones obligatorias para autoplay en móviles y desktop
                 video.autoplay = true;
                 video.muted = true;
-                video.defaultMuted = true; // Refuerzo para algunos navegadores
+                video.defaultMuted = true;
                 video.loop = true;
+                video.playsInline = true;
 
                 // Atributos clave para iOS y Android
                 video.setAttribute('playsinline', '');
                 video.setAttribute('webkit-playsinline', '');
-                video.setAttribute('muted', ''); // Obligatorio en HTML attr para evitar bloqueos
+                video.setAttribute('muted', ''); // Obligatorio para evitar bloqueos de autoplay
 
                 video.className = isAmbient ? 'ambient-photo-backdrop' : 'floating-full-photo';
 
-                // CORRECCIÓN CLAVE: Es mejor intentar reproducir cuando el navegador cargue los metadatos
-                video.addEventListener('loadedmetadata', () => {
-                    video.play().catch(error => {
-                        console.log("La reproducción automática fue bloqueada por el navegador:", error);
-                    });
-                });
+                // Reproducción fluida inmediata y reactiva ante eventos de buffer
+                const startPlay = () => {
+                    const promise = video.play();
+                    if (promise !== undefined) {
+                        promise.catch(() => {});
+                    }
+                };
+                video.addEventListener('loadedmetadata', startPlay);
+                video.addEventListener('canplay', startPlay);
+                startPlay();
 
                 return video;
             } else {
@@ -1299,10 +1318,20 @@
             }, 3800);
         }
 
-        // Iniciar pase continuo en bucle
+        // Iniciar pase continuo en bucle y reproducir música al principio de todo
         setTimeout(() => {
             playIntroSlide(0);
+            playMusic();
+            setupFirstInteractionAudioUnlock();
         }, 350);
+
+        introOverlay.addEventListener('click', () => {
+            if (!isMusicActive) playMusic();
+        }, { passive: true, once: true });
+
+        introOverlay.addEventListener('touchstart', () => {
+            if (!isMusicActive) playMusic();
+        }, { passive: true, once: true });
 
         function handleEnter(e) {
             if (introSlideTimer) clearTimeout(introSlideTimer);
