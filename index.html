@@ -3,7 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <!-- Meta tags para pantalla completa y eliminación de barras/líneas en Safari / iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#060c14" id="theme-color-meta">
     <title>2910 - Birthday</title>
     <!-- Tailwind CSS v4 CDN -->
     <link rel="icon" href="Elipse.ICO">
@@ -30,15 +37,38 @@
           content: var(--mi-Mensaje);
         }
 
+        html {
+            background-color: #060c14;
+            color: #122842;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            min-height: 100dvh;
+            min-height: -webkit-fill-available;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overscroll-behavior: none;
+            overscroll-behavior-y: none;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+
         body {
-            background-color: #f2ece4;
+            background-color: #060c14;
             color: #122842;
             font-family: 'Cormorant Garamond', serif;
             overflow-x: hidden;
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100%;
+            min-height: 100%;
+            min-height: 100dvh;
+            min-height: -webkit-fill-available;
+            overscroll-behavior: none;
+            overscroll-behavior-y: none;
+            -webkit-font-smoothing: antialiased;
         }
 
         .font-cookie {
@@ -247,11 +277,6 @@
         /* =========================================================================
            INVITATION SECTIONS: Centradas, Zoom In/Out y Blur Suave al Entrar y Salir
            ========================================================================= */
-        html {
-            scroll-behavior: smooth;
-            scroll-snap-type: y mandatory;
-        }
-
         .invitation-container {
             width: 100%;
             position: relative;
@@ -260,6 +285,7 @@
         .invitation-section {
             min-height: 100vh;
             min-height: 100dvh;
+            min-height: -webkit-fill-available;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -268,7 +294,10 @@
             scroll-snap-align: center;
             scroll-snap-stop: normal;
             position: relative;
-            padding: 3.5rem 1.25rem;
+            padding-top: max(3.5rem, env(safe-area-inset-top));
+            padding-bottom: max(3.5rem, env(safe-area-inset-bottom));
+            padding-left: max(1.25rem, env(safe-area-inset-left));
+            padding-right: max(1.25rem, env(safe-area-inset-right));
             box-sizing: border-box;
             overflow: hidden;
         }
@@ -558,30 +587,49 @@
             pointer-events: none;
         }
 
+        /* Intro Fullscreen sin bordes ni líneas en Safari móvil */
+        #intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            height: -webkit-fill-available;
+            background-color: #060c14;
+            margin: 0;
+            padding: 0;
+        }
+
         /* Sombreado blur superior "Sobre todas las cosas" */
         .top-blur-overlay {
             background: linear-gradient(to bottom,
-                    rgba(5, 11, 20, 0.96) 0%,
-                    rgba(5, 11, 20, 0.85) 45%,
-                    rgba(5, 11, 20, 0.45) 80%,
+                    #060c14 0%,
+                    rgba(6, 12, 20, 0.96) 30%,
+                    rgba(6, 12, 20, 0.80) 60%,
+                    rgba(6, 12, 20, 0.35) 85%,
                     transparent 100%);
             backdrop-filter: blur(20px) saturate(190%);
             -webkit-backdrop-filter: blur(20px) saturate(190%);
-            mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
         }
 
         /* Sombreado blur inferior para el botón */
         .bottom-blur-overlay {
             background: linear-gradient(to top,
-                    rgba(5, 11, 20, 0.95) 0%,
-                    rgba(5, 11, 20, 0.75) 50%,
-                    rgba(5, 11, 20, 0.3) 80%,
+                    #060c14 0%,
+                    rgba(6, 12, 20, 0.96) 35%,
+                    rgba(6, 12, 20, 0.75) 65%,
+                    rgba(6, 12, 20, 0.25) 85%,
                     transparent 100%);
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
-            mask-image: linear-gradient(to top, black 70%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to top, black 70%, transparent 100%);
+            mask-image: linear-gradient(to top, black 75%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, black 75%, transparent 100%);
         }
 
         /* =========================================
@@ -712,7 +760,8 @@
 
         <!-- Top Header with Sombreado Blur "Sobre todas las cosas" -->
         <header
-            class="fixed top-0 inset-x-0 z-40 flex flex-col items-center text-center pt-6 pb-8 px-4 top-blur-overlay pointer-events-none select-none">
+            class="fixed top-0 inset-x-0 z-40 flex flex-col items-center text-center pb-8 px-4 top-blur-overlay pointer-events-none select-none"
+            style="padding-top: max(1.5rem, env(safe-area-inset-top)); padding-left: max(1rem, env(safe-area-inset-left)); padding-right: max(1rem, env(safe-area-inset-right));">
             <div class="space-y-1.5 max-w-md pointer-events-auto">
                 <span
                     class="inline-block px-4 py-0.5 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-[0.28em] text-[#d6e3f5] font-sans-custom font-semibold border border-white/15 shadow-sm">
@@ -742,7 +791,8 @@
 
         <!-- Bottom Actions Container with Sombreado Blur -->
         <footer
-            class="fixed bottom-0 inset-x-0 z-40 pb-7 pt-10 px-4 flex flex-col items-center gap-2 bottom-blur-overlay">
+            class="fixed bottom-0 inset-x-0 z-40 pt-10 px-4 flex flex-col items-center gap-2 bottom-blur-overlay"
+            style="padding-bottom: max(1.75rem, env(safe-area-inset-bottom)); padding-left: max(1rem, env(safe-area-inset-left)); padding-right: max(1rem, env(safe-area-inset-right));">
 
             <!-- Liquid Glass Button ("Empezar") -->
             <button id="enter-btn"
@@ -1640,6 +1690,16 @@
             if (!isMusicActive) playMusic();
         });
 
+        // Minimizar barras de navegación de Safari iOS al interactuar
+        const triggerSafariFullscreen = () => {
+            if (window.scrollY === 0) {
+                window.scrollTo(0, 1);
+            }
+        };
+        ['touchstart', 'touchend', 'click'].forEach(evt => {
+            window.addEventListener(evt, triggerSafariFullscreen, { once: true, passive: true });
+        });
+
         // Asegurar que cualquier toque en la pantalla de intro desbloquee el sonido de inmediato
         introOverlay.addEventListener('click', () => {
             if (!isMusicActive) playMusic();
@@ -1657,6 +1717,12 @@
             introOverlay.style.pointerEvents = 'none';
 
             window.scrollTo({ top: 0, behavior: 'instant' });
+
+            // Sincronizar fondo del documento y barra de Safari con la nébula celestial (sin líneas)
+            document.documentElement.style.backgroundColor = '#eaf2fb';
+            document.body.style.backgroundColor = '#eaf2fb';
+            const themeMeta = document.getElementById('theme-color-meta');
+            if (themeMeta) themeMeta.setAttribute('content', '#eaf2fb');
 
             playMusic();
 
