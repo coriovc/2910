@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2910 - Birthday</title>
+    <!-- Tailwind CSS v4 CDN -->
+    <link rel="icon" href="Elipse.ICO">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts: Cormorant Garamond, Cookie, Montserrat, Playfair Display, Alex Brush -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cookie&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Alex+Brush&display=swap"
+        rel="stylesheet">
+    <style>
+        /* =========================================
+           💎 Nombre del invitado y detalles Individuales
+           ========================================= */
+        :root {
+          --mi-nombre: "Carlos";
+          --mi-Mensaje: "Quiero que seas parte de este día tan especial. Gracias por cada instante, cada risa compartida y por hacer de este mundo un lugar más brillante. Me encantaría celebrar la vida juntos y que me acompañes a brindar.";
+        }
+
+        .nomelemento::before {
+          content: var(--mi-nombre);
+        }
+        .menelemento::before {
+          content: var(--mi-Mensaje);
+        }
+
+        body {
+            background-color: #f2ece4;
+            color: #122842;
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .font-cookie {
+            font-family: 'Cookie', cursive;
+        }
+
+        .font-cursive {
+            font-family: 'Alex Brush', cursive;
+        }
+
+        .font-sans-custom {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Floating animations for moodboard collage */
+        @keyframes floatSlow {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(-0.8deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(1.2deg);
+            }
+        }
+
+        @keyframes floatMedium {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(1.5deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(-1.2deg);
+            }
+        }
+
+        @keyframes floatFast {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(-1.5deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(1.5deg);
+            }
+        }
+
+        .float-1 {
+            animation: floatSlow 7s ease-in-out infinite;
+        }
+
+        .float-2 {
+            animation: floatMedium 5.5s ease-in-out infinite;
+        }
+
+        .float-3 {
+            animation: floatFast 6.5s ease-in-out infinite;
+        }
+
+        /* =========================================================================
+           🌌 CELESTIAL SUBTLE BLUE NEBULA BACKGROUND
+           ========================================================================= */
+        .bg-nebula {
+            background-color: #eaf2fb;
+            background-image: 
+                radial-gradient(ellipse 90% 70% at 15% 20%, rgba(37, 99, 235, 0.12) 0%, rgba(29, 78, 216, 0.05) 40%, transparent 70%),
+                radial-gradient(ellipse 85% 65% at 85% 75%, rgba(30, 64, 175, 0.10) 0%, rgba(56, 189, 248, 0.06) 45%, transparent 70%),
+                radial-gradient(circle at 50% 50%, rgba(219, 234, 254, 0.5) 0%, transparent 80%),
+                linear-gradient(160deg, #f3f7fd 0%, #e8f1fc 35%, #dce9f8 70%, #d1e2f5 100%);
+            background-attachment: fixed;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Capa flotante de nubes cósmicas de nebula azul */
+        .nebula-cosmic-layer {
+            position: fixed;
+            inset: -30%;
+            width: 160%;
+            height: 160%;
+            pointer-events: none;
+            z-index: 1;
+            background: 
+                radial-gradient(ellipse 55% 45% at 28% 32%, rgba(29, 78, 216, 0.10) 0%, rgba(59, 130, 246, 0.04) 45%, transparent 70%),
+                radial-gradient(ellipse 50% 55% at 72% 68%, rgba(30, 58, 138, 0.09) 0%, rgba(56, 189, 248, 0.05) 40%, transparent 65%),
+                radial-gradient(circle at 52% 48%, rgba(96, 165, 250, 0.06) 0%, transparent 60%);
+            filter: blur(45px);
+            animation: driftNebula 42s ease-in-out infinite alternate;
+        }
+
+        @keyframes driftNebula {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            50% {
+                transform: translate(-3%, 2.5%) scale(1.05) rotate(2.5deg);
+            }
+            100% {
+                transform: translate(2%, -2%) scale(0.97) rotate(-2deg);
+            }
+        }
+
+        /* Capa sutil de polvo estelar / destellos celestiales */
+        .nebula-stardust-layer {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background-image: 
+                radial-gradient(1.5px 1.5px at 12% 18%, rgba(59, 130, 246, 0.35) 50%, transparent 100%),
+                radial-gradient(2px 2px at 28% 42%, rgba(96, 165, 250, 0.4) 50%, transparent 100%),
+                radial-gradient(1px 1px at 45% 15%, rgba(37, 99, 235, 0.3) 50%, transparent 100%),
+                radial-gradient(2px 2px at 64% 28%, rgba(147, 197, 253, 0.45) 50%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 78% 55%, rgba(59, 130, 246, 0.35) 50%, transparent 100%),
+                radial-gradient(2px 2px at 88% 22%, rgba(96, 165, 250, 0.4) 50%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 20% 75%, rgba(37, 99, 235, 0.3) 50%, transparent 100%),
+                radial-gradient(2px 2px at 38% 85%, rgba(147, 197, 253, 0.45) 50%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 58% 72%, rgba(59, 130, 246, 0.35) 50%, transparent 100%),
+                radial-gradient(2px 2px at 72% 88%, rgba(96, 165, 250, 0.4) 50%, transparent 100%);
+            animation: pulseStardust 12s ease-in-out infinite alternate;
+            opacity: 0.7;
+        }
+
+        @keyframes pulseStardust {
+            0% {
+                opacity: 0.4;
+                transform: scale(0.99);
+            }
+            50% {
+                opacity: 0.75;
+                transform: scale(1.01);
+            }
+            100% {
+                opacity: 0.45;
+                transform: scale(1.0);
+            }
+        }
+
+        /* =========================================================================
+           🎈 GLOBOS AZULES METALIZADOS Y DORADOS FLOTANDO (MUY SUTILES)
+           ========================================================================= */
+        #balloons-container {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 2; /* Detrás de las tarjetas (z-10) y delante de la nebula (z-1) */
+        }
+
+        .balloon-item {
+            position: absolute;
+            bottom: -220px;
+            will-change: transform;
+            pointer-events: none;
+            animation-name: balloonAscend;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .balloon-sway-box {
+            animation-name: balloonSway;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            transform-origin: bottom center;
+        }
+
+        @keyframes balloonAscend {
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+            4% {
+                opacity: 1;
+            }
+            92% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(-100vh - 280px));
+                opacity: 0;
+            }
+        }
+
+        @keyframes balloonSway {
+            0% {
+                transform: translateX(-16px) rotate(-6deg);
+            }
+            100% {
+                transform: translateX(16px) rotate(6deg);
+            }
+        }
+
+        /* =========================================================================
+           INVITATION SECTIONS: Centradas, Zoom In/Out y Blur Suave al Entrar y Salir
+           ========================================================================= */
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+
+        .invitation-container {
+            width: 100%;
+            position: relative;
+        }
+
+        .invitation-section {
+            min-height: 100vh;
+            min-height: 100dvh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            scroll-snap-align: center;
+            scroll-snap-stop: normal;
+            position: relative;
+            padding: 3.5rem 1.25rem;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        /* Tarjeta central de cada sección con animación de Zoom y Blur */
+        .invitation-card {
+            opacity: 0;
+            filter: blur(24px);
+            transform: scale(1.18);
+            /* Entra con zoom out lento y suave */
+            transition: transform 1.25s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, filter;
+            width: 100%;
+            max-width: 32rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Sección activa (centrada en pantalla) */
+        .invitation-section.is-active .invitation-card {
+            opacity: 1;
+            filter: blur(0px);
+            transform: scale(1.0);
+        }
+
+        /* Sección saliendo hacia arriba (se aleja hacia el fondo) */
+        .invitation-section.is-leaving-up .invitation-card {
+            opacity: 0;
+            filter: blur(20px);
+            transform: scale(0.88);
+        }
+
+        /* Sección saliendo hacia abajo (sale con zoom out) */
+        .invitation-section.is-leaving-down .invitation-card {
+            opacity: 0;
+            filter: blur(20px);
+            transform: scale(1.18);
+        }
+
+        /* Heart particle animation */
+        @keyframes floatUpFade {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-85px) scale(1.4);
+                opacity: 0;
+            }
+        }
+
+        .heart-particle {
+            position: absolute;
+            pointer-events: none;
+            animation: floatUpFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            font-size: 20px;
+        }
+
+        /* Equalizer bar animation */
+        @keyframes eqBounce {
+
+            0%,
+            100% {
+                height: 4px;
+            }
+
+            50% {
+                height: 16px;
+            }
+        }
+
+        .eq-bar {
+            width: 3px;
+            background-color: #183454;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .playing .eq-bar:nth-child(1) {
+            animation: eqBounce 0.8s ease-in-out infinite;
+        }
+
+        .playing .eq-bar:nth-child(2) {
+            animation: eqBounce 1.1s ease-in-out infinite 0.2s;
+        }
+
+        .playing .eq-bar:nth-child(3) {
+            animation: eqBounce 0.7s ease-in-out infinite 0.4s;
+        }
+
+        .playing .eq-bar:nth-child(4) {
+            animation: eqBounce 0.9s ease-in-out infinite 0.1s;
+        }
+
+        /* Botón de música: transición fluida */
+        #music-toggle {
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Estado minimalista y discreto durante la intro (solo icono, sin llamar la atención) */
+        #music-toggle.intro-minimal-mode {
+            width: 2.5rem;
+            height: 2.5rem;
+            padding: 0 !important;
+            justify-content: center;
+            background: rgba(6, 15, 28, 0.45) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            color: rgba(220, 235, 255, 0.7) !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+        }
+
+        #music-toggle.intro-minimal-mode:hover {
+            background: rgba(6, 15, 28, 0.75) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+            color: #ffffff !important;
+            transform: scale(1.08);
+        }
+
+        #music-toggle.intro-minimal-mode #audio-visualizer,
+        #music-toggle.intro-minimal-mode #music-text {
+            display: none !important;
+        }
+
+        #music-toggle.intro-minimal-mode #music-icon {
+            font-size: 1.05rem;
+            margin: 0;
+            line-height: 1;
+        }
+
+        /* =========================================
+           ✨ DREAMLIKE MEMORY FLOW ANIMATIONS
+           (Bordes desvanecidos, aparecen rápido, continúan lento y salen)
+           ========================================= */
+        .memory-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            will-change: transform, opacity, filter;
+            animation: memoryPass 3.4s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+        }
+
+        @keyframes memoryPass {
+            0% {
+                transform: scale(0.52) translateY(24px);
+                opacity: 0;
+                filter: blur(24px) brightness(0.4);
+            }
+
+            22% {
+                /* Aparecen rápido */
+                transform: scale(0.96) translateY(5px);
+                opacity: 1;
+                filter: blur(0px) brightness(1);
+            }
+
+            75% {
+                /* Se continúan moviendo lentamente sin pausas */
+                transform: scale(1.06) translateY(-8px);
+                opacity: 1;
+                filter: blur(0px) brightness(1);
+            }
+
+            100% {
+                /* Salen fluidas hacia adelante */
+                transform: scale(1.20) translateY(-22px);
+                opacity: 0;
+                filter: blur(14px) brightness(0.7);
+            }
+        }
+
+        /* Foto final de Eber: llega rápido, continúa lento y se queda flotando eternamente */
+        .final-memory-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            will-change: transform, opacity, filter;
+            animation: finalMemoryArrival 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes finalMemoryArrival {
+            0% {
+                transform: scale(0.52) translateY(24px);
+                opacity: 0;
+                filter: blur(24px) brightness(0.4);
+            }
+
+            45% {
+                transform: scale(0.96) translateY(5px);
+                opacity: 1;
+                filter: blur(0px) brightness(1);
+            }
+
+            100% {
+                transform: scale(1.0) translateY(0);
+                opacity: 1;
+                filter: blur(0px) brightness(1);
+            }
+        }
+
+        .final-memory-slide.floating {
+            animation: continuousHeroFloat 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes continuousHeroFloat {
+            0% {
+                transform: scale(1.0) translateY(0px) rotate(-0.25deg);
+            }
+
+            50% {
+                transform: scale(1.03) translateY(-9px) rotate(0.35deg);
+            }
+
+            100% {
+                transform: scale(1.01) translateY(5px) rotate(-0.2deg);
+            }
+        }
+
+        /* Foto o Video flotante en tamaño completo con bordes difuminados progresivamente hacia la transparencia */
+        .floating-full-photo {
+            max-width: 94vw;
+            max-height: 72vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 1.5rem;
+
+            /* Técnica moderna con mask-image y linear-gradient hacia la transparencia en todos los bordes */
+            -webkit-mask-image:
+                linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%),
+                linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%);
+            -webkit-mask-composite: destination-in;
+
+            mask-image:
+                linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%),
+                linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%);
+            mask-composite: intersect;
+
+            /* Resplandor y halo difuso en los bordes */
+            filter: drop-shadow(0 0 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 25px rgba(60, 130, 230, 0.35));
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Clase utilitaria reutilizable para difuminar bordes con gradiente lineal */
+        .mask-linear-fade {
+            -webkit-mask-image:
+                linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%),
+                linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%);
+            -webkit-mask-composite: destination-in;
+            mask-image:
+                linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%),
+                linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.75) 8%, black 14%, black 86%, rgba(0, 0, 0, 0.75) 92%, rgba(0, 0, 0, 0.25) 97%, transparent 100%);
+            mask-composite: intersect;
+        }
+
+        @media (min-width: 640px) {
+            .floating-full-photo {
+                max-width: 86vw;
+                max-height: 76vh;
+            }
+        }
+
+        /* Fondo ambiental difuminado para cada foto */
+        .ambient-photo-backdrop {
+            position: absolute;
+            inset: -12%;
+            width: 124%;
+            height: 124%;
+            object-fit: cover;
+            filter: blur(55px) brightness(0.42) saturate(150%);
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* Sombreado blur superior "Sobre todas las cosas" */
+        .top-blur-overlay {
+            background: linear-gradient(to bottom,
+                    rgba(5, 11, 20, 0.96) 0%,
+                    rgba(5, 11, 20, 0.85) 45%,
+                    rgba(5, 11, 20, 0.45) 80%,
+                    transparent 100%);
+            backdrop-filter: blur(20px) saturate(190%);
+            -webkit-backdrop-filter: blur(20px) saturate(190%);
+            mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+        }
+
+        /* Sombreado blur inferior para el botón */
+        .bottom-blur-overlay {
+            background: linear-gradient(to top,
+                    rgba(5, 11, 20, 0.95) 0%,
+                    rgba(5, 11, 20, 0.75) 50%,
+                    rgba(5, 11, 20, 0.3) 80%,
+                    transparent 100%);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            mask-image: linear-gradient(to top, black 70%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, black 70%, transparent 100%);
+        }
+
+        /* =========================================
+           💎 LIQUID GLASS BUTTON (Cristal Líquido)
+           ========================================= */
+        .liquid-glass-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 0.95rem 2.8rem;
+            border-radius: 9999px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #ffffff;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.1) 45%, rgba(56, 130, 215, 0.32) 100%);
+            backdrop-filter: blur(24px) saturate(220%);
+            -webkit-backdrop-filter: blur(24px) saturate(220%);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            box-shadow:
+                0 20px 40px -10px rgba(2, 10, 25, 0.8),
+                0 0 25px 2px rgba(96, 165, 250, 0.45),
+                inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.95),
+                inset 0 -2px 4px 0 rgba(10, 25, 50, 0.35);
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+            user-select: none;
+        }
+
+        .liquid-glass-btn:hover {
+            transform: translateY(-3px) scale(1.04);
+            border-color: rgba(255, 255, 255, 0.95);
+            box-shadow:
+                0 25px 50px -8px rgba(2, 10, 25, 0.9),
+                0 0 38px 6px rgba(125, 185, 255, 0.65),
+                inset 0 2px 3px 0 rgba(255, 255, 255, 1),
+                inset 0 -2px 4px 0 rgba(10, 25, 50, 0.3);
+            color: #ffffff;
+        }
+
+        .liquid-glass-btn:active {
+            transform: translateY(1px) scale(0.97);
+            box-shadow:
+                0 8px 20px -4px rgba(2, 10, 25, 0.6),
+                0 0 18px rgba(96, 165, 250, 0.3);
+        }
+
+        /* Haz de luz de cristal líquido */
+        .liquid-glass-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -150%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(115deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.05) 35%,
+                    rgba(255, 255, 255, 0.7) 50%,
+                    rgba(255, 255, 255, 0.05) 65%,
+                    transparent 100%);
+            transform: rotate(25deg);
+            animation: liquidSweep 3.6s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes liquidSweep {
+            0% {
+                left: -160%;
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 1;
+            }
+
+            55% {
+                left: 140%;
+                opacity: 1;
+            }
+
+            100% {
+                left: 140%;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-nebula min-h-screen text-[#122842] selection:bg-[#183454] selection:text-white">
+
+    <!-- =========================================================================
+     🎵 REPRODUCTOR DE TU CANCIÓN PERSONAL:
+     =========================================================================
+     Puedes colocar aquí directamente el nombre de tu archivo de música:
+     ========================================================================= -->
+    <audio id="bg-audio" src="cancion.mp3" autoplay loop preload="auto" playsinline></audio>
+
+    <!-- Ethereal Subtle Blue Nebula Cosmic Background Layers -->
+    <div class="nebula-cosmic-layer"></div>
+    <div class="nebula-stardust-layer"></div>
+
+    
+
+    <!-- Canvas for Confetti -->
+    <canvas id="confetti-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-50"></canvas>
+
+    <!-- Intro Screen Overlay (Deep Midnight Blue Immersive Borderless Canvas) -->
+    <div id="intro-overlay"
+        class="fixed inset-0 z-50 bg-[#060c14] flex flex-col justify-between items-center text-center transition-all duration-1000 overflow-hidden select-none">
+
+        <!-- Ambient Deep Radial Lights -->
+        <div
+            class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[700px] h-[500px] sm:h-[700px] bg-gradient-to-tr from-blue-900/30 via-sky-600/15 to-indigo-900/25 rounded-full blur-[100px] pointer-events-none">
+        </div>
+
+        <!-- Fullscreen / Expansive Stage for Big Borderless Floating Photos -->
+        <div id="intro-slides-viewport"
+            class="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center pointer-events-none z-10">
+            <!-- Dynamic borderless floating slides injected here -->
+        </div>
+
+        <!-- Top Header with Sombreado Blur "Sobre todas las cosas" -->
+        <header
+            class="fixed top-0 inset-x-0 z-40 flex flex-col items-center text-center pt-6 pb-8 px-4 top-blur-overlay pointer-events-none select-none">
+            <div class="space-y-1.5 max-w-md pointer-events-auto">
+                <span
+                    class="inline-block px-4 py-0.5 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-[0.28em] text-[#d6e3f5] font-sans-custom font-semibold border border-white/15 shadow-sm">
+                    Un Cumpleaños Inolvidable &middot; 28 Años
+                </span>
+                <h1
+                    class="font-cookie text-5xl sm:text-7xl text-[#fcf9f2] drop-shadow-[0_4px_18px_rgba(0,0,0,0.9)] leading-none pt-1">
+                    Happy Birthday
+                </h1>
+                <h2
+                    class="font-playfair text-xl sm:text-3xl text-[#dce7f5] tracking-[0.2em] uppercase font-bold drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                    Victor Corio
+                </h2>
+            </div>
+        </header>
+ 
+        <!-- Elegant Audio Prompt Pill (Shown only if browser blocks unmuted autoplay)  -->
+        <div id="audio-prompt-pill"
+            class="fixed top-36 sm:top-180 inset-x-0 z-50 flex justify-center pointer-events-none opacity-0 -translate-y-2 transition-all duration-700 hidden">
+            <button id="audio-prompt-btn"
+                class="pointer-events-auto flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-[#081525]/90 backdrop-blur-xl border border-sky-400/40 text-sky-100 shadow-[0_4px_30px_rgba(56,189,248,0.35)] hover:scale-105 active:scale-95 transition-all cursor-pointer animate-pulse">
+                <span class="text-base sm:text-lg">🔊</span>
+                <span class="font-sans-custom text-xs sm:text-sm font-semibold tracking-wide text-white">Toca la pantalla para activar la música</span>
+                <span class="text-base sm:text-lg">🎵</span>
+            </button>
+        </div>
+
+        <!-- Bottom Actions Container with Sombreado Blur -->
+        <footer
+            class="fixed bottom-0 inset-x-0 z-40 pb-7 pt-10 px-4 flex flex-col items-center gap-2 bottom-blur-overlay">
+
+            <!-- Liquid Glass Button ("Empezar") -->
+            <button id="enter-btn"
+                class="liquid-glass-btn opacity-0 pointer-events-none translate-y-8 scale-90 transition-all duration-700 group">
+                <span class="relative z-10 flex items-center gap-2.5">
+                    <span>Estas listo <span class="nomelemento"></span> ?</span>
+                    <span
+                        class="text-base text-sky-200 transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                </span>
+            </button>
+
+            <!-- Subtle Skip Button for convenience -->
+            <button id="skip-intro-btn"
+                class="font-sans-custom text-[10px] text-[#8fa7c4] uppercase tracking-widest hover:text-white transition-colors py-1 px-3 cursor-pointer">
+                Saltar intro
+            </button>
+        </footer>
+
+    </div>
+
+    <!-- Floating Music Player Control (Navy Blue Edition) -->
+    <div class="fixed bottom-6 right-6 z-[60]">
+        <button id="music-toggle"
+            class="intro-minimal-mode flex items-center gap-2.5 px-4 py-2.5 bg-[#fffdfa]/90 backdrop-blur-md text-[#183454] rounded-full shadow-xl border border-[#183454]/20 hover:scale-105 active:scale-95 cursor-pointer group"
+            title="Música de fondo">
+            <div id="audio-visualizer" class="flex items-end gap-[2px] h-4">
+                <span class="eq-bar h-1"></span>
+                <span class="eq-bar h-2"></span>
+                <span class="eq-bar h-1"></span>
+                <span class="eq-bar h-3"></span>
+            </div>
+            <span id="music-text"
+                class="font-sans-custom text-[11px] font-semibold tracking-wider uppercase">Música</span>
+            <span id="music-icon" class="text-sm">🎵</span>
+        </button>
+    </div>
+
+    <!-- =========================================================================
+         💌 INVITACIÓN DE FIESTA (5 Secciones Centradas con Zoom In/Out y Blur)
+         ========================================================================= -->
+    <main class="invitation-container relative z-10 w-full min-h-screen">
+
+        <!-- =========================================================================
+             SECCIÓN 1: PORTADA Y TÍTULOS PRINCIPALES
+             (Aparecen con Zoom Out lento y suave)
+             ========================================================================= -->
+        <section id="invitation-section-1" class="invitation-section is-active">
+            <div class="invitation-card">
+                <!-- Monograma Real / Escudo -->
+                <div
+                    class="mb-6 inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#183454] to-[#2b527d] text-[#f2ece4] shadow-xl border border-[#48719e]/40">
+                    <img src="icon.svg"
+                                    alt="Ocor" class="w-15 h-15 object-contain" style="opacity: 85%;">
+                                    <!--<span class="font-playfair text-2xl sm:text-3xl font-bold tracking-wider">28</span>-->
+                </div>
+
+                <!-- Títulos Principales -->
+                <div class="space-y-3 mb-6">
+                    <h2 class="font-cursive text-5xl sm:text-7xl text-[#2b527d] leading-none drop-shadow-[0_2px_10px_rgba(255,255,255,0.7)]">
+                        Hola <span class="nomelemento"></span>, estas
+                    </h2>
+                    <h1
+                        class="font-playfair text-5xl sm:text-7xl font-bold tracking-[0.16em] text-[#122842] uppercase leading-tight drop-shadow-[0_2px_14px_rgba(255,255,255,0.85)]">
+                        INVITADO
+                    </h1>
+                    <div class="flex items-center justify-center gap-3 pt-3">
+                        <span class="w-12 h-[1px] bg-[#183454]/30"></span>
+                        <p class="font-serif italic text-sm sm:text-base text-[#48627d] tracking-wide">
+                            a celebrar un momento único y especial para mí.
+                        </p>
+                        <span class="w-12 h-[1px] bg-[#183454]/30"></span>
+                    </div>
+                </div>
+
+                <!-- Badge -->
+                <div
+                    class="inline-block px-5 py-2 bg-[#183454]/10 text-[#183454] text-[11px] uppercase tracking-[0.25em] font-sans-custom font-semibold rounded-full border border-[#183454]/20 shadow-sm mb-12">
+                    Edición Especial &middot; 28 Años
+                </div>
+
+                <!-- Indicador de Deslizar -->
+                <div class="flex flex-col items-center gap-2 text-[#48627d] animate-bounce select-none">
+                    <span class="font-sans-custom text-[10px] uppercase tracking-widest font-semibold">Desliza para ver
+                        los detalles</span>
+                    <span class="text-xl">↓</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================================
+             SECCIÓN 2: FECHA Y HORA
+             ========================================================================= -->
+        <section id="invitation-section-2" class="invitation-section">
+            <div class="invitation-card">
+                <div
+                    class="w-full bg-[#fffdfa]/92 backdrop-blur-xl border border-[#183454]/15 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                    <div class="space-y-4">
+                        <span
+                            class="inline-block px-4 py-1 bg-[#183454]/10 text-[#183454] text-[10px] uppercase tracking-[0.25em] font-sans-custom font-bold rounded-full border border-[#183454]/15">
+                            📅 Fecha &amp; Hora
+                        </span>
+
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold uppercase tracking-wider text-[#122842]">
+                            Reserva el Momento
+                        </h3>
+
+                        <!-- 👇 [EDITA AQUÍ LA FECHA Y DÍA]: -->
+                        <div class="py-6 border-y border-[#183454]/15 my-4">
+                            <span
+                                class="font-sans-custom text-xs uppercase tracking-[0.25em] text-[#2b527d] font-semibold block mb-1">
+                                SÁBADO
+                            </span>
+                            <span
+                                class="font-playfair text-6xl sm:text-7xl font-bold text-[#122842] block leading-none my-2">
+                                31
+                            </span>
+                            <span
+                                class="font-serif text-lg sm:text-xl uppercase tracking-widest text-[#48627d] font-semibold block">
+                                OCTUBRE &middot; 2026
+                            </span>
+                        </div>
+
+                        <!-- 👇 [EDITA AQUÍ LA HORA]: -->
+                        <div class="flex items-center justify-center gap-2 text-[#183454]">
+                            <span class="text-2xl">🕒</span>
+                            <span class="font-sans-custom text-2xl sm:text-3xl font-bold tracking-wider">
+                                7:00 PM
+                            </span>
+                        </div>
+
+                        <p class="font-serif italic text-xs sm:text-sm text-[#5c728a] max-w-xs mx-auto pt-2">
+                            "Te esperamos con puntualidad para iniciar juntos el brindis de honor. si la luz nos deja."
+                        </p>
+
+                        <!-- Botones para Guardar en Calendario (Alineados y Centrados) -->
+                        <div class="pt-5 flex flex-wrap items-center justify-center gap-3">
+                            <a href="https://addcal.io/e/ey0z43o15eyg/google?ac=8808bc6a755b4f&force=1&force_single_occurrence=1"
+                                target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#183454]/10 hover:bg-[#183454]/15 text-[#183454] font-sans-custom text-[11px] uppercase tracking-wider font-semibold rounded-full border border-[#183454]/20 transition-all hover:scale-105 active:scale-95 shadow-sm">
+                                <img src="https://cdn.addcal.co/40a563f/build/assets/gcal-LeXQIYGw.svg"
+                                    alt="Google" class="w-4 h-4 object-contain">
+                                <span>Agendar en Google</span>
+                            </a>
+
+                            <a href="https://addcal.io/e/ey0z43o15eyg/apple?ac=1e78a3893a8e45&force=1&force_single_occurrence=1"
+                                target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#183454]/10 hover:bg-[#183454]/15 text-[#183454] font-sans-custom text-[11px] uppercase tracking-wider font-semibold rounded-full border border-[#183454]/20 transition-all hover:scale-105 active:scale-95 shadow-sm">
+                                <img src="https://cdn.addcal.co/40a563f/build/assets/apple-BJO7yr1p.svg"
+                                    alt="Apple" class="w-4 h-4 object-contain">
+                                <span>Agendar en Apple</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================================
+             SECCIÓN 3: EL LUGAR
+             ========================================================================= -->
+        <section id="invitation-section-3" class="invitation-section">
+            <div class="invitation-card">
+                <div
+                    class="w-full bg-[#fffdfa]/92 backdrop-blur-xl border border-[#183454]/15 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                    <div class="space-y-4">
+                        <span
+                            class="inline-block px-4 py-1 bg-[#183454]/10 text-[#183454] text-[10px] uppercase tracking-[0.25em] font-sans-custom font-bold rounded-full border border-[#183454]/15">
+                            📍 Ubicación
+                        </span>
+
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold uppercase tracking-wider text-[#122842]">
+                            El Lugar de la Fiesta
+                        </h3>
+
+                        <!-- 👇 [EDITA AQUÍ EL LUGAR Y LA DIRECCIÓN]: -->
+                        <div class="py-6 border-y border-[#183454]/15 my-4 space-y-2">
+                            <h4 class="font-serif text-2xl sm:text-3xl font-bold text-[#183454]">
+                                EL CASTAÑO
+                            </h4>
+                            <p class="font-sans-custom text-sm text-[#2b527d] font-medium tracking-wide">
+                                Av. Principal El castaño &middot; Sala Privada VIP
+                            </p>
+                            <p class="font-serif italic text-xs sm:text-sm text-[#5c728a]">
+                                MI CASA.
+                            </p>
+                        </div>
+
+                        <p class="font-serif italic text-xs sm:text-sm text-[#5c728a] max-w-xs mx-auto">
+                            "NO Contamos con valet parking y Tampoco servicio de recepción.😂 No nos alcanzo el presupuesto."
+                        </p>
+
+                        <!-- 👇 [CAMBIA EL ENLACE DE GOOGLE MAPS AQUÍ]: -->
+                        <div class="pt-5 flex flex-wrap items-center justify-center gap-3">
+                            <a href="https://maps.app.goo.gl/NPM3Acrxn6VG4aoN6" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 px-6 py-3 bg-[#183454] hover:bg-[#20446e] text-[#f2ece4] font-sans-custom text-xs uppercase tracking-widest font-semibold rounded-full shadow-lg transition-all hover:scale-105 active:scale-95 border border-[#48719e]/40">
+                                <span><img src="https://www.gstatic.com/images/branding/productlogos/maps_2025/v1/192px.svg"
+                                        alt="google Maps" class="w-4 h-4"></span>
+                                <span>Ubicación en Google Maps</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================================================================
+             SECCIÓN 4: LA VESTIMENTA
+             ========================================================================= -->
+        <section id="invitation-section-4" class="invitation-section">
+            <div class="invitation-card">
+                <div
+                    class="w-full bg-[#fffdfa]/92 backdrop-blur-xl border border-[#183454]/15 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                    <div class="space-y-4">
+                        <span
+                            class="inline-block px-4 py-1 bg-[#183454]/10 text-[#183454] text-[10px] uppercase tracking-[0.25em] font-sans-custom font-bold rounded-full border border-[#183454]/15">
+                            👔 Dress Code
+                        </span>
+
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold uppercase tracking-wider text-[#122842]">
+                            Código de Vestimenta
+                        </h3>
+
+                        <!-- 👇 [EDITA AQUÍ LA VESTIMENTA]: -->
+                        <div class="py-6 border-y border-[#183454]/15 my-4 space-y-3">
+                            <h4 class="font-serif text-2xl sm:text-3xl font-bold text-[#183454]">
+                                Elegante
+                            </h4>
+                            <p class="font-serif italic text-sm text-[#48627d]">
+                                "Viste para una velada extraordinaria, muchas risas y fotos que perdurarán para
+                                siempre."
+                            </p>
+                        </div>
+                        <!-- Paleta de Colores Sugeridos -->
+                        <div class="pt-2">
+                            <span
+                                class="font-sans-custom text-[10px] uppercase tracking-widest text-[#5c728a] font-semibold block mb-3">
+                                Colores Sugeridos
+                            </span>
+                            <div class="flex items-center justify-center gap-4">
+                                <div class="flex flex-col items-center gap-1">
+                                    <span
+                                        class="w-8 h-8 rounded-full bg-[#122842] border-2 border-white shadow-md"></span>
+                                    <span class="text-[9px] font-sans-custom uppercase text-[#5c728a]">Azul</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <span
+                                        class="w-8 h-8 rounded-full bg-[#2b527d] border-2 border-white shadow-md"></span>
+                                    <span class="text-[9px] font-sans-custom uppercase text-[#5c728a]">Royal</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <span
+                                        class="w-8 h-8 rounded-full bg-[#c5a059] border-2 border-white shadow-md"></span>
+                                    <span class="text-[9px] font-sans-custom uppercase text-[#5c728a]">Dorado</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <span
+                                        class="w-8 h-8 rounded-full bg-[#fffdfa] border-2 border-[#183454]/30 shadow-md"></span>
+                                    <span class="text-[9px] font-sans-custom uppercase text-[#5c728a]">Blanco</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section id="invitation-section-4" class="invitation-section">
+            <div class="invitation-card">
+                <div
+                    class="w-full bg-[#fffdfa]/92 backdrop-blur-xl border border-[#183454]/15 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                    <div class="space-y-4">
+                        <span
+                            class="inline-block px-4 py-1 bg-[#183454]/10 text-[#183454] text-[10px] uppercase tracking-[0.25em] font-sans-custom font-bold rounded-full border border-[#183454]/15">
+                            ✨ Indicaciones
+                        </span>
+
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold uppercase tracking-wider text-[#122842]">
+                            Recuerda
+                        </h3>
+
+                        <!-- 👇 [EDITA AQUÍ LA VESTIMENTA]: -->
+                        <div class="py-6 border-y border-[#183454]/15 my-4 space-y-3">
+                            <h4 class="font-serif text-2xl sm:text-3xl font-bold text-[#183454]">
+                                Trae tu bebida alcohólica.
+                            </h4>
+                            <p class="font-serif italic text-sm text-[#48627d]">
+                                "No te preocupes por lo demas.🍕🌭🥤"
+                            </p>
+                            
+                        </div>
+                        <div class="pt-5 flex flex-wrap items-center justify-center gap-3">
+                                <p class="font-serif italic text-xs sm:text-sm text-[#5c728a] max-w-xs mx-auto pt-2">
+                                    "Oh, por si no sabes que regalarme te dejo unas ideas😉"
+                                </p>
+                            <a href=""
+                                target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#183454]/10 hover:bg-[#183454]/15 text-[#183454] font-sans-custom text-[11px] uppercase tracking-wider font-semibold rounded-full border border-[#183454]/20 transition-all hover:scale-105 active:scale-95 shadow-sm">
+                                
+                                <span>🎁 REGALOS SUJERIDOS</span>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             SECCIÓN 5 (ÚLTIMA): MENSAJE BONITO CON FONDO DE IMAGEN
+             (Parte inferior difuminada en blur y mensaje sobre ella)
+             ========================================================================= -->
+        <section id="invitation-section-5" class="invitation-section">
+            <div class="invitation-card">
+                <div
+                    class="w-full bg-[#fffdfa] rounded-3xl border border-[#183454]/20 shadow-2xl relative overflow-hidden p-6 sm:p-10">
+
+                    <!-- 👇 [EDITA AQUÍ LA IMAGEN DE FONDO DEL MENSAJE FINAL]: -->
+                    <div class="absolute inset-x-0 top-0 h-[50%] overflow-hidden pointer-events-none select-none">
+                        <img src="foto2.jpg" alt="Fondo especial de recuerdo"
+                            class="w-full h-full object-cover object-center"
+                            style="-webkit-mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.6) 65%, transparent 100%); mask-image: linear-gradient(to bottom, black 30%, rgba(0,0,0,0.6) 65%, transparent 100%);">
+
+                        <!-- Capa de difuminado blur en la transición inferior hacia el mensaje bg-gradient-to-b-->
+                        <div
+                            class="absolute inset-0 backdrop-blur-[0px]  from-transparent via-[#fffdfa]/50 to-[#fffdfa]">
+                        </div>
+                    </div>
+
+                    <!-- Contenido del Mensaje sobre la imagen -->
+                    <div class="relative z-10 pt-28 sm:pt-36 flex flex-col items-center text-center space-y-4">
+                        <span
+                            class="inline-block px-4 py-1 bg-[#183454] text-[#f2ece4] text-[10px] uppercase tracking-[0.25em] font-sans-custom font-semibold rounded-full shadow-md">
+                            2910 Birthday
+                        </span>
+
+                        <h3 class="font-cookie text-4xl sm:text-5xl text-[#183454] leading-tight">
+                            Querido <span class="nomelemento"></span> 
+                        </h3>
+
+                        <!-- 👇 [EDITA AQUÍ TU MENSAJE BONITO]: -->
+                        <div class="relative px-2 py-1">
+                            <p
+                                class="font-serif italic text-base sm:text-lg text-[#122842] leading-relaxed drop-shadow-sm">
+                                "<span class="menelemento"></span>"
+                            </p>
+                        </div>
+
+                        <!-- Botón de Celebración con Confeti -->
+                        <button id="celebrate-btn"
+                            class="mt-2 px-8 py-3.5 bg-gradient-to-r from-[#183454] via-[#20446e] to-[#2b527d] text-[#f2ece4] font-sans-custom text-xs uppercase tracking-widest rounded-full shadow-2xl hover:shadow-[#183454]/40 hover:scale-105 active:scale-95 transition-all duration-300 border border-[#48719e]/50 cursor-pointer flex items-center justify-center gap-2.5 mx-auto">
+                            <span class="text-base">🎉</span>
+                            <span class="font-semibold">¡Celebrar con Victor!</span>
+                            <span class="text-base">🎂</span>
+                        </button>
+
+                        <p class="font-sans-custom text-[10px] text-[#7a828c] uppercase tracking-widest pt-2">
+                            &copy; 2026 Edición Especial &middot; By OCOR
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==============================================
+         JAVASCRIPT: Audio, Confetti, Smart Lightbox
+         ============================================== -->
+    <script>
+        // =========================================================================
+        // 🎵 [CONFIGURACIÓN DE TU CANCIÓN]:
+        // =========================================================================
+        // Para reproducir tu propia canción:
+        // 1. Guarda tu archivo de música en esta carpeta (ej: cancion.mp3)
+        // 2. Escribe su nombre entre las comillas abajo:
+        //    Ejemplo: const MI_CANCION = "cancion.mp3";
+        //
+        // Si dejas las comillas vacías "", sonará la melodía ambiental automática.
+        // =========================================================================
+
+
+        const MI_CANCION = "cancion.mp3"; // 👈 ¡ESCRIBE AQUÍ EL NOMBRE DE TU CANCIÓN! (ej: "cancion.mp3")
+
+
+        // --- 1. Audio Engine (Audio File + Web Audio Synth Fallback) ---
+        const bgAudio = document.getElementById('bg-audio');
+        if (bgAudio && MI_CANCION && MI_CANCION.trim() !== "") {
+            const songName = MI_CANCION.trim();
+            if (!bgAudio.src || !bgAudio.src.includes(songName)) {
+                bgAudio.src = songName;
+            }
+            bgAudio.volume = 0.85;
+        }
+
+        class AmbientChimePlayer {
+            constructor() {
+                this.ctx = null;
+                this.isPlaying = false;
+                this.timer = null;
+                this.notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25];
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    this.ctx = new AudioContext();
+                }
+                if (this.ctx.state === 'suspended') {
+                    this.ctx.resume();
+                }
+            }
+
+            playChord() {
+                if (!this.isPlaying || !this.ctx) return;
+
+                const note1 = this.notes[Math.floor(Math.random() * this.notes.length)];
+                const note2 = this.notes[Math.floor(Math.random() * this.notes.length)];
+
+                this.playTone(note1, 2.5);
+                setTimeout(() => this.playTone(note2, 2.8), 350);
+
+                const nextInterval = 2200 + Math.random() * 2000;
+                this.timer = setTimeout(() => this.playChord(), nextInterval);
+            }
+
+            playTone(freq, duration) {
+                if (!this.ctx) return;
+                try {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+
+                    gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.045, this.ctx.currentTime + 0.15);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + duration);
+                } catch (e) {
+                    console.log('Audio note error', e);
+                }
+            }
+
+            playCelebrationChime() {
+                this.init();
+                const fanfare = [392.00, 523.25, 659.25, 783.99, 1046.50];
+                fanfare.forEach((f, idx) => {
+                    setTimeout(() => {
+                        this.playTone(f, 2.0);
+                    }, idx * 120);
+                });
+            }
+
+            start() {
+                this.init();
+                this.isPlaying = true;
+                this.playChord();
+            }
+
+            stop() {
+                this.isPlaying = false;
+                if (this.timer) clearTimeout(this.timer);
+            }
+        }
+
+        const audioPlayer = new AmbientChimePlayer();
+        let isMusicActive = false;
+
+        const musicToggle = document.getElementById('music-toggle');
+        const visualizer = document.getElementById('audio-visualizer');
+        const musicText = document.getElementById('music-text');
+        const musicIcon = document.getElementById('music-icon');
+
+        function updateMusicUI(active) {
+            isMusicActive = active;
+            if (active) {
+                visualizer.classList.add('playing');
+                musicText.innerText = 'Pausar';
+                if (musicIcon) musicIcon.innerText = '🎵';
+            } else {
+                visualizer.classList.remove('playing');
+                musicText.innerText = 'Música';
+                if (musicIcon) musicIcon.innerText = '🔇';
+            }
+        }
+
+        let isAudioUnlocked = false;
+        const unlockEvents = ['click', 'pointerdown', 'pointerup', 'touchstart', 'touchend', 'keydown'];
+
+        const audioPromptPill = document.getElementById('audio-prompt-pill');
+        const audioPromptBtn = document.getElementById('audio-prompt-btn');
+
+        function showAudioPrompt() {
+            if (isMusicActive || !audioPromptPill) return;
+            audioPromptPill.classList.remove('hidden');
+            setTimeout(() => {
+                if (!isMusicActive && audioPromptPill) {
+                    audioPromptPill.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
+                    audioPromptPill.classList.add('opacity-100', 'translate-y-0');
+                }
+            }, 60);
+        }
+
+        function hideAudioPrompt() {
+            if (!audioPromptPill) return;
+            audioPromptPill.classList.remove('opacity-100', 'translate-y-0');
+            audioPromptPill.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
+            setTimeout(() => {
+                if (isMusicActive && audioPromptPill) {
+                    audioPromptPill.classList.add('hidden');
+                }
+            }, 600);
+        }
+
+        function setupFirstInteractionAudioUnlock() {
+            if (isAudioUnlocked) return;
+
+            const handleUnlock = () => {
+                if (isMusicActive) {
+                    cleanup();
+                    return;
+                }
+
+                if (bgAudio) {
+                    bgAudio.muted = false;
+                    const p = bgAudio.play();
+                    if (p !== undefined) {
+                        p.then(() => {
+                            isAudioUnlocked = true;
+                            updateMusicUI(true);
+                            hideAudioPrompt();
+                            cleanup();
+                        }).catch(() => {
+                            // Si el evento específico no bastó en este navegador, mantenemos los escuchadores
+                        });
+                        return;
+                    }
+                }
+
+                audioPlayer.start();
+                isAudioUnlocked = true;
+                updateMusicUI(true);
+                hideAudioPrompt();
+                cleanup();
+            };
+
+            const cleanup = () => {
+                unlockEvents.forEach(evt => {
+                    window.removeEventListener(evt, handleUnlock, true);
+                    document.removeEventListener(evt, handleUnlock, true);
+                });
+            };
+
+            unlockEvents.forEach(evt => {
+                window.addEventListener(evt, handleUnlock, { capture: true, passive: true });
+                document.addEventListener(evt, handleUnlock, { capture: true, passive: true });
+            });
+        }
+
+        function playMusic() {
+            const hasCustomAudio = bgAudio && (bgAudio.src || (bgAudio.getAttribute('src') && bgAudio.getAttribute('src').trim() !== ""));
+            if (hasCustomAudio) {
+                if (!bgAudio.paused) {
+                    updateMusicUI(true);
+                    hideAudioPrompt();
+                    return Promise.resolve();
+                }
+
+                bgAudio.muted = false;
+                const promise = bgAudio.play();
+                if (promise !== undefined) {
+                    return promise.then(() => {
+                        isAudioUnlocked = true;
+                        updateMusicUI(true);
+                        hideAudioPrompt();
+                    }).catch(err => {
+                        console.log("Autoplay con audio requiere interacción del usuario:", err);
+                        showAudioPrompt();
+                        setupFirstInteractionAudioUnlock();
+                    });
+                }
+            } else {
+                audioPlayer.start();
+                isAudioUnlocked = true;
+                updateMusicUI(true);
+                hideAudioPrompt();
+            }
+            return Promise.resolve();
+        }
+
+        if (audioPromptBtn) {
+            audioPromptBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                playMusic();
+            });
+            audioPromptBtn.addEventListener('touchstart', (e) => {
+                e.stopPropagation();
+                playMusic();
+            }, { passive: true });
+        }
+
+        function pauseMusic() {
+            if (bgAudio && !bgAudio.paused) {
+                bgAudio.pause();
+            }
+            audioPlayer.stop();
+            updateMusicUI(false);
+        }
+
+        musicToggle.addEventListener('click', () => {
+            if (!isMusicActive) {
+                playMusic();
+            } else {
+                pauseMusic();
+            }
+        });
+
+
+        // --- 2. Canvas Confetti System (Royal Blue, Navy, Gold & Pearl) ---
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animationFrameId = null;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class ConfettiParticle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 8 + 4;
+                this.color = ['#183454', '#2b527d', '#48719e', '#d4af37', '#e8d8b8', '#ffffff', '#8c929a'][Math.floor(Math.random() * 7)];
+                this.speedX = (Math.random() - 0.5) * 12;
+                this.speedY = Math.random() * -14 - 6;
+                this.gravity = 0.35;
+                this.rotation = Math.random() * 360;
+                this.rotSpeed = (Math.random() - 0.5) * 10;
+                this.opacity = 1;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.speedY += this.gravity;
+                this.speedX *= 0.98;
+                this.rotation += this.rotSpeed;
+                if (this.speedY > 2) {
+                    this.opacity -= 0.008;
+                }
+            }
+
+            draw(ctx) {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = Math.max(0, this.opacity);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size * 0.6);
+                ctx.restore();
+            }
+        }
+
+        function spawnConfetti(originX, originY, count = 80) {
+            for (let i = 0; i < count; i++) {
+                particles.push(new ConfettiParticle(originX, originY));
+            }
+            if (!animationFrameId) {
+                renderConfetti();
+            }
+        }
+
+        function renderConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles = particles.filter(p => p.opacity > 0 && p.y < canvas.height + 50);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw(ctx);
+            });
+
+            if (particles.length > 0) {
+                animationFrameId = requestAnimationFrame(renderConfetti);
+            } else {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        }
+
+        document.getElementById('celebrate-btn').addEventListener('click', (e) => {
+            const rect = e.target.getBoundingClientRect();
+            spawnConfetti(rect.left + rect.width / 2, rect.top, 130);
+            audioPlayer.playCelebrationChime();
+
+            // Partículas flotantes de celebración
+            for (let i = 0; i < 6; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('span');
+                    particle.className = 'heart-particle';
+                    particle.innerText = ['💙', '✨', '⭐', '🎉', '🎂', '❤️'][Math.floor(Math.random() * 6)];
+                    particle.style.left = `${rect.left + (Math.random() * rect.width)}px`;
+                    particle.style.top = `${rect.top - 10 + (Math.random() * 20)}px`;
+                    document.body.appendChild(particle);
+                    setTimeout(() => particle.remove(), 1200);
+                }, i * 60);
+            }
+        });
+
+
+        // =========================================================================
+        // 🎞️ REPRODUCTOR DE RECUERDOS (FOTOS Y/O VIDEOS):
+        // =========================================================================
+        // Puedes utilizar imágenes (jpg, png, etc.) o VIDEOS (mp4, webm, mov, etc.).
+        // El sistema detecta automáticamente si el archivo es un video o una foto
+        // y le aplica el mismo contorno difuminado (borde blur), el fondo ambiental y
+        // la animación fluida en bucle infinito.
+        //
+        // 📝 CÓMO CAMBIAR CUALQUIER IMAGEN POR UN VIDEO:
+        // Solo cambia el archivo en 'src' por tu video.
+        // Ejemplo:
+        //   { src: "mi_video.mp4" }
+        //   o también: { type: "video", src: "mi_video.mp4" }
+        // =========================================================================
+        const INTRO_SLIDES = [
+            { type: "video", src: "video1.mp4" },
+            { type: "video", src: "video2.mp4" },
+            { type: "video", src: "video3.mp4" },
+            { type: "video", src: "video4.mp4" },
+            { type: "video", src: "video5.mp4" },
+            { type: "video", src: "video6.mp4" },
+            { type: "video", src: "video7.mp4" }
+
+            //{ type: "image", src: "foto3.jpg" },
+
+            // 👇 [EJEMPLO DE VIDEO]: Descomenta la siguiente línea y pon tu propio video:
+            // { type: "video", src: "mi_video.mp4" },
+
+            //{ type: "image", src: "foto4.jpg" },
+            //{ type: "image", src: "foto2.jpg" },
+            //{ type: "image", src: "foto2.jpg" }
+        ];
+
+        const introSlidesViewport = document.getElementById('intro-slides-viewport');
+        const enterBtn = document.getElementById('enter-btn');
+        const skipIntroBtn = document.getElementById('skip-intro-btn');
+        const introOverlay = document.getElementById('intro-overlay');
+
+        let currentIntroIndex = 0;
+        let introSlideTimer = null;
+        let isButtonVisible = false;
+        let slidesPlayedCount = 0;
+
+        function revealEnterButton() {
+            if (isButtonVisible) return;
+            isButtonVisible = true;
+            enterBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-8', 'scale-90');
+            enterBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0', 'scale-100');
+        }
+
+        // Función para detectar si un elemento es video
+        function isVideoSource(data) {
+            if (!data || !data.src) return false;
+            if (data.type === 'video') return true;
+            const ext = data.src.split('?')[0].split('.').pop().toLowerCase();
+            return ['mp4', 'webm', 'ogg', 'mov', 'm4v'].includes(ext);
+        }
+
+        // Crear elemento multimedia (Foto o Video)
+        function createMediaElement(slideData, isAmbient = false) {
+            const isVideo = isVideoSource(slideData);
+
+            if (isVideo) {
+                const video = document.createElement('video');
+                video.src = slideData.src;
+
+                // Configuraciones obligatorias para autoplay en móviles y desktop
+                video.autoplay = true;
+                video.muted = true;
+                video.defaultMuted = true;
+                video.loop = true;
+                video.playsInline = true;
+
+                // Atributos clave para iOS y Android
+                video.setAttribute('playsinline', '');
+                video.setAttribute('webkit-playsinline', '');
+                video.setAttribute('muted', ''); // Obligatorio para evitar bloqueos de autoplay
+
+                video.className = isAmbient ? 'ambient-photo-backdrop' : 'floating-full-photo';
+
+                // Reproducción fluida inmediata y reactiva ante eventos de buffer
+                const startPlay = () => {
+                    const promise = video.play();
+                    if (promise !== undefined) {
+                        promise.catch(() => {});
+                    }
+                };
+                video.addEventListener('loadedmetadata', startPlay);
+                video.addEventListener('canplay', startPlay);
+                startPlay();
+                video.addEventListener('playing', () => {
+                    if (!isMusicActive) playMusic();
+                }, { once: true });
+
+                return video;
+            } else {
+                const img = document.createElement('img');
+                img.src = slideData.src;
+                img.alt = isAmbient ? '' : 'Recuerdo';
+                img.className = isAmbient ? 'ambient-photo-backdrop' : 'floating-full-photo';
+                return img;
+            }
+        }
+
+        // Pre-cargar imágenes para máxima fluidez
+        INTRO_SLIDES.forEach(slide => {
+            if (!isVideoSource(slide)) {
+                const preloadImg = new Image();
+                preloadImg.src = slide.src;
+            }
+        });
+
+        function playIntroSlide(index) {
+            currentIntroIndex = index;
+            slidesPlayedCount++;
+            const slideData = INTRO_SLIDES[index];
+
+            // Crear contenedor de diapositiva con animación continua
+            const wrapper = document.createElement('div');
+            wrapper.className = 'memory-slide';
+
+            // Fondo ambiental difuminado que baña la pantalla con la atmósfera del recuerdo
+            const backdropMedia = createMediaElement(slideData, true);
+
+            // Elemento principal (Foto o Video) con borde blur suave
+            const mainMedia = createMediaElement(slideData, false);
+
+            wrapper.appendChild(backdropMedia);
+            wrapper.appendChild(mainMedia);
+            introSlidesViewport.appendChild(wrapper);
+
+            // Revelar el botón Liquid Glass "Estas listo victor?" después del 5to video
+            if (!isButtonVisible) {
+                if (slidesPlayedCount === 5) {
+                    // Revelar justo al concluir el 5to video
+                    setTimeout(() => {
+                        revealEnterButton();
+                    }, 2000);
+                } else if (slidesPlayedCount > 5) {
+                    revealEnterButton();
+                }
+            }
+
+            // Loop infinito continuo y ultra fluido:
+            // Cada diapositiva se lanza a los 2.6s, solapándose con la salida de la anterior
+            // garantizando una transición permanente sin cortes ni pausas
+            introSlideTimer = setTimeout(() => {
+                const nextIndex = (currentIntroIndex + 1) % INTRO_SLIDES.length;
+                playIntroSlide(nextIndex);
+            }, 2600);
+
+            // Limpieza suave de diapositivas que ya terminaron su ciclo
+            setTimeout(() => {
+                const oldSlides = introSlidesViewport.querySelectorAll('.memory-slide');
+                if (oldSlides.length > 2) {
+                    for (let i = 0; i < oldSlides.length - 2; i++) {
+                        if (oldSlides[i].parentNode) oldSlides[i].parentNode.removeChild(oldSlides[i]);
+                    }
+                }
+            }, 3800);
+        }
+
+        // Iniciar pase continuo en bucle y reproducir música al principio de todo
+        setTimeout(() => {
+            playIntroSlide(0);
+        }, 150);
+
+        // Disparo inmediato de la música al cargar el script y el DOM
+        playMusic();
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => playMusic());
+        }
+        window.addEventListener('load', () => {
+            if (!isMusicActive) playMusic();
+        });
+
+        // Asegurar que cualquier toque en la pantalla de intro desbloquee el sonido de inmediato
+        introOverlay.addEventListener('click', () => {
+            if (!isMusicActive) playMusic();
+        }, { passive: true });
+
+        introOverlay.addEventListener('touchstart', () => {
+            if (!isMusicActive) playMusic();
+        }, { passive: true });
+
+        function handleEnter(e) {
+            if (introSlideTimer) clearTimeout(introSlideTimer);
+            introOverlay.style.opacity = '0';
+            introOverlay.style.transform = 'scale(1.04)';
+            introOverlay.style.filter = 'blur(10px)';
+            introOverlay.style.pointerEvents = 'none';
+
+            window.scrollTo({ top: 0, behavior: 'instant' });
+
+            playMusic();
+
+            // Expandir el botón de música a su diseño completo original (con ecualizador y texto)
+            if (musicToggle) {
+                musicToggle.classList.remove('intro-minimal-mode');
+            }
+
+            const originX = (e && e.clientX) ? e.clientX : window.innerWidth / 2;
+            const originY = (e && e.clientY) ? e.clientY : window.innerHeight / 2;
+            spawnConfetti(originX, originY, 80);
+
+            // Activación con zoom out lento y suave de la primera sección
+            setTimeout(() => {
+                const sec1 = document.getElementById('invitation-section-1');
+                if (sec1) sec1.classList.add('is-active');
+            }, 100);
+
+            setTimeout(() => {
+                introOverlay.style.display = 'none';
+            }, 1000);
+        }
+
+        enterBtn.addEventListener('click', (e) => {
+            handleEnter(e);
+        });
+
+        // Botón "Saltar intro": entra directamente a la experiencia principal
+        skipIntroBtn.addEventListener('click', () => {
+            handleEnter();
+        });
+
+
+        // --- 4. Intersection Observer for Centered Invitation Sections (Zoom In/Out + Blur) ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const invitationSections = document.querySelectorAll('.invitation-section');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-10% 0px -10% 0px',
+                threshold: 0.25
+            };
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const target = entry.target;
+                    if (entry.isIntersecting) {
+                        target.classList.add('is-active');
+                        target.classList.remove('is-leaving-up', 'is-leaving-down');
+                    } else {
+                        target.classList.remove('is-active');
+                        const rect = target.getBoundingClientRect();
+                        if (rect.top < 0) {
+                            target.classList.add('is-leaving-up');
+                            target.classList.remove('is-leaving-down');
+                        } else {
+                            target.classList.add('is-leaving-down');
+                            target.classList.remove('is-leaving-up');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            invitationSections.forEach(sec => sectionObserver.observe(sec));
+        });
+    </script>
+</body>
+
+</html>
