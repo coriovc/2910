@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regalos Sugeridos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="logo.png">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for modern minimalist icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        royal: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        beige: {
+                            50: '#fcfbfa',
+                            100: '#f7f4f0',
+                            200: '#ede7df',
+                            300: '#dfd4c5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f7f4f0 0%, #ede7df 50%, #e2e8f0 100%);
+            min-height: 100vh;
+            color: #1e3a8a;
+        }
+
+        /* Liquid Glass / Glassmorphism Effects */
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(30, 58, 138, 0.08);
+        }
+
+        .liquid-glass-card {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 40px 0 rgba(37, 99, 235, 0.08);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .liquid-glass-card:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.75);
+            box-shadow: 0 20px 50px 0 rgba(37, 99, 235, 0.15);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .liquid-button {
+            background: rgba(30, 58, 138, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .liquid-button:hover {
+            background: rgba(30, 58, 138, 1);
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(30, 58, 138, 0.3);
+        }
+
+        /* Smooth scroll and custom scrollbar */
+        html {
+            scroll-behavior: smooth;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f7f4f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dfd4c5;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1e3a8a;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-full selection:bg-royal-700 selection:text-white">
+
+    <!-- <header class="sticky top-0 z-50 px-4 py-4 md:px-8">
+        <nav class="max-w-6xl mx-auto liquid-glass rounded-2xl px-6 py-4 flex items-center justify-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-royal-800 text-white flex items-center justify-center font-bold text-lg shadow-md">
+                    <i class="fa-solid fa-gift"></i>
+                </div>
+                <span class="font-semibold text-lg md:text-xl tracking-tight text-royal-900">Wishlist & Regalos</span>
+            </div>
+        </nav>
+    </header>-->
+
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 md:px-8 py-8 md:py-12">
+        <section class="text-center my-6 md:my-16">
+            <div class="inline-block liquid-glass px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-royal-700 mb-4">
+                ✨ Inspiración y Detalles
+            </div>
+            <img src="logo1.PNG" alt="logo" style="margin-left: -1rem; margin-bottom: -2rem;">
+            <h1 class="text-4xl md:text-6xl font-bold text-royal-900 tracking-tight mb-4">
+                Regalos Sugeridos
+            </h1>
+            <p class="text-royal-800/80 text-base md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
+                Una selección de ideas de los regalos que puedes darme.
+            </p>
+        </section>
+
+        <div class="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-10" id="filter-container">
+            <button onclick="filterGifts('todos')" class="filter-btn active-filter liquid-glass px-5 py-2 rounded-xl text-sm font-medium text-royal-900 hover:bg-white/80 transition-all shadow-sm">
+                Todos
+            </button>
+            <button onclick="filterGifts('tecnologia')" class="filter-btn liquid-glass px-5 py-2 rounded-xl text-sm font-medium text-royal-900 hover:bg-white/80 transition-all shadow-sm">
+                Tecnología
+            </button>
+            <button onclick="filterGifts('moda')" class="filter-btn liquid-glass px-5 py-2 rounded-xl text-sm font-medium text-royal-900 hover:bg-white/80 transition-all shadow-sm">
+                Moda & Estilo
+            </button>
+            <button onclick="filterGifts('experiencias')" class="filter-btn liquid-glass px-5 py-2 rounded-xl text-sm font-medium text-royal-900 hover:bg-white/80 transition-all shadow-sm">
+                Experiencias
+            </button>
+        </div>
+
+        <div id="catalogo" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            
+            <!-- Card 1 -->
+            <div class="gift-card liquid-glass-card rounded-3xl p-5 flex flex-col justify-between" data-category="tecnologia">
+                <div>
+                    <!-- Square Photo Container -->
+                    <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-sm bg-beige-200">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" 
+                             alt="Audífonos Inalámbricos" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                             onerror="this.src='https://placehold.co/600x600/e2e8f0/1e3a8a?text=Audifonos'">
+                        <span class="absolute top-3 right-3 liquid-glass px-3 py-1 rounded-full text-xs font-semibold text-royal-900">
+                            Tecnología
+                        </span>
+                    </div>
+                    <!-- Content -->
+                    <h3 class="font-semibold text-lg text-royal-900 mb-1">Audífonos Premium ANC</h3>
+                    <p class="text-xs text-royal-800/70 line-clamp-2 mb-3">Cancelación de ruido activa, diseño ergonómico minimalista y acabado mate en tono neutro.</p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-royal-900/10">
+                    <span class="font-bold text-royal-900 text-lg">$199.00</span>
+                    <button onclick="openDetail('Audífonos Premium ANC', '$199.00', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80', 'Audífonos inalámbricos de alta gama con cancelación de ruido de última generación y hasta 30 horas de reproducción continua.')" class="liquid-button text-white text-xs font-medium px-4 py-2 rounded-xl">
+                        Ver detalle
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="gift-card liquid-glass-card rounded-3xl p-5 flex flex-col justify-between" data-category="hogar">
+                <div>
+                    <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-sm bg-beige-200">
+                        <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80" 
+                             alt="Cafetera de Diseño" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                             onerror="this.src='https://placehold.co/600x600/e2e8f0/1e3a8a?text=Cafetera'">
+                        <span class="absolute top-3 right-3 liquid-glass px-3 py-1 rounded-full text-xs font-semibold text-royal-900">
+                            Hogar & Deco
+                        </span>
+                    </div>
+                    <h3 class="font-semibold text-lg text-royal-900 mb-1">Cafetera Minimalista</h3>
+                    <p class="text-xs text-royal-800/70 line-clamp-2 mb-3">Diseño elegante en acero y detalles beige para amantes del buen café por las mañanas.</p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-royal-900/10">
+                    <span class="font-bold text-royal-900 text-lg">$125.00</span>
+                    <button onclick="openDetail('Cafetera Minimalista', '$125.00', 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80', 'Cafetera de goteo programable con jarra térmica de acero inoxidable. Su estética limpia encaja perfecto en cualquier cocina moderna.')" class="liquid-button text-white text-xs font-medium px-4 py-2 rounded-xl">
+                        Ver detalle
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="gift-card liquid-glass-card rounded-3xl p-5 flex flex-col justify-between" data-category="moda">
+                <div>
+                    <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-sm bg-beige-200">
+                        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80" 
+                             alt="Reloj Minimalista" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                             onerror="this.src='https://placehold.co/600x600/e2e8f0/1e3a8a?text=Reloj'">
+                        <span class="absolute top-3 right-3 liquid-glass px-3 py-1 rounded-full text-xs font-semibold text-royal-900">
+                            Moda & Estilo
+                        </span>
+                    </div>
+                    <h3 class="font-semibold text-lg text-royal-900 mb-1">Reloj Clásico de Cuero</h3>
+                    <p class="text-xs text-royal-800/70 line-clamp-2 mb-3">Esfera limpia, correa de auténtico cuero beige y caja de acero inoxidable en tono azul rey sutil.</p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-royal-900/10">
+                    <span class="font-bold text-royal-900 text-lg">$149.50</span>
+                    <button onclick="openDetail('Reloj Clásico de Cuero', '$149.50', 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80', 'Reloj de pulsera con diseño minimalista suizo, cristal de zafiro resistente a rayones y correa intercambiable.')" class="liquid-button text-white text-xs font-medium px-4 py-2 rounded-xl">
+                        Ver detalle
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="gift-card liquid-glass-card rounded-3xl p-5 flex flex-col justify-between" data-category="experiencias">
+                <div>
+                    <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-sm bg-beige-200">
+                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" 
+                             alt="Día de Spa" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                             onerror="this.src='https://placehold.co/600x600/e2e8f0/1e3a8a?text=Spa'">
+                        <span class="absolute top-3 right-3 liquid-glass px-3 py-1 rounded-full text-xs font-semibold text-royal-900">
+                            Experiencias
+                        </span>
+                    </div>
+                    <h3 class="font-semibold text-lg text-royal-900 mb-1">Experiencia Spa & Relax</h3>
+                    <p class="text-xs text-royal-800/70 line-clamp-2 mb-3">Un día completo de desconexión, masajes relajantes y tratamientos faciales personalizados.</p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-royal-900/10">
+                    <span class="font-bold text-royal-900 text-lg">$210.00</span>
+                    <button onclick="openDetail('Experiencia Spa & Relax', '$210.00', 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80', 'Bono de regalo electrónico para canjear en cualquiera de nuestros spas asociados con acceso a circuito hidrotermal.')" class="liquid-button text-white text-xs font-medium px-4 py-2 rounded-xl">
+                        Ver detalle
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="gift-card liquid-glass-card rounded-3xl p-5 flex flex-col justify-between" data-category="tecnologia">
+                <div>
+                    <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-sm bg-beige-200">
+                        <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=600&q=80" 
+                             alt="Cámara Instantánea" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                             onerror="this.src='https://placehold.co/600x600/e2e8f0/1e3a8a?text=Camara'">
+                        <span class="absolute top-3 right-3 liquid-glass px-3 py-1 rounded-full text-xs font-semibold text-royal-900">
+                            Tecnología
+                        </span>
+                    </div>
+                    <h3 class="font-semibold text-lg text-royal-900 mb-1">Cámara Retro Instantánea</h3>
+                    <p class="text-xs text-royal-800/70 line-clamp-2 mb-3">Captura momentos inolvidables con un toque vintage en un cuerpo compacto de diseño moderno.</p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-royal-900/10">
+                    <span class="font-bold text-royal-900 text-lg">$95.00</span>
+                    <button onclick="openDetail('Cámara Retro Instantánea', '$95.00', 'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=600&q=80', 'Cámara instantánea con modo de exposición automática, lente para selfies y espejo integrado.')" class="liquid-button text-white text-xs font-medium px-4 py-2 rounded-xl">
+                        Ver detalle
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="gift-card liquid-glass-card rounded-3xl p-5 flex flex-col justify-between" data-category="hogar">
+                <div>
+                    <div class="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-sm bg-beige-200">
+                        <img src="https://images.unsplash.com/photo-1608248597359-9944a34b2f4f?auto=format&fit=crop&w=600&q=80" 
+                             alt="Vela Aromática de Lujo" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                             onerror="this.src='https://placehold.co/600x600/e2e8f0/1e3a8a?text=Vela'">
+                        <span class="absolute top-3 right-3 liquid-glass px-3 py-1 rounded-full text-xs font-semibold text-royal-900">
+                            Hogar & Deco
+                        </span>
+                    </div>
+                    <h3 class="font-semibold text-lg text-royal-900 mb-1">Set de Velas Aromáticas</h3>
+                    <p class="text-xs text-royal-800/70 line-clamp-2 mb-3">Cera de soja natural con notas de sándalo y vainilla, vertidas en recipientes de cristal mate.</p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-royal-900/10">
+                    <span class="font-bold text-royal-900 text-lg">$45.00</span>
+                    <button onclick="openDetail('Set de Velas Aromáticas', '$45.00', 'https://images.unsplash.com/photo-1608248597359-9944a34b2f4f?auto=format&fit=crop&w=600&q=80', 'Colección de 3 velas artesanales con mecha de algodón ecológico y más de 50 horas de combustión cada una.')" class="liquid-button text-white text-xs font-medium px-4 py-2 rounded-xl">
+                        Ver detalle
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!--<section id="contacto" class="my-16 liquid-glass rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+            <div class="max-w-xl mx-auto relative z-10">
+                <h2 class="text-2xl md:text-3xl font-bold text-royal-900 mb-3">¿Tienes alguna otra sugerencia?</h2>
+                <p class="text-royal-800/80 text-sm md:text-base mb-6 font-light">
+                    Ayúdanos a ampliar esta lista compartiendo una idea que consideres perfecta.
+                </p>
+                <form onsubmit="handleSuggestionSubmit(event)" class="flex flex-col sm:flex-row gap-3 justify-center">
+                    <input type="text" id="suggestionInput" placeholder="Ej. Libro de arquitectura moderna..." required
+                           class="px-4 py-3 rounded-xl bg-white/70 border border-royal-900/10 focus:outline-none focus:ring-2 focus:ring-royal-600 text-sm text-royal-900 flex-grow shadow-inner">
+                    <button type="submit" class="liquid-button text-white font-medium px-6 py-3 rounded-xl text-sm shadow-md whitespace-nowrap">
+                        Enviar idea
+                    </button>
+                </form>
+            </div>
+        </section>-->
+    </main>
+
+    <div id="detailModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-royal-950/40 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="liquid-glass-card w-full max-w-md rounded-3xl p-6 md:p-8 transform scale-95 transition-transform duration-300 relative" id="modalContentBox">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/60 hover:bg-white text-royal-900 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <div id="modalBody">
+                <!-- Dynamic content inserted via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- <footer class="mt-auto py-6 px-4 md:px-8 border-t border-royal-900/10">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between text-xs text-royal-800/70 gap-4">
+            <p>© 2026 Regalos Sugeridos. Estilo Minimalista y Líquido.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-royal-900 transition-colors">Privacidad</a>
+                <a href="#" class="hover:text-royal-900 transition-colors">Términos</a>
+                <a href="#" class="hover:text-royal-900 transition-colors">Contacto</a>
+            </div>
+        </div>
+    </footer>-->
+
+    <script>
+        // Filter function for gift cards
+        function filterGifts(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-white/80', 'ring-2', 'ring-royal-600');
+            });
+            event.target.classList.add('bg-white/80', 'ring-2', 'ring-royal-600');
+
+            const cards = document.querySelectorAll('.gift-card');
+            cards.forEach(card => {
+                if (category === 'todos' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                    setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'scale(1)'; }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => { card.style.display = 'none'; }, 300);
+                }
+            });
+        }
+
+        // Modal open detail
+        function openDetail(title, price, imgUrl, description) {
+            const modal = document.getElementById('detailModal');
+            const box = document.getElementById('modalContentBox');
+            const body = document.getElementById('modalBody');
+
+            body.innerHTML = `
+                <div class="w-full aspect-square rounded-2xl overflow-hidden mb-4 bg-beige-200 shadow-sm">
+                    <img src="${imgUrl}" alt="${title}" class="w-full h-full object-cover">
+                </div>
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-bold text-xl text-royal-900">${title}</h3>
+                    <span class="font-bold text-royal-700 text-lg">${price}</span>
+                </div>
+                <p class="text-xs text-royal-800/80 leading-relaxed mb-6">${description}</p>
+                <button onclick="closeModal(); showToast('¡Idea guardada en favoritos!');" class="w-full liquid-button text-white font-medium py-3 rounded-xl text-sm shadow-md">
+                    Guardar en favoritos
+                </button>
+            `;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            box.classList.remove('scale-95');
+            box.classList.add('scale-100');
+        }
+
+        // Modal open custom add idea
+        function openModal() {
+            const modal = document.getElementById('detailModal');
+            const box = document.getElementById('modalContentBox');
+            const body = document.getElementById('modalBody');
+
+            body.innerHTML = `
+                <div class="text-center mb-6">
+                    <div class="w-12 h-12 rounded-2xl bg-royal-100 text-royal-800 flex items-center justify-center mx-auto mb-3 text-lg">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-royal-900 mb-1">Añadir Nueva Idea</h3>
+                    <p class="text-xs text-royal-800/70">Comparte el regalo que tienes en mente.</p>
+                </div>
+                <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-royal-900 mb-1">Nombre del Regalo</label>
+                        <input type="text" id="modalTitle" required class="w-full px-4 py-2.5 rounded-xl bg-white/70 border border-royal-900/10 text-sm text-royal-900 focus:outline-none focus:ring-2 focus:ring-royal-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-royal-900 mb-1">Categoría</label>
+                        <select id="modalCat" class="w-full px-4 py-2.5 rounded-xl bg-white/70 border border-royal-900/10 text-sm text-royal-900 focus:outline-none focus:ring-2 focus:ring-royal-600">
+                            <option value="tecnologia">Tecnología</option>
+                            <option value="moda">Moda & Estilo</option>
+                            <option value="hogar">Hogar & Deco</option>
+                            <option value="experiencias">Experiencias</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-royal-900 mb-1">Precio aproximado</label>
+                        <input type="text" id="modalPrice" placeholder="$50.00" required class="w-full px-4 py-2.5 rounded-xl bg-white/70 border border-royal-900/10 text-sm text-royal-900 focus:outline-none focus:ring-2 focus:ring-royal-600">
+                    </div>
+                    <button type="submit" class="w-full liquid-button text-white font-medium py-3 rounded-xl text-sm shadow-md mt-2">
+                        Publicar sugerencia
+                    </button>
+                </form>
+            `;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            box.classList.remove('scale-95');
+            box.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detailModal');
+            const box = document.getElementById('modalContentBox');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            box.classList.remove('scale-100');
+            box.classList.add('scale-95');
+        }
+
+        function handleSuggestionSubmit(e) {
+            e.preventDefault();
+            const val = document.getElementById('suggestionInput').value;
+            if(val.trim()) {
+                showToast('¡Gracias! Tu sugerencia "' + val + '" ha sido enviada.');
+                document.getElementById('suggestionInput').value = '';
+            }
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            const title = document.getElementById('modalTitle').value;
+            closeModal();
+            showToast('¡"' + title + '" se ha añadido con éxito!');
+        }
+
+        // Custom non-intrusive toast message box (instead of alert)
+        function showToast(message) {
+            const existingToast = document.getElementById('customToast');
+            if(existingToast) existingToast.remove();
+
+            const toast = document.createElement('div');
+            toast.id = 'customToast';
+            toast.className = 'fixed bottom-6 right-6 z-50 liquid-glass-card px-5 py-3 rounded-2xl shadow-xl flex items-center space-x-3 text-royal-900 text-sm font-medium transition-all transform translate-y-10 opacity-0';
+            toast.innerHTML = `
+                <div class="w-6 h-6 rounded-full bg-royal-800 text-white flex items-center justify-center text-xs">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-10', 'opacity-0');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => toast.remove(), 400);
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
