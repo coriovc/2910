@@ -103,6 +103,12 @@
         </div>
 
         <div class="flex items-center flex-wrap gap-2 sm:gap-3">
+            <!-- Indicador de conexión con phpMyAdmin / MySQL -->
+            <div id="db-status-badge" class="hidden sm:inline-flex items-center space-x-1.5 text-[11px] font-medium px-3 py-1.5 rounded-xl bg-white/60 text-slate-600 liquid-glass border border-white/80 shadow-xs">
+                <span id="db-status-dot" class="w-2 h-2 rounded-full bg-amber-400"></span>
+                <span id="db-status-text">Conectando a MySQL...</span>
+            </div>
+
             <a href="confirmar.html" target="_blank" class="text-xs font-medium text-royal-700 bg-white/70 hover:bg-white px-3.5 py-2 rounded-xl liquid-glass transition-all flex items-center space-x-1.5 shadow-sm">
                 <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
                 <span>Página de Confirmación</span>
@@ -407,8 +413,9 @@
     <script>
         const STORAGE_KEY = 'event_2910_guests';
         let currentFilter = 'all';
+        let isOnlineDb = false;
 
-        // Load guests safely
+        // Cargar invitados de localStorage como respaldo
         function getGuests() {
             try {
                 return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -418,7 +425,7 @@
             }
         }
 
-        // Save guests safely
+        // Guardar en localStorage
         function saveGuests(guests) {
             try {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(guests));
@@ -426,6 +433,50 @@
             } catch (e) {
                 console.error("Error saving localStorage", e);
                 showToast("Error guardando los datos", "error");
+            }
+        }
+
+        // Actualizar el estado visual de conexión con la base de datos MySQL (phpMyAdmin)
+        function updateDbStatus(connected, text) {
+            const badge = document.getElementById('db-status-badge');
+            const dot = document.getElementById('db-status-dot');
+            const txt = document.getElementById('db-status-text');
+            if (!badge || !dot || !txt) return;
+
+            txt.textContent = text;
+            if (connected) {
+                dot.className = "w-2 h-2 rounded-full bg-emerald-500 animate-pulse";
+                badge.className = "hidden sm:inline-flex items-center space-x-1.5 text-[11px] font-medium px-3 py-1.5 rounded-xl bg-emerald-50/80 text-emerald-800 border border-emerald-200 shadow-xs";
+            } else {
+                dot.className = "w-2 h-2 rounded-full bg-amber-500";
+                badge.className = "hidden sm:inline-flex items-center space-x-1.5 text-[11px] font-medium px-3 py-1.5 rounded-xl bg-amber-50/80 text-amber-800 border border-amber-200 shadow-xs";
+            }
+        }
+
+        // Consultar los registros desde MySQL (phpMyAdmin) vía api.php
+        async function fetchGuestsFromApi(silent = false) {
+            try {
+                const response = await fetch('api.php?action=list');
+                if (!response.ok) throw new Error("HTTP " + response.status);
+                const res = await response.json();
+                
+                if (res && res.success && Array.isArray(res.data)) {
+                    isOnlineDb = true;
+                    updateDbStatus(true, `phpMyAdmin Conectado (${res.data.length})`);
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(res.data));
+                    renderAll();
+                    return res.data;
+                } else {
+                    throw new Error(res.error || "Respuesta no válida");
+                }
+            } catch (err) {
+                isOnlineDb = false;
+                updateDbStatus(false, 'Modo Local / Configurar config.php');
+                if (!silent) {
+                    console.warn("Servidor PHP/MySQL no disponible en este entorno, operando en modo local:", err);
+                }
+                renderAll();
+                return getGuests();
             }
         }
 
@@ -625,7 +676,7 @@
         // Toggle guest attendance
         function toggleAttendance(id) {
             const guests = getGuests();
-            const index = guests.findIndex(g => g.id === id);
+            const index = guests.findIndex(g => g.id == id);
             if (index === -1) return;
 
             guests[index].attended = !guests[index].attended;
@@ -639,19 +690,43 @@
             if (verifyInput && guests[index].code.toLowerCase().includes(verifyInput.toLowerCase())) {
                 checkCode(guests[index].code);
             }
+
+            // Sincronizar con servidor MySQL / phpMyAdmin
+            fetch('api.php?action=toggle_attendance', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: id })
+            }).then(r => r.json()).then(res => {
+                if (res && res.success && res.guest) {
+                    const latest = getGuests();
+                    const i = latest.findIndex(g => g.id == id);
+                    if (i !== -1) {
+                        latest[i] = res.guest;
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(latest));
+                        renderAll();
+                    }
+                }
+            }).catch(e => console.warn("Modo local o error en sync toggle:", e));
         }
 
         // Delete guest with confirmation
         function deleteGuest(id) {
             const guests = getGuests();
-            const guest = guests.find(g => g.id === id);
+            const guest = guests.find(g => g.id == id);
             if (!guest) return;
 
             if (confirm(`¿Estás seguro de que deseas eliminar el registro de ${guest.name} (${guest.code})?`)) {
-                const updated = guests.filter(g => g.id !== id);
+                const updated = guests.filter(g => g.id != id);
                 saveGuests(updated);
                 showToast(`Registro de ${guest.name} eliminado`, "warning");
                 document.getElementById('verification-result').classList.add('hidden');
+
+                // Sincronizar eliminación con servidor MySQL / phpMyAdmin
+                fetch('api.php?action=delete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id })
+                }).catch(e => console.warn("Modo local o error en sync delete:", e));
             }
         }
 
@@ -678,19 +753,59 @@
             });
 
             if (!guest) {
-                resultBox.innerHTML = `
-                    <div class="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 space-y-1.5 animate-fadeIn">
-                        <div class="flex items-center space-x-2 font-bold text-xs">
-                            <i class="fa-solid fa-circle-xmark text-rose-600"></i>
-                            <span>Código no encontrado</span>
+                // Si está conectado al servidor, intentar buscar en vivo en MySQL
+                if (isOnlineDb) {
+                    resultBox.innerHTML = `
+                        <div class="p-4 rounded-2xl bg-white/70 border border-white/90 text-slate-600 flex items-center space-x-2 text-xs">
+                            <i class="fa-solid fa-spinner fa-spin text-royal-600"></i>
+                            <span>Buscando pase en la base de datos...</span>
                         </div>
-                        <p class="text-[11px] text-rose-600 font-light">
-                            No existe ningún invitado registrado con el código <strong>${rawCode}</strong>. Verifica el número o regístralo manualmente.
-                        </p>
-                    </div>
-                `;
+                    `;
+                    fetch('api.php?action=verify&code=' + encodeURIComponent(rawCode))
+                        .then(r => r.json())
+                        .then(res => {
+                            if (res && res.success && res.found && res.guest) {
+                                const current = getGuests();
+                                if (!current.some(g => g.id == res.guest.id)) {
+                                    current.unshift(res.guest);
+                                    localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
+                                    renderAll();
+                                }
+                                renderVerificationCard(res.guest, rawCode);
+                            } else {
+                                renderCodeNotFound(rawCode);
+                            }
+                        })
+                        .catch(() => renderCodeNotFound(rawCode));
+                    return;
+                }
+
+                renderCodeNotFound(rawCode);
                 return;
             }
+
+            renderVerificationCard(guest, rawCode);
+        }
+
+        // Renderizar tarjeta cuando no se encuentra el código
+        function renderCodeNotFound(rawCode) {
+            const resultBox = document.getElementById('verification-result');
+            resultBox.innerHTML = `
+                <div class="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 space-y-1.5 animate-fadeIn">
+                    <div class="flex items-center space-x-2 font-bold text-xs">
+                        <i class="fa-solid fa-circle-xmark text-rose-600"></i>
+                        <span>Código no encontrado</span>
+                    </div>
+                    <p class="text-[11px] text-rose-600 font-light">
+                        No existe ningún invitado registrado con el código <strong>${rawCode}</strong>. Verifica el número o regístralo manualmente.
+                    </p>
+                </div>
+            `;
+        }
+
+        // Renderizar tarjeta de verificación de pase
+        function renderVerificationCard(guest, rawCode) {
+            const resultBox = document.getElementById('verification-result');
 
             // If guest already checked-in
             if (guest.attended) {
@@ -910,7 +1025,7 @@
                 randomCode = 'Event-' + Math.floor(1000 + Math.random() * 9000);
             } while (guests.some(g => g.code === randomCode));
 
-            const newGuest = {
+            const tempGuest = {
                 id: 'guest_' + Date.now() + '_' + Math.floor(1000 + Math.random() * 9000),
                 code: randomCode,
                 name: name,
@@ -922,7 +1037,7 @@
                 attendedAt: instantCheckin ? new Date().toISOString() : null
             };
 
-            guests.push(newGuest);
+            guests.unshift(tempGuest);
             saveGuests(guests);
             closeManualGuestModal();
             showToast(`Invitado ${name} registrado con código ${randomCode}`);
@@ -930,6 +1045,31 @@
             if (instantCheckin) {
                 checkCode(randomCode);
             }
+
+            // Sincronizar con servidor MySQL / phpMyAdmin
+            fetch('api.php?action=manual_register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: name,
+                    phone: phone,
+                    count: count,
+                    diet: diet,
+                    instantCheckin: instantCheckin
+                })
+            }).then(r => r.json()).then(res => {
+                if (res && res.success && res.guest) {
+                    const current = getGuests();
+                    const idx = current.findIndex(g => g.code === randomCode || g.id === tempGuest.id);
+                    if (idx !== -1) {
+                        current[idx] = res.guest;
+                    } else {
+                        current.unshift(res.guest);
+                    }
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
+                    renderAll();
+                }
+            }).catch(e => console.warn("Modo local o error en registro manual:", e));
         }
 
         // Live sync across tabs / windows
@@ -948,6 +1088,17 @@
         // Initial setup
         window.addEventListener('DOMContentLoaded', () => {
             renderAll();
+            fetchGuestsFromApi();
+
+            // Polling silencioso en segundo plano cada 12 segundos para actualizar registros en vivo
+            setInterval(() => {
+                fetchGuestsFromApi(true);
+            }, 12000);
+
+            // Refrescar automáticamente al regresar a la pestaña
+            window.addEventListener('focus', () => {
+                fetchGuestsFromApi(true);
+            });
         });
     </script>
 </body>

@@ -329,13 +329,13 @@
             const count = document.getElementById('guest-count').value;
             const diet = document.getElementById('guest-diet').value.trim() || 'Ninguna';
 
-            // Generar código único y persistir en la base de datos local
-            let randomCode;
+            // Generar código único y persistir en la base de datos local y MySQL (phpMyAdmin)
+            let randomCode = 'Event-' + Math.floor(1000 + Math.random() * 9000);
             try {
                 const storedGuests = JSON.parse(localStorage.getItem('event_2910_guests') || '[]');
-                do {
+                while (storedGuests.some(g => g.code === randomCode)) {
                     randomCode = 'Event-' + Math.floor(1000 + Math.random() * 9000);
-                } while (storedGuests.some(g => g.code === randomCode));
+                }
 
                 const newGuestRecord = {
                     id: 'guest_' + Date.now() + '_' + Math.floor(1000 + Math.random() * 9000),
@@ -353,7 +353,33 @@
                 localStorage.setItem('event_2910_guests', JSON.stringify(storedGuests));
             } catch (err) {
                 console.error("Error guardando en base de datos local:", err);
-                randomCode = 'Event-' + Math.floor(1000 + Math.random() * 9000);
+            }
+
+            // Enviar a la base de datos en el servidor web (MySQL / phpMyAdmin)
+            try {
+                fetch('api.php?action=register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: name,
+                        phone: phone,
+                        count: parseInt(count, 10) || 1,
+                        diet: diet,
+                        code: randomCode
+                    })
+                }).then(res => res.json())
+                  .then(data => {
+                      if (data && data.success && data.guest && data.guest.code) {
+                          currentGuestData.code = data.guest.code;
+                          const codeEl = document.getElementById('ticket-code');
+                          if (codeEl) codeEl.textContent = data.guest.code;
+                      }
+                  })
+                  .catch(err => {
+                      console.warn("Servidor PHP/MySQL no disponible en este entorno, usando registro local:", err);
+                  });
+            } catch (err) {
+                console.warn("Fetch no disponible:", err);
             }
 
             currentGuestData = { name, phone, count, diet, code: randomCode };
